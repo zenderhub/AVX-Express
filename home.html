@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AVX Express LLC</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --red: #C8362A;
+      --red-dark: #A82822;
+      --navy: #1E4B8A;
+      --navy-dark: #102C57;
+      --navy-xdark: #07101E;
+      --white: #ffffff;
+      --surface: #F2F6FC;
+      --text: #0D1B33;
+      --text-soft: #5C6E8A;
+      --border: #D4DFEF;
+      --r: 14px;
+      --r-sm: 8px;
+      --pill: 999px;
+      --wrap: 1280px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Ubuntu', system-ui, -apple-system, sans-serif;
+      color: var(--text); background: var(--white);
+      line-height: 1.6; -webkit-font-smoothing: antialiased;
+    }
+    img { max-width: 100%; display: block; }
+
+    .wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 clamp(20px,4vw,72px); }
+
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: 11.5px; font-weight: 700; letter-spacing: 1.5px;
+      text-transform: uppercase; color: var(--red);
+    }
+    .eyebrow::before { content:''; width:22px; height:2px; background:var(--red); border-radius:2px; }
+    .stitle {
+      font-size: clamp(26px,3vw,40px); font-weight: 700;
+      letter-spacing: -.8px; line-height: 1.18;
+      color: var(--text); text-wrap: balance;
+    }
+    .ssub { font-size: 17px; color: var(--text-soft); line-height: 1.65; }
+    .sh { display: flex; flex-direction: column; gap: 14px; margin-bottom: 60px; }
+    .sh.center { align-items: center; text-align: center; }
+    .sh.center .ssub { max-width: 540px; }
+
+    /* BUTTONS */
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: 'Ubuntu', sans-serif; font-weight: 700; font-size: 15px;
+      border: none; cursor: pointer; text-decoration: none;
+      border-radius: var(--pill); padding: 13px 26px;
+      transition: background .18s, transform .18s, box-shadow .18s, color .18s, border-color .18s;
+    }
+    .btn-primary { background: var(--red); color: white; }
+    .btn-primary:hover { background: var(--red-dark); transform: translateY(-1px); box-shadow: 0 6px 22px rgba(200,54,42,.28); }
+    .btn-outline { background: transparent; color: var(--navy); border: 2px solid var(--navy); }
+    .btn-outline:hover { background: var(--navy); color: white; }
+    .btn-white { background: white; color: var(--red); font-weight: 700; }
+    .btn-white:hover { background: #fff3f2; transform: translateY(-1px); }
+    .btn-lg { padding: 16px 34px; font-size: 16px; }
+
+    /* NAV */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,.94);
+      backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-in {
+      display: flex; align-items: center;
+      justify-content: space-between; height: 72px; gap: 32px;
+    }
+    .logo { display: flex; align-items: center; text-decoration: none; flex-shrink: 0; }
+    .logo img { height: 48px; width: auto; display: block; }
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a { font-size: 15px; font-weight: 500; color: var(--text-soft); text-decoration: none; transition: color .18s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--navy); }
+    .nav-right { display: flex; align-items: center; gap: 18px; }
+    .lang-toggle { display: flex; align-items: center; gap: 4px; }
+    .lang-btn {
+      background: none; border: none; cursor: pointer;
+      font-family: 'Ubuntu', sans-serif; font-size: 13px; font-weight: 700;
+      letter-spacing: .5px; color: var(--text-soft);
+      padding: 4px 8px; border-radius: 6px;
+      transition: color .18s, background .18s;
+    }
+    .lang-btn.active { color: var(--navy); background: var(--surface); }
+    .lang-sep { font-size: 12px; color: var(--border); }
+
+    /* HERO */
+    .hero { min-height: calc(100vh - 72px); display: flex; align-items: center; overflow: hidden; }
+    .hero-grid {
+      display: grid; grid-template-columns: 1fr 500px;
+      gap: 72px; align-items: center;
+      padding-top: 80px; padding-bottom: 80px;
+    }
+    .hero h1 {
+      font-size: clamp(38px,4.5vw,62px); font-weight: 700;
+      line-height: 1.09; letter-spacing: -1.8px;
+      color: var(--text); margin: 20px 0 24px;
+    }
+    .hero h1 .navy { color: var(--navy); }
+    .hero h1 .red  { color: var(--red); }
+    .hero-sub { font-size: 18px; color: var(--text-soft); line-height: 1.65; max-width: 480px; margin-bottom: 40px; }
+    .hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; margin-bottom: 52px; }
+    .hero-trust { display: flex; align-items: center; gap: 14px; font-size: 13px; color: var(--text-soft); }
+    .avatars { display: flex; }
+    .av { width: 34px; height: 34px; border-radius: 50%; border: 2.5px solid white; background: var(--surface); overflow: hidden; margin-left: -9px; }
+    .av:first-child { margin-left: 0; }
+    .av img { width: 100%; height: 100%; object-fit: cover; }
+
+    .hero-visual { position: relative; }
+    .hero-img-frame {
+      border-radius: 20px; overflow: hidden;
+      box-shadow: 0 24px 64px rgba(7,16,30,.16);
+      position: relative;
+    }
+    .hero-img-frame img { width: 100%; height: 520px; object-fit: cover; object-position: center; }
+    .hero-badge {
+      position: absolute; bottom: 24px; left: 24px;
+      background: white; border-radius: 12px;
+      padding: 14px 18px;
+      box-shadow: 0 8px 28px rgba(7,16,30,.14);
+      display: flex; align-items: center; gap: 12px;
+    }
+    .badge-dot { width: 10px; height: 10px; border-radius: 50%; background: #22c55e; flex-shrink: 0; box-shadow: 0 0 0 3px rgba(34,197,94,.2); }
+    .badge-text { font-size: 13px; font-weight: 700; color: var(--text); line-height: 1.3; }
+    .badge-text span { display: block; font-size: 11px; font-weight: 400; color: var(--text-soft); }
+
+    /* TRUST BAND */
+    .trust-band { padding: 28px 0; background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .trust-inner { display: flex; align-items: center; gap: 48px; }
+    .trust-label { font-size: 11px; font-weight: 700; letter-spacing: 1.3px; text-transform: uppercase; color: var(--text-soft); white-space: nowrap; flex-shrink: 0; }
+    .stores { display: flex; align-items: center; gap: 40px; flex: 1; justify-content: space-around; flex-wrap: wrap; }
+    .store { font-size: 16px; font-weight: 700; color: #aab3c4; letter-spacing: -.3px; transition: color .2s; }
+    .store:hover { color: #7a88a0; }
+
+    /* SERVICES */
+    .services { padding: 110px 0; }
+    .svc-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 20px; }
+    .svc-card {
+      border: 1px solid var(--border); border-radius: var(--r);
+      padding: 30px 24px; background: white;
+      display: flex; flex-direction: column; gap: 14px;
+      text-decoration: none; color: inherit;
+      transition: box-shadow .22s, transform .22s, border-color .22s;
+    }
+    .svc-card:hover { border-color: var(--navy); box-shadow: 0 8px 32px rgba(30,75,138,.1); transform: translateY(-4px); }
+    .svc-icon { width: 50px; height: 50px; background: var(--surface); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: var(--navy); }
+    .svc-card h3 { font-size: 16px; font-weight: 700; color: var(--text); line-height: 1.3; }
+    .svc-card p  { font-size: 14px; color: var(--text-soft); line-height: 1.55; flex: 1; }
+    .svc-more { font-size: 13px; font-weight: 700; color: var(--red); display: flex; align-items: center; gap: 4px; transition: gap .2s; }
+    .svc-card:hover .svc-more { gap: 8px; }
+
+    /* HOW IT WORKS */
+    .how { padding: 110px 0; background: var(--surface); }
+    .steps { display: grid; grid-template-columns: repeat(4,1fr); gap: 3px; background: var(--border); border-radius: var(--r); overflow: hidden; }
+    .step { background: white; padding: 38px 28px; display: flex; flex-direction: column; gap: 14px; }
+    .step-n { font-size: 12px; font-weight: 700; letter-spacing: .8px; color: var(--red); }
+    .step-icon { width: 46px; height: 46px; background: var(--surface); border-radius: 11px; display: flex; align-items: center; justify-content: center; color: var(--navy); }
+    .step h3 { font-size: 17px; font-weight: 700; color: var(--text); line-height: 1.3; }
+    .step p  { font-size: 14px; color: var(--text-soft); line-height: 1.6; }
+
+    /* STATS — redesigned */
+    .stats { padding: 100px 0; background: var(--white); }
+    .stats-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
+    .stat-card {
+      border: 1px solid var(--border); border-radius: var(--r);
+      padding: 36px 32px; background: white;
+      border-left: 4px solid var(--red);
+      display: flex; flex-direction: column; gap: 10px;
+    }
+    .stat-icon { width: 42px; height: 42px; background: rgba(200,54,42,.08); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: var(--red); margin-bottom: 8px; }
+    .stat-n { font-size: clamp(40px,4.5vw,58px); font-weight: 700; letter-spacing: -1.5px; line-height: 1; color: var(--navy); font-variant-numeric: tabular-nums; }
+    .stat-lbl { font-size: 16px; font-weight: 700; color: var(--text); }
+    .stat-desc { font-size: 14px; color: var(--text-soft); line-height: 1.55; }
+
+    /* SUPPORT SECTION */
+    .support { padding: 100px 0; background: var(--surface); }
+    .support-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    .support-copy { display: flex; flex-direction: column; gap: 20px; }
+    .support-copy h2 { font-size: clamp(26px,3vw,38px); font-weight: 700; letter-spacing: -.6px; line-height: 1.22; color: var(--text); }
+    .support-copy p { font-size: 17px; color: var(--text-soft); line-height: 1.7; }
+    .contact-cards { display: flex; flex-direction: column; gap: 14px; }
+    .contact-card {
+      background: white; border: 1px solid var(--border); border-radius: 12px;
+      padding: 20px 24px; display: flex; align-items: center; gap: 16px;
+      text-decoration: none; color: inherit;
+      transition: border-color .2s, box-shadow .2s, transform .2s;
+    }
+    .contact-card:hover { border-color: var(--navy); box-shadow: 0 4px 16px rgba(30,75,138,.09); transform: translateX(4px); }
+    .cc-icon { width: 44px; height: 44px; background: var(--surface); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: var(--navy); flex-shrink: 0; }
+    .cc-info { flex: 1; }
+    .cc-info strong { display: block; font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 2px; }
+    .cc-info span { font-size: 13px; color: var(--text-soft); }
+    .cc-arrow { color: var(--text-soft); font-size: 18px; }
+
+    /* FAQ */
+    .faq { padding: 110px 0; }
+    .faq-list { max-width: 720px; margin: 0 auto; }
+    details { border-bottom: 1px solid var(--border); }
+    summary {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 22px 0; cursor: pointer;
+      font-size: 16px; font-weight: 700; color: var(--text);
+      gap: 16px; list-style: none; user-select: none; transition: color .2s;
+    }
+    summary::-webkit-details-marker { display: none; }
+    details[open] summary { color: var(--navy); }
+    .chev { flex-shrink: 0; color: var(--navy); transition: transform .25s ease; }
+    details[open] .chev { transform: rotate(180deg); }
+    .faq-ans { padding-bottom: 22px; font-size: 15px; color: var(--text-soft); line-height: 1.72; }
+
+    /* CTA FINAL */
+    .cta-final { background: var(--navy); padding: 96px 0; text-align: center; }
+    .cta-final h2 { font-size: clamp(28px,3.5vw,46px); font-weight: 700; color: white; letter-spacing: -.8px; margin-bottom: 14px; }
+    .cta-final p  { font-size: 18px; color: rgba(255,255,255,.75); margin-bottom: 40px; }
+
+    /* FOOTER */
+    footer { background: var(--navy-xdark); padding: 72px 0 40px; }
+    .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; padding-bottom: 48px; border-bottom: 1px solid rgba(255,255,255,.1); }
+    .footer-brand { display: flex; flex-direction: column; gap: 16px; }
+    .f-logo-name { font-size: 17px; font-weight: 700; color: white; }
+    .f-desc { font-size: 14px; color: rgba(255,255,255,.46); line-height: 1.65; max-width: 240px; }
+    .footer-col h4 { font-size: 11px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; color: rgba(255,255,255,.3); margin-bottom: 18px; }
+    .footer-col a { display: block; font-size: 14px; color: rgba(255,255,255,.58); text-decoration: none; margin-bottom: 10px; transition: color .2s; }
+    .footer-col a:hover { color: white; }
+    .footer-bot { padding-top: 24px; display: flex; justify-content: space-between; align-items: center; font-size: 13px; color: rgba(255,255,255,.3); }
+
+    /* REVEAL */
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity .55s ease, transform .55s ease; }
+    .reveal.in  { opacity: 1; transform: none; }
+    .d1 { transition-delay: .08s; } .d2 { transition-delay: .16s; }
+    .d3 { transition-delay: .24s; } .d4 { transition-delay: .32s; }
+    @media (prefers-reduced-motion: reduce) { .reveal { opacity:1; transform:none; transition:none; } }
+
+    /* LANG */
+    [data-show="en"] .t-es,
+    [data-show="es"] .t-en { display: none !important; }
+
+    /* RESPONSIVE */
+    @media (max-width: 1024px) {
+      .hero-grid { grid-template-columns: 1fr 1fr; gap: 48px; }
+      .svc-grid   { grid-template-columns: 1fr 1fr; }
+      .steps      { grid-template-columns: 1fr 1fr; }
+      .stats-grid { grid-template-columns: 1fr; }
+      .support-grid { grid-template-columns: 1fr; gap: 48px; }
+    }
+    @media (max-width: 768px) {
+      .hero-grid  { grid-template-columns: 1fr; }
+      .hero-visual { display: none; }
+      .trust-inner { flex-direction: column; gap: 20px; }
+      .footer-top  { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 600px) {
+      .nav-links { display: none; }
+      .svc-grid { grid-template-columns: 1fr; }
+      .steps    { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr; }
+      .footer-bot { flex-direction: column; gap: 8px; text-align: center; }
+    }
+  </style>
+</head>
+<body data-show="es">
+
+<!-- NAV -->
+<nav>
+  <div class="wrap nav-in">
+    <a href="index.html" class="logo">
+      <img src="LOGOFOTO.jpg" alt="AVX Express LLC">
+    </a>
+    <ul class="nav-links">
+      <li><a href="servicios.html"><span class="t-es">Servicios</span><span class="t-en">Services</span></a></li>
+      <li><a href="como-funciona.html"><span class="t-es">Cómo Funciona</span><span class="t-en">How It Works</span></a></li>
+      <li><a href="faq.html"><span class="t-es">Preguntas</span><span class="t-en">FAQ</span></a></li>
+      <li><a href="contacto.html"><span class="t-es">Contacto</span><span class="t-en">Contact</span></a></li>
+    </ul>
+    <div class="nav-right">
+      <div class="lang-toggle">
+        <button class="lang-btn active" data-lang="es">ES</button>
+        <span class="lang-sep">|</span>
+        <button class="lang-btn" data-lang="en">EN</button>
+      </div>
+      <a href="contacto.html" class="btn btn-primary">
+        <span class="t-es">Crear mi cuenta</span>
+        <span class="t-en">Create account</span>
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow t-es">Casillero virtual en EE.UU.</span>
+      <span class="eyebrow t-en">Virtual mailbox in the U.S.</span>
+      <h1>
+        <span class="t-es">Compra en<br><span class="navy">Estados Unidos.</span><br>Recíbelo en<br><span class="red">tu puerta.</span></span>
+        <span class="t-en">Shop in<br><span class="navy">the United States.</span><br>Get it at<br><span class="red">your door.</span></span>
+      </h1>
+      <p class="hero-sub t-es">Vive una experiencia de compra y envío internacional sin complicaciones. Tu dirección personal en Miami, consolidación de paquetes y entrega directa donde estés.</p>
+      <p class="hero-sub t-en">Experience seamless international shopping and shipping. Your personal address in Miami, package consolidation, and direct delivery wherever you are.</p>
+      <div class="hero-ctas">
+        <a href="contacto.html" class="btn btn-primary btn-lg">
+          <span class="t-es">Comienza hoy &rarr;</span>
+          <span class="t-en">Get started &rarr;</span>
+        </a>
+        <a href="como-funciona.html" class="btn btn-outline btn-lg">
+          <span class="t-es">Cómo funciona</span>
+          <span class="t-en">How it works</span>
+        </a>
+      </div>
+      <div class="hero-trust">
+        <div class="avatars">
+          <div class="av"><img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=68&h=68&fit=crop&q=80" alt=""></div>
+          <div class="av"><img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=68&h=68&fit=crop&q=80" alt=""></div>
+          <div class="av"><img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=68&h=68&fit=crop&q=80" alt=""></div>
+        </div>
+        <span class="t-es">+12,000 clientes confían en AVX Express</span>
+        <span class="t-en">+12,000 customers trust AVX Express</span>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-img-frame">
+        <img src="https://images.unsplash.com/photo-1553413077-190dd305871c?auto=format&fit=crop&w=900&q=80" alt="Bodega logística AVX Express">
+        <div class="hero-badge">
+          <div class="badge-dot"></div>
+          <div class="badge-text">
+            <span class="t-es">Miami, FL 33198</span>
+            <span class="t-en">Miami, FL 33198</span>
+            <span class="t-es">Paquetes listos para despacho</span>
+            <span class="t-en">Packages ready for dispatch</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BAND -->
+<div class="trust-band">
+  <div class="wrap trust-inner">
+    <span class="trust-label t-es">Compra en tus tiendas favoritas</span>
+    <span class="trust-label t-en">Shop your favorite stores</span>
+    <div class="stores">
+      <span class="store">Amazon</span>
+      <span class="store">Walmart</span>
+      <span class="store">Best Buy</span>
+      <span class="store">Nike</span>
+      <span class="store">Target</span>
+      <span class="store">eBay</span>
+    </div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="services" id="servicios">
+  <div class="wrap">
+    <div class="sh reveal">
+      <span class="eyebrow t-es">Nuestros servicios</span>
+      <span class="eyebrow t-en">Our services</span>
+      <h2 class="stitle t-es">Todo lo que necesitas,<br>en un solo lugar.</h2>
+      <h2 class="stitle t-en">Everything you need,<br>in one place.</h2>
+      <p class="ssub t-es">Cuatro servicios diseñados para que tus compras internacionales y trámites lleguen sin complicaciones.</p>
+      <p class="ssub t-en">Four services designed to make your international shopping and paperwork hassle-free.</p>
+    </div>
+    <div class="svc-grid">
+      <a href="servicios.html#paquetes" class="svc-card reveal d1">
+        <div class="svc-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+        </div>
+        <h3 class="t-es">Reenvío de Paquetes</h3>
+        <h3 class="t-en">Package Forwarding</h3>
+        <p class="t-es">Compra en EE.UU. con tu dirección personal en Miami. Recibimos, inspeccionamos y consolidamos tus paquetes.</p>
+        <p class="t-en">Shop in the U.S. with your personal Miami address. We receive, inspect, and consolidate your packages.</p>
+        <span class="svc-more t-es">Ver servicio <span>→</span></span>
+        <span class="svc-more t-en">Learn more <span>→</span></span>
+      </a>
+      <a href="servicios.html#envios" class="svc-card reveal d2">
+        <div class="svc-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        </div>
+        <h3 class="t-es">Envíos Internacionales</h3>
+        <h3 class="t-en">International Shipping</h3>
+        <p class="t-es">Entrega confiable desde nuestra bodega en Miami directo a tu puerta, con seguimiento en tiempo real.</p>
+        <p class="t-en">Reliable delivery from our Miami warehouse straight to your door, with real-time tracking.</p>
+        <span class="svc-more t-es">Ver servicio <span>→</span></span>
+        <span class="svc-more t-en">Learn more <span>→</span></span>
+      </a>
+      <a href="servicios.html#transferencias" class="svc-card reveal d3">
+        <div class="svc-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        </div>
+        <h3 class="t-es">Transferencia de Dinero</h3>
+        <h3 class="t-en">Money Transfer</h3>
+        <p class="t-es">Envía y recibe dinero de forma rápida y segura entre Estados Unidos y tu país.</p>
+        <p class="t-en">Send and receive money quickly and securely between the U.S. and your country.</p>
+        <span class="svc-more t-es">Ver servicio <span>→</span></span>
+        <span class="svc-more t-en">Learn more <span>→</span></span>
+      </a>
+      <a href="servicios.html#notaria" class="svc-card reveal d4">
+        <div class="svc-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        </div>
+        <h3 class="t-es">Notaría y Apostilla</h3>
+        <h3 class="t-en">Notary &amp; Apostille</h3>
+        <p class="t-es">Tramita la autenticación y apostilla de tus documentos con rapidez y validez internacional.</p>
+        <p class="t-en">Process the authentication and apostille of your documents quickly with international validity.</p>
+        <span class="svc-more t-es">Ver servicio <span>→</span></span>
+        <span class="svc-more t-en">Learn more <span>→</span></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how" id="como-funciona">
+  <div class="wrap">
+    <div class="sh center reveal">
+      <span class="eyebrow t-es">Proceso</span>
+      <span class="eyebrow t-en">Process</span>
+      <h2 class="stitle t-es">Así de simple funciona.</h2>
+      <h2 class="stitle t-en">This simple.</h2>
+      <p class="ssub t-es">En cuatro pasos tienes tus compras de EE.UU. en la puerta de tu casa.</p>
+      <p class="ssub t-en">Four steps to get your U.S. purchases at your door.</p>
+    </div>
+    <div class="steps">
+      <div class="step reveal d1">
+        <span class="step-n">01</span>
+        <div class="step-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg>
+        </div>
+        <h3 class="t-es">Regístrate gratis</h3>
+        <h3 class="t-en">Sign up for free</h3>
+        <p class="t-es">Crea tu cuenta en AVX Express y obtén al instante tu dirección personal en Miami.</p>
+        <p class="t-en">Create your AVX Express account and get your personal Miami address instantly.</p>
+      </div>
+      <div class="step reveal d2">
+        <span class="step-n">02</span>
+        <div class="step-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+        </div>
+        <h3 class="t-es">Compra en tus tiendas favoritas</h3>
+        <h3 class="t-en">Shop your favorite stores</h3>
+        <p class="t-es">Usa tu dirección de AVX Express al pagar. Amazon, Nike, Best Buy y más.</p>
+        <p class="t-en">Use your AVX Express address at checkout. Amazon, Nike, Best Buy, and more.</p>
+      </div>
+      <div class="step reveal d3">
+        <span class="step-n">03</span>
+        <div class="step-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <h3 class="t-es">Nosotros recibimos tu paquete</h3>
+        <h3 class="t-en">We receive your package</h3>
+        <p class="t-es">Te avisamos en cuanto llega a nuestra bodega con foto de confirmación.</p>
+        <p class="t-en">We notify you as soon as it arrives at our warehouse with a photo confirmation.</p>
+      </div>
+      <div class="step reveal d4">
+        <span class="step-n">04</span>
+        <div class="step-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13" rx="1"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+        </div>
+        <h3 class="t-es">Te lo enviamos</h3>
+        <h3 class="t-en">We ship it to you</h3>
+        <p class="t-es">Directo a tu puerta con número de guía para rastrearlo en cada etapa.</p>
+        <p class="t-en">Straight to your door with a tracking number for every step of the way.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS REDESIGNED -->
+<section class="stats">
+  <div class="wrap">
+    <div class="sh reveal">
+      <span class="eyebrow t-es">Por qué elegirnos</span>
+      <span class="eyebrow t-en">Why choose us</span>
+      <h2 class="stitle t-es">Confianza respaldada<br>por resultados.</h2>
+      <h2 class="stitle t-en">Trust backed<br>by results.</h2>
+    </div>
+    <div class="stats-grid">
+      <div class="stat-card reveal d1">
+        <div class="stat-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <div class="stat-n">+12,000</div>
+        <div class="stat-lbl t-es">Clientes activos</div>
+        <div class="stat-lbl t-en">Active customers</div>
+        <div class="stat-desc t-es">Familias y negocios en América Latina que ya compran en EE.UU. con su dirección AVX.</div>
+        <div class="stat-desc t-en">Families and businesses in Latin America already shopping in the U.S. with their AVX address.</div>
+      </div>
+      <div class="stat-card reveal d2">
+        <div class="stat-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <div class="stat-n">99.7%</div>
+        <div class="stat-lbl t-es">Entregas exitosas</div>
+        <div class="stat-lbl t-en">Successful deliveries</div>
+        <div class="stat-desc t-es">De cada 1,000 envíos procesados, 997 llegan a destino sin ningún inconveniente.</div>
+        <div class="stat-desc t-en">Out of every 1,000 shipments processed, 997 arrive at their destination without any issue.</div>
+      </div>
+      <div class="stat-card reveal d3">
+        <div class="stat-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13" rx="1"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+        </div>
+        <div class="stat-n">4</div>
+        <div class="stat-lbl t-es">Servicios integrados</div>
+        <div class="stat-lbl t-en">Integrated services</div>
+        <div class="stat-desc t-es">Paquetes, envíos, transferencias y notaría, todo en una sola plataforma.</div>
+        <div class="stat-desc t-en">Packages, shipping, transfers, and notary, all in one platform.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SUPPORT -->
+<section class="support" id="contacto">
+  <div class="wrap">
+    <div class="support-grid">
+      <div class="support-copy reveal">
+        <span class="eyebrow t-es">Soporte real</span>
+        <span class="eyebrow t-en">Real support</span>
+        <h2 class="t-es">Un equipo real<br>que te acompaña.</h2>
+        <h2 class="t-en">A real team<br>by your side.</h2>
+        <p class="t-es">No te dejamos solo en el proceso. Nuestro equipo está disponible para responder tus dudas, ayudarte con tus paquetes y asegurarse de que tu experiencia sea sin complicaciones.</p>
+        <p class="t-en">We don't leave you alone in the process. Our team is available to answer your questions, help with your packages, and make sure your experience is hassle-free.</p>
+      </div>
+      <div class="contact-cards reveal d2">
+        <a href="#" class="contact-card">
+          <div class="cc-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          </div>
+          <div class="cc-info">
+            <strong>WhatsApp</strong>
+            <span class="t-es">Respuesta en minutos</span>
+            <span class="t-en">Reply in minutes</span>
+          </div>
+          <span class="cc-arrow">→</span>
+        </a>
+        <a href="mailto:soporte@avxexpress.com" class="contact-card">
+          <div class="cc-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <div class="cc-info">
+            <strong>Email</strong>
+            <span>soporte@avxexpress.com</span>
+          </div>
+          <span class="cc-arrow">→</span>
+        </a>
+        <a href="contacto.html" class="contact-card">
+          <div class="cc-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <div class="cc-info">
+            <strong class="t-es">Horario de atención</strong>
+            <strong class="t-en">Business hours</strong>
+            <span class="t-es">Lun a Vie, 9am a 6pm EST</span>
+            <span class="t-en">Mon to Fri, 9am to 6pm EST</span>
+          </div>
+          <span class="cc-arrow">→</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="wrap">
+    <div class="sh center reveal">
+      <span class="eyebrow t-es">Preguntas frecuentes</span>
+      <span class="eyebrow t-en">Frequently asked questions</span>
+      <h2 class="stitle t-es">Resolvemos tus dudas.</h2>
+      <h2 class="stitle t-en">We answer your questions.</h2>
+    </div>
+    <div class="faq-list">
+      <details open>
+        <summary>
+          <span class="t-es">¿Qué servicios ofrece AVX Express?</span>
+          <span class="t-en">What services does AVX Express offer?</span>
+          <svg class="chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </summary>
+        <div class="faq-ans t-es">Ofrecemos reenvío de paquetes, envíos internacionales, transferencia de dinero y servicios de notaría y apostilla. Todo disponible desde tu cuenta en nuestra plataforma.</div>
+        <div class="faq-ans t-en">We offer package forwarding, international shipping, money transfer, and notary and apostille services. All available from your account on our platform.</div>
+      </details>
+      <details>
+        <summary>
+          <span class="t-es">¿Cómo funciona el reenvío de paquetes?</span>
+          <span class="t-en">How does package forwarding work?</span>
+          <svg class="chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </summary>
+        <div class="faq-ans t-es">Al registrarte obtienes una dirección personal en Miami. Úsala al comprar en cualquier tienda de EE.UU. Cuando el paquete llega a nuestra bodega, te avisamos con foto de confirmación y lo preparamos para enviártelo.</div>
+        <div class="faq-ans t-en">When you sign up you get a personal Miami address. Use it when shopping at any U.S. store. When the package arrives at our warehouse, we notify you with a photo confirmation and prepare it to ship to you.</div>
+      </details>
+      <details>
+        <summary>
+          <span class="t-es">¿Cuáles son los beneficios de usar AVX Express?</span>
+          <span class="t-en">What are the benefits of using AVX Express?</span>
+          <svg class="chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </summary>
+        <div class="faq-ans t-es">Ahorras en costos de envío, accedes a una gama más amplia de productos y disfrutas de una experiencia sin complicaciones con soporte dedicado en cada paso.</div>
+        <div class="faq-ans t-en">You save on shipping costs, access a wider range of products, and enjoy a hassle-free experience with dedicated support at every step.</div>
+      </details>
+      <details>
+        <summary>
+          <span class="t-es">¿Cómo puedo rastrear mi envío?</span>
+          <span class="t-en">How can I track my shipment?</span>
+          <svg class="chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </summary>
+        <div class="faq-ans t-es">Una vez que tu paquete es despachado, recibes un número de seguimiento. Desde tu cuenta en AVX Express puedes ver el estado en tiempo real en cada etapa del recorrido.</div>
+        <div class="faq-ans t-en">Once your package ships, you receive a tracking number. From your AVX Express account you can see the real-time status at every stage of the journey.</div>
+      </details>
+      <details>
+        <summary>
+          <span class="t-es">¿Cuánto cuesta abrir mi casillero?</span>
+          <span class="t-en">How much does it cost to open my mailbox?</span>
+          <svg class="chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </summary>
+        <div class="faq-ans t-es">Tu casillero virtual en AVX Express es completamente gratuito. Solo pagas cuando decides enviar tus paquetes. Contáctanos para conocer las tarifas de envío según tu destino.</div>
+        <div class="faq-ans t-en">Your AVX Express virtual mailbox is completely free. You only pay when you decide to ship your packages. Contact us to learn shipping rates for your destination.</div>
+      </details>
+      <details>
+        <summary>
+          <span class="t-es">¿Cuáles son los beneficios de consolidar paquetes?</span>
+          <span class="t-en">What are the benefits of consolidating packages?</span>
+          <svg class="chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </summary>
+        <div class="faq-ans t-es">Al consolidar varios paquetes en un solo envío puedes ahorrar hasta un 40% en costos de shipping internacional, porque pagas flete por un bulto en lugar de varios.</div>
+        <div class="faq-ans t-en">By consolidating multiple packages into one shipment you can save up to 40% on international shipping costs, because you pay freight for one parcel instead of several.</div>
+      </details>
+    </div>
+    <div style="text-align:center; margin-top:48px;">
+      <a href="faq.html" class="btn btn-outline">
+        <span class="t-es">Ver todas las preguntas</span>
+        <span class="t-en">View all questions</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="cta-final">
+  <div class="wrap">
+    <h2 class="t-es">Crea tu cuenta gratis y obtén<br>tu dirección en Estados Unidos hoy.</h2>
+    <h2 class="t-en">Create your free account and get<br>your U.S. address today.</h2>
+    <p class="t-es">Sin cuotas de apertura. Sin compromisos. Empieza a comprar en minutos.</p>
+    <p class="t-en">No opening fees. No commitments. Start shopping in minutes.</p>
+    <a href="contacto.html" class="btn btn-white btn-lg">
+      <span class="t-es">Crear mi cuenta gratis &rarr;</span>
+      <span class="t-en">Create my free account &rarr;</span>
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img src="LOGOFOTO.jpg" alt="AVX Express LLC" style="height:44px;width:auto;filter:brightness(0) invert(1);opacity:.85;">
+        <p class="f-desc t-es">Tu casillero virtual en EE.UU. Compra en cualquier tienda americana y recíbelo donde estés.</p>
+        <p class="f-desc t-en">Your virtual mailbox in the U.S. Shop any American store and receive it wherever you are.</p>
+      </div>
+      <div class="footer-col">
+        <h4 class="t-es">Servicios</h4>
+        <h4 class="t-en">Services</h4>
+        <a href="servicios.html#paquetes"><span class="t-es">Reenvío de Paquetes</span><span class="t-en">Package Forwarding</span></a>
+        <a href="servicios.html#envios"><span class="t-es">Envíos Internacionales</span><span class="t-en">International Shipping</span></a>
+        <a href="servicios.html#transferencias"><span class="t-es">Transferencia de Dinero</span><span class="t-en">Money Transfer</span></a>
+        <a href="servicios.html#notaria"><span class="t-es">Notaría y Apostilla</span><span class="t-en">Notary &amp; Apostille</span></a>
+      </div>
+      <div class="footer-col">
+        <h4 class="t-es">Empresa</h4>
+        <h4 class="t-en">Company</h4>
+        <a href="como-funciona.html"><span class="t-es">Cómo Funciona</span><span class="t-en">How It Works</span></a>
+        <a href="faq.html"><span class="t-es">Preguntas Frecuentes</span><span class="t-en">FAQ</span></a>
+        <a href="contacto.html"><span class="t-es">Contacto</span><span class="t-en">Contact</span></a>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <a href="#"><span class="t-es">Términos de Uso</span><span class="t-en">Terms of Use</span></a>
+        <a href="#"><span class="t-es">Privacidad</span><span class="t-en">Privacy</span></a>
+        <a href="#"><span class="t-es">Artículos Prohibidos</span><span class="t-en">Prohibited Items</span></a>
+      </div>
+    </div>
+    <div class="footer-bot">
+      <span>&copy; 2025 AVX Express LLC. <span class="t-es">Todos los derechos reservados.</span><span class="t-en">All rights reserved.</span></span>
+      <span>Miami, FL · <span class="t-es">Estados Unidos</span><span class="t-en">United States</span></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Scroll reveal
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+  // FAQ accordion: close others on open
+  document.querySelectorAll('details').forEach(d => {
+    d.addEventListener('toggle', () => {
+      if (d.open) document.querySelectorAll('details').forEach(o => { if (o !== d) o.open = false; });
+    });
+  });
+
+  // Language toggle
+  const body = document.body;
+  function setLang(lang) {
+    body.dataset.show = lang;
+    document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
+    localStorage.setItem('avx-lang', lang);
+  }
+  document.querySelectorAll('.lang-btn').forEach(b => b.addEventListener('click', () => setLang(b.dataset.lang)));
+  setLang(localStorage.getItem('avx-lang') || 'es');
+</script>
+</body>
+</html>

@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contacto · AVX Express LLC</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --red: #C8362A; --red-dark: #A82822; --navy: #1E4B8A;
+      --navy-xdark: #07101E; --white: #ffffff; --surface: #F2F6FC;
+      --text: #0D1B33; --text-soft: #5C6E8A; --border: #D4DFEF;
+      --r: 14px; --pill: 999px; --wrap: 1280px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Ubuntu', system-ui, sans-serif; color: var(--text); background: var(--white); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    img { max-width: 100%; display: block; }
+    .wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 clamp(20px,4vw,72px); }
+    .eyebrow { display: inline-flex; align-items: center; gap: 10px; font-size: 11.5px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--red); }
+    .eyebrow::before { content:''; width:22px; height:2px; background:var(--red); border-radius:2px; }
+    .btn { display: inline-flex; align-items: center; gap: 8px; font-family: 'Ubuntu', sans-serif; font-weight: 700; font-size: 15px; border: none; cursor: pointer; text-decoration: none; border-radius: var(--pill); padding: 13px 26px; transition: background .18s, transform .18s, box-shadow .18s, color .18s; }
+    .btn-primary { background: var(--red); color: white; }
+    .btn-primary:hover { background: var(--red-dark); transform: translateY(-1px); box-shadow: 0 6px 22px rgba(200,54,42,.28); }
+    .btn-white { background: white; color: var(--red); font-weight: 700; }
+    .btn-white:hover { background: #fff3f2; transform: translateY(-1px); }
+    .btn-lg { padding: 16px 34px; font-size: 16px; }
+    .btn-navy { background: var(--navy); color: white; }
+    .btn-navy:hover { background: #163a6e; transform: translateY(-1px); box-shadow: 0 6px 22px rgba(30,75,138,.28); }
+    nav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,.94); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid var(--border); }
+    .nav-in { display: flex; align-items: center; justify-content: space-between; height: 72px; gap: 32px; }
+    .logo { display: flex; align-items: center; text-decoration: none; flex-shrink: 0; }
+    .logo img { height: 48px; width: auto; }
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a { font-size: 15px; font-weight: 500; color: var(--text-soft); text-decoration: none; transition: color .18s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--navy); }
+    .nav-right { display: flex; align-items: center; gap: 18px; }
+    .lang-toggle { display: flex; align-items: center; gap: 4px; }
+    .lang-btn { background: none; border: none; cursor: pointer; font-family: 'Ubuntu', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: .5px; color: var(--text-soft); padding: 4px 8px; border-radius: 6px; transition: color .18s, background .18s; }
+    .lang-btn.active { color: var(--navy); background: var(--surface); }
+    .lang-sep { font-size: 12px; color: var(--border); }
+    [data-show="en"] .t-es, [data-show="es"] .t-en { display: none !important; }
+
+    /* HERO */
+    .page-hero { padding: 80px 0 70px; background: var(--navy); }
+    .page-hero .eyebrow { color: rgba(255,255,255,.55); }
+    .page-hero .eyebrow::before { background: rgba(255,255,255,.35); }
+    .page-hero h1 { font-size: clamp(32px,4vw,52px); font-weight: 700; letter-spacing: -1.2px; line-height: 1.1; color: white; margin: 16px 0 18px; }
+    .page-hero p { font-size: 18px; color: rgba(255,255,255,.7); max-width: 520px; line-height: 1.65; }
+
+    /* CONTACT GRID */
+    .contact-section { padding: 88px 0 100px; }
+    .contact-grid { display: grid; grid-template-columns: 1fr 420px; gap: 80px; align-items: start; }
+
+    /* FORM */
+    .form-card { background: var(--white); border: 1px solid var(--border); border-radius: 20px; padding: 44px; }
+    .form-title { font-size: 22px; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+    .form-sub { font-size: 15px; color: var(--text-soft); margin-bottom: 32px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .field { display: flex; flex-direction: column; gap: 7px; margin-bottom: 18px; }
+    .field label { font-size: 13px; font-weight: 700; color: var(--text); letter-spacing: .3px; }
+    .field input, .field select, .field textarea { font-family: 'Ubuntu', sans-serif; font-size: 15px; color: var(--text); background: var(--surface); border: 1.5px solid var(--border); border-radius: 10px; padding: 12px 16px; outline: none; transition: border-color .18s, box-shadow .18s; width: 100%; }
+    .field input::placeholder, .field textarea::placeholder { color: var(--text-soft); opacity: .7; }
+    .field input:focus, .field select:focus, .field textarea:focus { border-color: var(--navy); box-shadow: 0 0 0 3px rgba(30,75,138,.1); background: white; }
+    .field textarea { resize: vertical; min-height: 120px; }
+    .field select { cursor: pointer; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%235C6E8A' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; padding-right: 40px; }
+    .form-submit { width: 100%; justify-content: center; padding: 16px; font-size: 16px; border-radius: 10px; margin-top: 4px; }
+    .form-note { font-size: 12.5px; color: var(--text-soft); text-align: center; margin-top: 14px; line-height: 1.5; }
+
+    /* SIDEBAR */
+    .contact-sidebar { display: flex; flex-direction: column; gap: 16px; }
+    .contact-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 28px; display: flex; flex-direction: column; gap: 12px; transition: border-color .2s, transform .2s, box-shadow .2s; }
+    .contact-card:hover { border-color: var(--navy); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(30,75,138,.1); }
+    .contact-card.highlight { background: var(--navy); border-color: var(--navy); }
+    .contact-card.highlight .cc-label, .contact-card.highlight .cc-val, .contact-card.highlight .cc-desc { color: rgba(255,255,255,.9); }
+    .contact-card.highlight .cc-label { color: rgba(255,255,255,.55); }
+    .cc-icon { width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; background: rgba(30,75,138,.1); flex-shrink: 0; }
+    .contact-card.highlight .cc-icon { background: rgba(255,255,255,.15); }
+    .cc-label { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--text-soft); }
+    .cc-val { font-size: 17px; font-weight: 700; color: var(--text); line-height: 1.3; }
+    .cc-desc { font-size: 13.5px; color: var(--text-soft); }
+    .cc-link { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 700; color: var(--red); text-decoration: none; margin-top: 4px; transition: gap .2s; }
+    .cc-link:hover { gap: 10px; }
+    .contact-card.highlight .cc-link { color: #90BBFF; }
+    .pending-note { font-size: 12px; font-style: italic; color: var(--text-soft); background: #FFF8E1; border: 1px solid #F0D060; border-radius: 8px; padding: 10px 14px; }
+
+    /* ADDRESS */
+    .address-section { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 64px 0; }
+    .address-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+    .address-label { font-size: 11.5px; font-weight: 700; letter-spacing: 1.4px; text-transform: uppercase; color: var(--red); margin-bottom: 12px; }
+    .address-heading { font-size: clamp(22px,2.5vw,34px); font-weight: 700; color: var(--text); letter-spacing: -.5px; margin-bottom: 14px; }
+    .address-body { font-size: 16px; color: var(--text-soft); line-height: 1.65; margin-bottom: 28px; }
+    .address-box { background: white; border: 1.5px solid var(--border); border-radius: 14px; padding: 24px 28px; display: flex; flex-direction: column; gap: 6px; }
+    .addr-pending { font-size: 13px; font-style: italic; color: var(--text-soft); }
+    .address-note { font-size: 13.5px; color: var(--text-soft); margin-top: 16px; line-height: 1.6; }
+
+    /* CTA FINAL */
+    .cta-final { background: var(--red); padding: 80px 0; text-align: center; }
+    .cta-final h2 { font-size: clamp(24px,3vw,40px); font-weight: 700; color: white; letter-spacing: -.6px; margin-bottom: 12px; }
+    .cta-final p { font-size: 17px; color: rgba(255,255,255,.8); margin-bottom: 36px; }
+
+    footer { background: var(--navy-xdark); padding: 72px 0 40px; }
+    .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; padding-bottom: 48px; border-bottom: 1px solid rgba(255,255,255,.1); }
+    .footer-brand { display: flex; flex-direction: column; gap: 16px; }
+    .f-desc { font-size: 14px; color: rgba(255,255,255,.46); line-height: 1.65; max-width: 240px; }
+    .footer-col h4 { font-size: 11px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; color: rgba(255,255,255,.3); margin-bottom: 18px; }
+    .footer-col a { display: block; font-size: 14px; color: rgba(255,255,255,.58); text-decoration: none; margin-bottom: 10px; transition: color .2s; }
+    .footer-col a:hover { color: white; }
+    .footer-bot { padding-top: 24px; display: flex; justify-content: space-between; align-items: center; font-size: 13px; color: rgba(255,255,255,.3); }
+
+    /* REVEAL */
+    .reveal { opacity: 0; transform: translateY(18px); transition: opacity .55s ease, transform .55s ease; }
+    .reveal.in { opacity: 1; transform: none; }
+
+    @media (max-width: 1000px) { .contact-grid { grid-template-columns: 1fr; } .address-inner { grid-template-columns: 1fr; gap: 32px; } }
+    @media (max-width: 600px) { .nav-links { display: none; } .form-row { grid-template-columns: 1fr; } .footer-top { grid-template-columns: 1fr 1fr; } .footer-bot { flex-direction: column; gap: 8px; text-align: center; } .form-card { padding: 28px 20px; } }
+    @media (max-width: 480px) { .footer-top { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body data-show="es">
+
+<nav>
+  <div class="wrap nav-in">
+    <a href="home.html" class="logo"><img src="LOGOFOTO.jpg" alt="AVX Express LLC"></a>
+    <ul class="nav-links">
+      <li><a href="servicios.html"><span class="t-es">Servicios</span><span class="t-en">Services</span></a></li>
+      <li><a href="como-funciona.html"><span class="t-es">Cómo Funciona</span><span class="t-en">How It Works</span></a></li>
+      <li><a href="faq.html"><span class="t-es">Preguntas</span><span class="t-en">FAQ</span></a></li>
+      <li><a href="contacto.html" class="active"><span class="t-es">Contacto</span><span class="t-en">Contact</span></a></li>
+    </ul>
+    <div class="nav-right">
+      <div class="lang-toggle">
+        <button class="lang-btn active" data-lang="es">ES</button>
+        <span class="lang-sep">|</span>
+        <button class="lang-btn" data-lang="en">EN</button>
+      </div>
+      <a href="#form" class="btn btn-primary">
+        <span class="t-es">Crear mi cuenta</span><span class="t-en">Create account</span>
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="page-hero">
+  <div class="wrap">
+    <span class="eyebrow t-es">Contacto</span>
+    <span class="eyebrow t-en">Contact</span>
+    <h1 class="t-es">Estamos aquí<br>para ayudarte.</h1>
+    <h1 class="t-en">We're here<br>to help you.</h1>
+    <p class="t-es">Escríbenos o cuéntanos tu caso. Respondemos rápido por los canales que más te convengan.</p>
+    <p class="t-en">Write to us or describe your case. We respond quickly through the channels that work best for you.</p>
+  </div>
+</div>
+
+<!-- CONTACT SECTION -->
+<section class="contact-section" id="form">
+  <div class="wrap">
+    <div class="contact-grid">
+
+      <!-- FORM -->
+      <div class="form-card reveal">
+        <div class="form-title t-es">Envíanos un mensaje</div>
+        <div class="form-title t-en">Send us a message</div>
+        <div class="form-sub t-es">Completa el formulario y te contactamos en menos de 24 horas.</div>
+        <div class="form-sub t-en">Fill out the form and we'll reach out within 24 hours.</div>
+        <form onsubmit="handleSubmit(event)">
+          <div class="form-row">
+            <div class="field">
+              <label class="t-es" for="nombre">Nombre</label>
+              <label class="t-en" for="nombre">First name</label>
+              <input type="text" id="nombre" placeholder="Juan" required>
+            </div>
+            <div class="field">
+              <label class="t-es" for="apellido">Apellido</label>
+              <label class="t-en" for="apellido">Last name</label>
+              <input type="text" id="apellido" placeholder="Rodríguez" required>
+            </div>
+          </div>
+          <div class="field">
+            <label class="t-es" for="email">Correo electrónico</label>
+            <label class="t-en" for="email">Email address</label>
+            <input type="email" id="email" placeholder="juan@correo.com" required>
+          </div>
+          <div class="field">
+            <label class="t-es" for="servicio">Servicio de interés</label>
+            <label class="t-en" for="servicio">Service of interest</label>
+            <select id="servicio" required>
+              <option value="" class="t-es">Selecciona un servicio...</option>
+              <option value="" class="t-en">Select a service...</option>
+              <option class="t-es" value="paquetes">Reenvío de Paquetes</option>
+              <option class="t-en" value="paquetes">Package Forwarding</option>
+              <option class="t-es" value="envios">Envíos Internacionales</option>
+              <option class="t-en" value="envios">International Shipping</option>
+              <option class="t-es" value="transferencia">Transferencia de Dinero</option>
+              <option class="t-en" value="transferencia">Money Transfer</option>
+              <option class="t-es" value="notaria">Notaría y Apostilla</option>
+              <option class="t-en" value="notaria">Notary &amp; Apostille</option>
+              <option class="t-es" value="otro">Otro</option>
+              <option class="t-en" value="otro">Other</option>
+            </select>
+          </div>
+          <div class="field">
+            <label class="t-es" for="mensaje">Tu mensaje</label>
+            <label class="t-en" for="mensaje">Your message</label>
+            <textarea id="mensaje" placeholder="Cuéntanos cómo podemos ayudarte..." required></textarea>
+          </div>
+          <button type="submit" class="btn btn-navy form-submit">
+            <span class="t-es">Enviar mensaje &rarr;</span>
+            <span class="t-en">Send message &rarr;</span>
+          </button>
+        </form>
+        <p class="form-note t-es">Al enviar este formulario aceptas nuestros Términos de Uso y Política de Privacidad.</p>
+        <p class="form-note t-en">By submitting this form you accept our Terms of Use and Privacy Policy.</p>
+      </div>
+
+      <!-- SIDEBAR -->
+      <div class="contact-sidebar">
+
+        <div class="contact-card highlight reveal">
+          <div class="cc-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 11.74 19.79 19.79 0 01.12 3.12 2 2 0 012.11 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 8.09a16 16 0 006 6l.55-.55a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          </div>
+          <div class="cc-label">WhatsApp</div>
+          <div class="cc-val t-es" style="color:white;">Chatea con nosotros</div>
+          <div class="cc-val t-en" style="color:white;">Chat with us</div>
+          <div class="cc-desc pending-note t-es">Número pendiente — se actualizará pronto.</div>
+          <div class="cc-desc pending-note t-en">Number pending — will be updated soon.</div>
+        </div>
+
+        <div class="contact-card reveal">
+          <div class="cc-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <div class="cc-label">Email</div>
+          <div class="cc-val t-es">Soporte por correo</div>
+          <div class="cc-val t-en">Email support</div>
+          <div class="cc-desc pending-note t-es">Correo de soporte pendiente — se actualizará pronto.</div>
+          <div class="cc-desc pending-note t-en">Support email pending — will be updated soon.</div>
+        </div>
+
+        <div class="contact-card reveal">
+          <div class="cc-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <div class="cc-label t-es">Horario de atención</div>
+          <div class="cc-label t-en">Business hours</div>
+          <div class="cc-val t-es">Lunes a viernes</div>
+          <div class="cc-val t-en">Monday to Friday</div>
+          <div class="cc-desc pending-note t-es">Horario exacto pendiente — se actualizará pronto.</div>
+          <div class="cc-desc pending-note t-en">Exact hours pending — will be updated soon.</div>
+        </div>
+
+        <div class="contact-card reveal">
+          <div class="cc-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div class="cc-label t-es">Bodega Miami</div>
+          <div class="cc-label t-en">Miami Warehouse</div>
+          <div class="cc-val">Miami, FL</div>
+          <div class="cc-desc t-es">Estados Unidos</div>
+          <div class="cc-desc t-en">United States</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CASILLERO -->
+<section class="address-section">
+  <div class="wrap">
+    <div class="address-inner">
+      <div class="reveal">
+        <div class="address-label t-es">Tu casillero en EE.UU.</div>
+        <div class="address-label t-en">Your U.S. mailbox</div>
+        <h2 class="address-heading t-es">Obtén tu dirección<br>en Miami en minutos.</h2>
+        <h2 class="address-heading t-en">Get your Miami address<br>in minutes.</h2>
+        <p class="address-body t-es">Crea tu cuenta gratis, recibe tu dirección personal en Miami y empieza a comprar en cualquier tienda de EE.UU. hoy mismo.</p>
+        <p class="address-body t-en">Create your free account, get your personal Miami address, and start shopping any U.S. store today.</p>
+        <a href="#form" class="btn btn-primary btn-lg">
+          <span class="t-es">Crear mi cuenta gratis &rarr;</span>
+          <span class="t-en">Create my free account &rarr;</span>
+        </a>
+      </div>
+      <div class="reveal">
+        <div class="address-box">
+          <div style="font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--text-soft);margin-bottom:4px;" class="t-es">Tu dirección en Miami</div>
+          <div style="font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--text-soft);margin-bottom:4px;" class="t-en">Your Miami address</div>
+          <div style="font-size:17px;font-weight:700;color:var(--text);">Tu Nombre</div>
+          <div style="font-size:15px;color:var(--text-soft);line-height:1.65;">
+            [Dirección de bodega]<br>
+            Suite AVX-[Tu número]<br>
+            Miami, FL [código postal]<br>
+            United States
+          </div>
+          <div class="addr-pending t-es">Dirección real visible al crear tu cuenta.</div>
+          <div class="addr-pending t-en">Real address visible after account creation.</div>
+        </div>
+        <p class="address-note t-es">Usa esta dirección exactamente como aparece al hacer tus compras en tiendas de EE.UU.</p>
+        <p class="address-note t-en">Use this address exactly as shown when shopping at U.S. stores.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="cta-final">
+  <div class="wrap">
+    <h2 class="t-es">Tu casillero gratis te espera.</h2>
+    <h2 class="t-en">Your free mailbox is waiting for you.</h2>
+    <p class="t-es">Crea tu cuenta hoy y empieza a comprar en EE.UU. sin complicaciones.</p>
+    <p class="t-en">Create your account today and start shopping in the U.S. without hassle.</p>
+    <a href="#form" class="btn btn-white btn-lg">
+      <span class="t-es">Crear mi cuenta gratis &rarr;</span>
+      <span class="t-en">Create my free account &rarr;</span>
+    </a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img src="LOGOFOTO.jpg" alt="AVX Express LLC" style="height:44px;width:auto;filter:brightness(0) invert(1);opacity:.85;">
+        <p class="f-desc t-es">Tu casillero virtual en EE.UU. Compra en cualquier tienda americana y recíbelo donde estés.</p>
+        <p class="f-desc t-en">Your virtual mailbox in the U.S. Shop any American store and receive it wherever you are.</p>
+      </div>
+      <div class="footer-col">
+        <h4 class="t-es">Servicios</h4><h4 class="t-en">Services</h4>
+        <a href="servicios.html#paquetes"><span class="t-es">Reenvío de Paquetes</span><span class="t-en">Package Forwarding</span></a>
+        <a href="servicios.html#envios"><span class="t-es">Envíos Internacionales</span><span class="t-en">International Shipping</span></a>
+        <a href="servicios.html#transferencias"><span class="t-es">Transferencia de Dinero</span><span class="t-en">Money Transfer</span></a>
+        <a href="servicios.html#notaria"><span class="t-es">Notaría y Apostilla</span><span class="t-en">Notary &amp; Apostille</span></a>
+      </div>
+      <div class="footer-col">
+        <h4 class="t-es">Empresa</h4><h4 class="t-en">Company</h4>
+        <a href="como-funciona.html"><span class="t-es">Cómo Funciona</span><span class="t-en">How It Works</span></a>
+        <a href="faq.html"><span class="t-es">Preguntas Frecuentes</span><span class="t-en">FAQ</span></a>
+        <a href="contacto.html"><span class="t-es">Contacto</span><span class="t-en">Contact</span></a>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <a href="#"><span class="t-es">Términos de Uso</span><span class="t-en">Terms of Use</span></a>
+        <a href="#"><span class="t-es">Privacidad</span><span class="t-en">Privacy</span></a>
+        <a href="#"><span class="t-es">Artículos Prohibidos</span><span class="t-en">Prohibited Items</span></a>
+      </div>
+    </div>
+    <div class="footer-bot">
+      <span>&copy; 2025 AVX Express LLC. <span class="t-es">Todos los derechos reservados.</span><span class="t-en">All rights reserved.</span></span>
+      <span>Miami, FL · <span class="t-es">Estados Unidos</span><span class="t-en">United States</span></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  function setLang(lang) {
+    document.body.dataset.show = lang;
+    document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
+    localStorage.setItem('avx-lang', lang);
+  }
+  document.querySelectorAll('.lang-btn').forEach(b => b.addEventListener('click', () => setLang(b.dataset.lang)));
+  setLang(localStorage.getItem('avx-lang') || 'es');
+
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('.form-submit');
+    const lang = document.body.dataset.show;
+    btn.textContent = lang === 'es' ? 'Mensaje enviado. Te contactamos pronto.' : 'Message sent. We\'ll be in touch.';
+    btn.style.background = '#1a7a43';
+    btn.disabled = true;
+  }
+</script>
+</body>
+</html>

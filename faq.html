@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Preguntas Frecuentes · AVX Express LLC</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --red: #C8362A; --red-dark: #A82822; --navy: #1E4B8A;
+      --navy-xdark: #07101E; --white: #ffffff; --surface: #F2F6FC;
+      --text: #0D1B33; --text-soft: #5C6E8A; --border: #D4DFEF;
+      --r: 14px; --pill: 999px; --wrap: 1280px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Ubuntu', system-ui, sans-serif; color: var(--text); background: var(--white); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    img { max-width: 100%; display: block; }
+    .wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 clamp(20px,4vw,72px); }
+    .eyebrow { display: inline-flex; align-items: center; gap: 10px; font-size: 11.5px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--red); }
+    .eyebrow::before { content:''; width:22px; height:2px; background:var(--red); border-radius:2px; }
+    .btn { display: inline-flex; align-items: center; gap: 8px; font-family: 'Ubuntu', sans-serif; font-weight: 700; font-size: 15px; border: none; cursor: pointer; text-decoration: none; border-radius: var(--pill); padding: 13px 26px; transition: background .18s, transform .18s, box-shadow .18s, color .18s; }
+    .btn-primary { background: var(--red); color: white; }
+    .btn-primary:hover { background: var(--red-dark); transform: translateY(-1px); box-shadow: 0 6px 22px rgba(200,54,42,.28); }
+    .btn-white { background: white; color: var(--red); font-weight: 700; }
+    .btn-white:hover { background: #fff3f2; transform: translateY(-1px); }
+    .btn-lg { padding: 16px 34px; font-size: 16px; }
+    nav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,.94); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid var(--border); }
+    .nav-in { display: flex; align-items: center; justify-content: space-between; height: 72px; gap: 32px; }
+    .logo { display: flex; align-items: center; text-decoration: none; flex-shrink: 0; }
+    .logo img { height: 48px; width: auto; }
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a { font-size: 15px; font-weight: 500; color: var(--text-soft); text-decoration: none; transition: color .18s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--navy); }
+    .nav-right { display: flex; align-items: center; gap: 18px; }
+    .lang-toggle { display: flex; align-items: center; gap: 4px; }
+    .lang-btn { background: none; border: none; cursor: pointer; font-family: 'Ubuntu', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: .5px; color: var(--text-soft); padding: 4px 8px; border-radius: 6px; transition: color .18s, background .18s; }
+    .lang-btn.active { color: var(--navy); background: var(--surface); }
+    .lang-sep { font-size: 12px; color: var(--border); }
+    [data-show="en"] .t-es, [data-show="es"] .t-en { display: none !important; }
+
+    .page-hero { padding: 80px 0 70px; background: var(--surface); border-bottom: 1px solid var(--border); }
+    .page-hero h1 { font-size: clamp(32px,4vw,52px); font-weight: 700; letter-spacing: -1.2px; line-height: 1.1; color: var(--text); margin: 16px 0 18px; }
+    .page-hero p { font-size: 18px; color: var(--text-soft); max-width: 540px; line-height: 1.65; }
+
+    /* FAQ LAYOUT */
+    .faq-page { padding: 80px 0 100px; }
+    .faq-layout { display: grid; grid-template-columns: 260px 1fr; gap: 72px; align-items: start; }
+    .faq-nav { position: sticky; top: 96px; display: flex; flex-direction: column; gap: 4px; }
+    .faq-nav-label { font-size: 11px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; color: var(--text-soft); margin-bottom: 12px; }
+    .faq-nav a { font-size: 14px; font-weight: 500; color: var(--text-soft); text-decoration: none; padding: 8px 12px; border-radius: 8px; transition: color .18s, background .18s; border-left: 2px solid transparent; }
+    .faq-nav a:hover { color: var(--navy); background: var(--surface); }
+    .faq-nav a.active { color: var(--red); border-left-color: var(--red); background: rgba(200,54,42,.05); }
+
+    .faq-group { margin-bottom: 64px; }
+    .faq-group-title { font-size: 20px; font-weight: 700; color: var(--navy); margin-bottom: 24px; padding-bottom: 12px; border-bottom: 2px solid var(--surface); }
+    details { border-bottom: 1px solid var(--border); }
+    summary { display: flex; align-items: center; justify-content: space-between; padding: 20px 0; cursor: pointer; font-size: 16px; font-weight: 700; color: var(--text); gap: 16px; list-style: none; user-select: none; transition: color .2s; }
+    summary::-webkit-details-marker { display: none; }
+    details[open] summary { color: var(--navy); }
+    .chev { flex-shrink: 0; color: var(--navy); transition: transform .25s ease; }
+    details[open] .chev { transform: rotate(180deg); }
+    .faq-ans { padding-bottom: 20px; font-size: 15px; color: var(--text-soft); line-height: 1.72; }
+    .faq-ans a { color: var(--red); text-decoration: none; font-weight: 500; }
+    .faq-ans a:hover { text-decoration: underline; }
+
+    /* CTA */
+    .cta-final { background: var(--red); padding: 80px 0; text-align: center; }
+    .cta-final h2 { font-size: clamp(24px,3vw,40px); font-weight: 700; color: white; letter-spacing: -.6px; margin-bottom: 12px; }
+    .cta-final p { font-size: 17px; color: rgba(255,255,255,.8); margin-bottom: 36px; }
+
+    footer { background: var(--navy-xdark); padding: 72px 0 40px; }
+    .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; padding-bottom: 48px; border-bottom: 1px solid rgba(255,255,255,.1); }
+    .footer-brand { display: flex; flex-direction: column; gap: 16px; }
+    .f-desc { font-size: 14px; color: rgba(255,255,255,.46); line-height: 1.65; max-width: 240px; }
+    .footer-col h4 { font-size: 11px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; color: rgba(255,255,255,.3); margin-bottom: 18px; }
+    .footer-col a { display: block; font-size: 14px; color: rgba(255,255,255,.58); text-decoration: none; margin-bottom: 10px; transition: color .2s; }
+    .footer-col a:hover { color: white; }
+    .footer-bot { padding-top: 24px; display: flex; justify-content: space-between; align-items: center; font-size: 13px; color: rgba(255,255,255,.3); }
+
+    @media (max-width: 900px) { .faq-layout { grid-template-columns: 1fr; } .faq-nav { display: none; } .footer-top { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 600px) { .nav-links { display: none; } .footer-top { grid-template-columns: 1fr; } .footer-bot { flex-direction: column; gap: 8px; text-align: center; } }
+  </style>
+</head>
+<body data-show="es">
+
+<nav>
+  <div class="wrap nav-in">
+    <a href="home.html" class="logo"><img src="LOGOFOTO.jpg" alt="AVX Express LLC"></a>
+    <ul class="nav-links">
+      <li><a href="servicios.html"><span class="t-es">Servicios</span><span class="t-en">Services</span></a></li>
+      <li><a href="como-funciona.html"><span class="t-es">Cómo Funciona</span><span class="t-en">How It Works</span></a></li>
+      <li><a href="faq.html" class="active"><span class="t-es">Preguntas</span><span class="t-en">FAQ</span></a></li>
+      <li><a href="contacto.html"><span class="t-es">Contacto</span><span class="t-en">Contact</span></a></li>
+    </ul>
+    <div class="nav-right">
+      <div class="lang-toggle">
+        <button class="lang-btn active" data-lang="es">ES</button>
+        <span class="lang-sep">|</span>
+        <button class="lang-btn" data-lang="en">EN</button>
+      </div>
+      <a href="contacto.html" class="btn btn-primary">
+        <span class="t-es">Crear mi cuenta</span><span class="t-en">Create account</span>
+      </a>
+    </div>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <div class="wrap">
+    <span class="eyebrow t-es">Preguntas frecuentes</span>
+    <span class="eyebrow t-en">Frequently asked questions</span>
+    <h1 class="t-es">Resolvemos<br>todas tus dudas.</h1>
+    <h1 class="t-en">We answer<br>all your questions.</h1>
+    <p class="t-es">Encuentra respuestas a las preguntas más comunes sobre nuestros servicios. Si no encuentras lo que buscas, escríbenos.</p>
+    <p class="t-en">Find answers to the most common questions about our services. If you don't find what you're looking for, write to us.</p>
+  </div>
+</div>
+
+<section class="faq-page">
+  <div class="wrap">
+    <div class="faq-layout">
+
+      <!-- Sidebar nav -->
+      <aside class="faq-nav">
+        <div class="faq-nav-label t-es">Categorías</div>
+        <div class="faq-nav-label t-en">Categories</div>
+        <a href="#general" class="active t-es">General</a>
+        <a href="#general" class="active t-en">General</a>
+        <a href="#paquetes" class="t-es">Paquetes</a>
+        <a href="#paquetes" class="t-en">Packages</a>
+        <a href="#envios" class="t-es">Envíos</a>
+        <a href="#envios" class="t-en">Shipping</a>
+        <a href="#costos" class="t-es">Costos</a>
+        <a href="#costos" class="t-en">Costs</a>
+        <a href="#otros" class="t-es">Otros servicios</a>
+        <a href="#otros" class="t-en">Other services</a>
+      </aside>
+
+      <div>
+        <!-- GENERAL -->
+        <div class="faq-group" id="general">
+          <div class="faq-group-title t-es">General</div>
+          <div class="faq-group-title t-en">General</div>
+
+          <details open>
+            <summary>
+              <span class="t-es">¿Qué servicios ofrece AVX Express?</span>
+              <span class="t-en">What services does AVX Express offer?</span>
+              <svg class="chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </summary>
+            <div class="faq-ans t-es">Ofrecemos cuatro servicios: reenvío de paquetes, envíos internacionales, transferencia de dinero y servicios de notaría y apostilla. Todo disponible desde tu cuenta en nuestra plataforma.</div>
+            <div class="faq-ans t-en">We offer four services: package forwarding, international shipping, money transfer, and notary and apostille services. All available from your account on our platform.</div>
+          </details>
+
+          <details>
+            <summary>
+              <span class="t-es">¿Cuáles son los beneficios de usar AVX Express?</span>
+              <span class="t-en">What are the benefits of using AVX Express?</span>
+              <svg class="chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </summary>
+            <div class="faq-ans t-es">Ahorras en costos de envío al consolidar paquetes, accedes a una gama más amplia de productos que no llegan directamente a tu país, y disfrutas de una experiencia sin complicaciones con soporte dedicado en cada paso del proceso.</div>
+            <div class="faq-ans t-en">You save on shipping costs by consolidating packages, access a wider range of products that don't ship directly to your country, and enjoy a hassle-free experience with dedicated support at every step of the process.</div>
+          </details>
+
+          <details>
+            <summary>
+              <span class="t-es">¿Dónde está ubicada la bodega de AVX Express?</span>
+              <span class="t-en">Where is the AVX Express warehouse located?</span>
+              <svg class="chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </summary>
+            <div class="faq-ans t-es">Nuestra bodega está en Miami, Florida, Estados Unidos. Tu dirección de casillero incluirá la dirección exacta de nuestras instalaciones al momento de registrarte.</div>
+            <div class="faq-ans t-en">Our warehouse is in Miami, Florida, United States. Your mailbox address will include the exact address of our facility upon registration.</div>
+          </details>
+        </div>
+
+        <!-- PAQUETES -->
+        <div class="faq-group" id="paquetes">
+          <div class="faq-group-title t-es">Paquetes</div>
+          <div class="faq-group-title t-en">Packages</div>
+
+          <details>
+            <summary>
+              <span class="t-es">¿Cómo funciona el reenvío de paquetes?</span>
+              <span class="t-en">How does package forwarding work?</span>
+              <svg class="chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </summary>
+            <div class="faq-ans t-es">Al registrarte obtienes una dirección personal en Miami. La usas al pagar en cualquier tienda de EE.UU. Cuando el paquete llega a nuestra bodega, te avisamos con foto de confirmación y lo preparamos para enviártelo a tu país.</div>
+            <div class="faq-ans t-en">When you sign up you get a personal Miami address. Use it at checkout at any U.S. store. When the package arrives at our warehouse, we notify you with a photo confirmation and prepare it to ship to your country.</div>
+          </details>
+
+          <details>
+            <summary>
+              <span class="t-es">¿Hay un límite de tamaño o peso para los paquetes?</span>
+              <span class="t-en">Is there a size or weight limit for packages?</span>
+              <svg class="chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </summary>
+            <div class="faq-ans t-es">Sí, existen límites específicos según el tipo de envío y destino. <a href="contacto.html">Contáctanos</a> para conocer los detalles exactos según tu caso.</div>
+            <div class="faq-ans t-en">Yes, specific limits apply depending on the shipment type and destination. <a href="contacto.html">Contact us</a> to learn the exact details for your case.</div>
+          </details>
+
+          <details>
+            <summary>
+              <span class="t-es">¿Qué sucede si mi paquete llega dañado?</span>
+              <span class="t-en">What happens if my package arrives damaged?</span>
+              <svg class="chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </summary>
+            <div class="faq-ans t-es">Inspeccionamos cada paquete al recibirlo y te enviamos foto de confirmación. Si detectamos daños al llegar a nuestra bodega, te notificamos de inmediato para coordinar los siguientes pasos.</div>
+            <div class="faq-ans t-en">We inspect each package upon receipt and send you a photo confirmation. If we detect damage when it arrives at our warehouse, we notify you immediately to coordinate next steps.</div>
+          </details>
+
+          <details>
+            <summary>
+              <span class="t-es">¿Puedo consolidar varios paquetes en un solo envío?</span>
+              <span class="t-en">Can I consolidate multiple packages into one shipment?</span>
+              <svg class="chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </summary>
+            <div class="faq-ans t-es">Sí. Al consolidar varios paquetes en un solo envío puedes ahorrar hasta un 40% en costos de shipping internacional. Es una de las ventajas más valoradas por nuestros clientes.</div>
+            <div class="faq-ans t-en">Yes. By consolidating multiple packages into one shipment you can save up to 40% on international shipping costs. It's one of the most valued benefits by our customers.</div>
+          </details>
+        </div>
+
+        <!-- ENVIOS -->
+        <div class="faq-group" id="envios">
+          <div class="faq-group-title t-es">Envíos</div>
+          <div class="faq-group-title t-en">Shipping</div>
+
+          <details>
+            <summary>
+              <span class="t-es">¿Cómo puedo rastrear mi envío?</span>
+              <span class="t-en">How can I track my shipment?</span>
+              <svg class="chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </summary>
+            <div class="faq-ans t-es">Una vez despachado el paquete, recibes un número de guía. Desde tu cuenta en AVX Express puedes ver el estado en tiempo real en cada etapa del recorrido, desde Miami hasta tu puerta.</div>
+            <div class="faq-ans t-en">Once the package ships, you receive a tracking number. From your AVX Express account you can see the real-time status at every stage, from Miami to your door.</div>
+          </details>
+
+          <details>
+            <summary>
+              <span class="t-es">¿A qué países envían?</span>
+              <span class="t-en">Which countries do you deliver to?</span>
+              <svg class="chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </summary>
+            <div class="faq-ans t-es"><a href="contacto.html">Contáctanos</a> para confirmar la disponibilidad a tu país de destino. Próximamente publicaremos la lista completa de países atendidos.</div>
+            <div class="faq-ans t-en"><a href="contacto.html">Contact us</a> to confirm availability to your destination country. We will soon publish the full list of countries served.</div>
+          </details>
+
+          <details>
+            <summary>
+              <span class="t-es">¿Manejan los trámites de aduana?</span>
+              <span class="t-en">Do you handle customs clearance?</span>
+              <svg class="chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </summary>
+            <div class="faq-ans t-es"><a href="contacto.html">Contáctanos</a> para conocer los detalles sobre el manejo de aduana según tu país de destino.</div>
+            <div class="faq-ans t-en"><a href="contacto.html">Contact us</a> to learn the details about customs handling for your destination country.</div>
+          </details>
+        </div>
+
+        <!-- COSTOS -->
+        <div class="faq-group" id="costos">
+          <div class="faq-group-title t-es">Costos</div>
+          <div class="faq-group-title t-en">Costs</div>
+
+          <details>
+            <summary>
+              <span class="t-es">¿Cuánto cuesta abrir mi casillero?</span>
+              <span class="t-en">How much does it cost to open my mailbox?</span>
+              <svg class="chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </summary>
+            <div class="faq-ans t-es">Tu casillero virtual en AVX Express es completamente gratuito. Solo pagas cuando decides enviar tus paquetes. <a href="contacto.html">Contáctanos</a> para conocer las tarifas de envío según tu destino.</div>
+            <div class="faq-ans t-en">Your AVX Express virtual mailbox is completely free. You only pay when you decide to ship your packages. <a href="contacto.html">Contact us</a> to learn shipping rates for your destination.</div>
+          </details>
+
+          <details>
+            <summary>
+              <span class="t-es">¿Cómo se calculan los costos de envío?</span>
+              <span class="t-en">How are shipping costs calculated?</span>
+              <svg class="chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </summary>
+            <div class="faq-ans t-es">Los costos dependen del peso, dimensiones del paquete y el país de destino. <a href="contacto.html">Contáctanos</a> para obtener una cotización exacta para tu envío.</div>
+            <div class="faq-ans t-en">Costs depend on the weight, package dimensions, and destination country. <a href="contacto.html">Contact us</a> to get an exact quote for your shipment.</div>
+          </details>
+        </div>
+
+        <!-- OTROS -->
+        <div class="faq-group" id="otros">
+          <div class="faq-group-title t-es">Otros servicios</div>
+          <div class="faq-group-title t-en">Other services</div>
+
+          <details>
+            <summary>
+              <span class="t-es">¿Cómo funciona la transferencia de dinero?</span>
+              <span class="t-en">How does the money transfer service work?</span>
+              <svg class="chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </summary>
+            <div class="faq-ans t-es">Próximamente publicaremos todos los detalles sobre países disponibles, límites, comisiones y tiempos. Por ahora <a href="contacto.html">contáctanos</a> directamente para más información.</div>
+            <div class="faq-ans t-en">We will soon publish all details about available countries, limits, fees, and timing. For now <a href="contacto.html">contact us</a> directly for more information.</div>
+          </details>
+
+          <details>
+            <summary>
+              <span class="t-es">¿Qué documentos pueden notarizar o apostillar?</span>
+              <span class="t-en">What documents can you notarize or apostille?</span>
+              <svg class="chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </summary>
+            <div class="faq-ans t-es">Próximamente publicaremos la lista completa de documentos, jurisdicción, modalidad y tiempos. <a href="contacto.html">Contáctanos</a> para consultar tu caso específico.</div>
+            <div class="faq-ans t-en">We will soon publish the full list of documents, jurisdiction, modality, and timing. <a href="contacto.html">Contact us</a> to inquire about your specific case.</div>
+          </details>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-final">
+  <div class="wrap">
+    <h2 class="t-es">¿No encontraste tu respuesta?<br>Escríbenos directamente.</h2>
+    <h2 class="t-en">Didn't find your answer?<br>Write to us directly.</h2>
+    <p class="t-es">Nuestro equipo responde rápido por WhatsApp o email.</p>
+    <p class="t-en">Our team responds quickly via WhatsApp or email.</p>
+    <a href="contacto.html" class="btn btn-white btn-lg">
+      <span class="t-es">Contactar soporte &rarr;</span>
+      <span class="t-en">Contact support &rarr;</span>
+    </a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img src="LOGOFOTO.jpg" alt="AVX Express LLC" style="height:44px;width:auto;filter:brightness(0) invert(1);opacity:.85;">
+        <p class="f-desc t-es">Tu casillero virtual en EE.UU. Compra en cualquier tienda americana y recíbelo donde estés.</p>
+        <p class="f-desc t-en">Your virtual mailbox in the U.S. Shop any American store and receive it wherever you are.</p>
+      </div>
+      <div class="footer-col">
+        <h4 class="t-es">Servicios</h4><h4 class="t-en">Services</h4>
+        <a href="servicios.html#paquetes"><span class="t-es">Reenvío de Paquetes</span><span class="t-en">Package Forwarding</span></a>
+        <a href="servicios.html#envios"><span class="t-es">Envíos Internacionales</span><span class="t-en">International Shipping</span></a>
+        <a href="servicios.html#transferencias"><span class="t-es">Transferencia de Dinero</span><span class="t-en">Money Transfer</span></a>
+        <a href="servicios.html#notaria"><span class="t-es">Notaría y Apostilla</span><span class="t-en">Notary &amp; Apostille</span></a>
+      </div>
+      <div class="footer-col">
+        <h4 class="t-es">Empresa</h4><h4 class="t-en">Company</h4>
+        <a href="como-funciona.html"><span class="t-es">Cómo Funciona</span><span class="t-en">How It Works</span></a>
+        <a href="faq.html"><span class="t-es">Preguntas Frecuentes</span><span class="t-en">FAQ</span></a>
+        <a href="contacto.html"><span class="t-es">Contacto</span><span class="t-en">Contact</span></a>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <a href="#"><span class="t-es">Términos de Uso</span><span class="t-en">Terms of Use</span></a>
+        <a href="#"><span class="t-es">Privacidad</span><span class="t-en">Privacy</span></a>
+        <a href="#"><span class="t-es">Artículos Prohibidos</span><span class="t-en">Prohibited Items</span></a>
+      </div>
+    </div>
+    <div class="footer-bot">
+      <span>&copy; 2025 AVX Express LLC. <span class="t-es">Todos los derechos reservados.</span><span class="t-en">All rights reserved.</span></span>
+      <span>Miami, FL · <span class="t-es">Estados Unidos</span><span class="t-en">United States</span></span>
+    </div>
+  </div>
+</footer>
+<script>
+  document.querySelectorAll('details').forEach(d => {
+    d.addEventListener('toggle', () => {
+      if (d.open) document.querySelectorAll('details').forEach(o => { if (o !== d) o.open = false; });
+    });
+  });
+  function setLang(lang) { document.body.dataset.show = lang; document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === lang)); localStorage.setItem('avx-lang', lang); }
+  document.querySelectorAll('.lang-btn').forEach(b => b.addEventListener('click', () => setLang(b.dataset.lang)));
+  setLang(localStorage.getItem('avx-lang') || 'es');
+</script>
+</body>
+</html>

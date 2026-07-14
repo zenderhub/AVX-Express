@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Servicios · AVX Express LLC</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --red: #C8362A; --red-dark: #A82822; --navy: #1E4B8A; --navy-dark: #102C57;
+      --navy-xdark: #07101E; --white: #ffffff; --surface: #F2F6FC;
+      --text: #0D1B33; --text-soft: #5C6E8A; --border: #D4DFEF;
+      --r: 14px; --r-sm: 8px; --pill: 999px; --wrap: 1280px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Ubuntu', system-ui, sans-serif; color: var(--text); background: var(--white); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    img { max-width: 100%; display: block; }
+    .wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 clamp(20px,4vw,72px); }
+    .eyebrow { display: inline-flex; align-items: center; gap: 10px; font-size: 11.5px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--red); }
+    .eyebrow::before { content:''; width:22px; height:2px; background:var(--red); border-radius:2px; }
+    .stitle { font-size: clamp(26px,3vw,40px); font-weight: 700; letter-spacing: -.8px; line-height: 1.18; color: var(--text); text-wrap: balance; }
+    .ssub { font-size: 17px; color: var(--text-soft); line-height: 1.65; }
+    .sh { display: flex; flex-direction: column; gap: 14px; margin-bottom: 60px; }
+    .btn { display: inline-flex; align-items: center; gap: 8px; font-family: 'Ubuntu', sans-serif; font-weight: 700; font-size: 15px; border: none; cursor: pointer; text-decoration: none; border-radius: var(--pill); padding: 13px 26px; transition: background .18s, transform .18s, box-shadow .18s, color .18s; }
+    .btn-primary { background: var(--red); color: white; }
+    .btn-primary:hover { background: var(--red-dark); transform: translateY(-1px); box-shadow: 0 6px 22px rgba(200,54,42,.28); }
+    .btn-outline { background: transparent; color: var(--navy); border: 2px solid var(--navy); }
+    .btn-outline:hover { background: var(--navy); color: white; }
+    nav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,.94); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid var(--border); }
+    .nav-in { display: flex; align-items: center; justify-content: space-between; height: 72px; gap: 32px; }
+    .logo { display: flex; align-items: center; text-decoration: none; flex-shrink: 0; }
+    .logo img { height: 48px; width: auto; }
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a { font-size: 15px; font-weight: 500; color: var(--text-soft); text-decoration: none; transition: color .18s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--navy); }
+    .nav-right { display: flex; align-items: center; gap: 18px; }
+    .lang-toggle { display: flex; align-items: center; gap: 4px; }
+    .lang-btn { background: none; border: none; cursor: pointer; font-family: 'Ubuntu', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: .5px; color: var(--text-soft); padding: 4px 8px; border-radius: 6px; transition: color .18s, background .18s; }
+    .lang-btn.active { color: var(--navy); background: var(--surface); }
+    .lang-sep { font-size: 12px; color: var(--border); }
+    [data-show="en"] .t-es, [data-show="es"] .t-en { display: none !important; }
+
+    /* PAGE HERO */
+    .page-hero { padding: 80px 0 70px; background: var(--surface); border-bottom: 1px solid var(--border); }
+    .page-hero .eyebrow { margin-bottom: 16px; }
+    .page-hero h1 { font-size: clamp(32px,4vw,52px); font-weight: 700; letter-spacing: -1.2px; line-height: 1.1; color: var(--text); margin-bottom: 18px; }
+    .page-hero p { font-size: 18px; color: var(--text-soft); max-width: 580px; line-height: 1.65; }
+
+    /* SERVICE SECTIONS */
+    .svc-section { padding: 90px 0; }
+    .svc-section:nth-child(even) { background: var(--surface); }
+    .svc-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    .svc-layout.flip { direction: rtl; }
+    .svc-layout.flip > * { direction: ltr; }
+    .svc-visual { position: relative; }
+    .svc-img { border-radius: 16px; overflow: hidden; box-shadow: 0 16px 48px rgba(7,16,30,.13); }
+    .svc-img img { width: 100%; height: 380px; object-fit: cover; }
+    .svc-tag { position: absolute; top: 20px; left: 20px; background: var(--red); color: white; font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; padding: 6px 14px; border-radius: var(--pill); }
+    .svc-copy { display: flex; flex-direction: column; gap: 20px; }
+    .svc-copy h2 { font-size: clamp(24px,2.8vw,36px); font-weight: 700; letter-spacing: -.6px; line-height: 1.2; color: var(--text); }
+    .svc-copy p { font-size: 16px; color: var(--text-soft); line-height: 1.72; }
+    .feat-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .feat-list li { display: flex; align-items: flex-start; gap: 10px; font-size: 15px; color: var(--text); }
+    .feat-list li::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--red); margin-top: 8px; flex-shrink: 0; }
+    .pending-note { background: rgba(30,75,138,.06); border: 1px solid rgba(30,75,138,.14); border-radius: 10px; padding: 16px 20px; font-size: 14px; color: var(--text-soft); font-style: italic; }
+
+    /* FOOTER */
+    footer { background: var(--navy-xdark); padding: 72px 0 40px; }
+    .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; padding-bottom: 48px; border-bottom: 1px solid rgba(255,255,255,.1); }
+    .footer-brand { display: flex; flex-direction: column; gap: 16px; }
+    .f-desc { font-size: 14px; color: rgba(255,255,255,.46); line-height: 1.65; max-width: 240px; }
+    .footer-col h4 { font-size: 11px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; color: rgba(255,255,255,.3); margin-bottom: 18px; }
+    .footer-col a { display: block; font-size: 14px; color: rgba(255,255,255,.58); text-decoration: none; margin-bottom: 10px; transition: color .2s; }
+    .footer-col a:hover { color: white; }
+    .footer-bot { padding-top: 24px; display: flex; justify-content: space-between; align-items: center; font-size: 13px; color: rgba(255,255,255,.3); }
+
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity .55s ease, transform .55s ease; }
+    .reveal.in { opacity: 1; transform: none; }
+    @media (prefers-reduced-motion: reduce) { .reveal { opacity:1; transform:none; transition:none; } }
+    @media (max-width: 900px) { .svc-layout, .svc-layout.flip { grid-template-columns: 1fr; direction: ltr; } .footer-top { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 600px) { .nav-links { display: none; } .footer-top { grid-template-columns: 1fr; } .footer-bot { flex-direction: column; gap: 8px; text-align: center; } }
+  </style>
+</head>
+<body data-show="es">
+
+<nav>
+  <div class="wrap nav-in">
+    <a href="home.html" class="logo"><img src="LOGOFOTO.jpg" alt="AVX Express LLC"></a>
+    <ul class="nav-links">
+      <li><a href="servicios.html" class="active"><span class="t-es">Servicios</span><span class="t-en">Services</span></a></li>
+      <li><a href="como-funciona.html"><span class="t-es">Cómo Funciona</span><span class="t-en">How It Works</span></a></li>
+      <li><a href="faq.html"><span class="t-es">Preguntas</span><span class="t-en">FAQ</span></a></li>
+      <li><a href="contacto.html"><span class="t-es">Contacto</span><span class="t-en">Contact</span></a></li>
+    </ul>
+    <div class="nav-right">
+      <div class="lang-toggle">
+        <button class="lang-btn active" data-lang="es">ES</button>
+        <span class="lang-sep">|</span>
+        <button class="lang-btn" data-lang="en">EN</button>
+      </div>
+      <a href="contacto.html" class="btn btn-primary">
+        <span class="t-es">Crear mi cuenta</span><span class="t-en">Create account</span>
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="wrap">
+    <span class="eyebrow t-es">Nuestros servicios</span>
+    <span class="eyebrow t-en">Our services</span>
+    <h1 class="t-es">Cuatro servicios,<br>una sola plataforma.</h1>
+    <h1 class="t-en">Four services,<br>one platform.</h1>
+    <p class="t-es">En AVX Express simplificamos tus compras y trámites internacionales. Todo lo que necesitas, en un solo lugar.</p>
+    <p class="t-en">At AVX Express we simplify your international shopping and paperwork. Everything you need, in one place.</p>
+  </div>
+</div>
+
+<!-- PAQUETES -->
+<section class="svc-section" id="paquetes">
+  <div class="wrap">
+    <div class="svc-layout reveal">
+      <div class="svc-visual">
+        <div class="svc-img">
+          <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=80" alt="Reenvío de paquetes">
+        </div>
+        <span class="svc-tag t-es">Reenvío</span>
+        <span class="svc-tag t-en">Forwarding</span>
+      </div>
+      <div class="svc-copy">
+        <span class="eyebrow t-es">Servicio 01</span>
+        <span class="eyebrow t-en">Service 01</span>
+        <h2 class="t-es">Reenvío de Paquetes</h2>
+        <h2 class="t-en">Package Forwarding</h2>
+        <p class="t-es">Compra en cualquier tienda en línea de EE.UU. usando tu dirección personal de AVX Express. Recibimos tu paquete, lo inspeccionamos, lo consolidamos con otras compras si lo deseas, y lo preparamos para el envío internacional.</p>
+        <p class="t-en">Shop any U.S. online store using your personal AVX Express address. We receive your package, inspect it, consolidate it with other purchases if you'd like, and prepare it for international shipping.</p>
+        <ul class="feat-list">
+          <li class="t-es">Dirección gratuita en EE.UU. lista al instante</li>
+          <li class="t-en">Free U.S. address ready instantly</li>
+          <li class="t-es">Consolidación de paquetes para reducir costos de envío</li>
+          <li class="t-en">Package consolidation to reduce shipping costs</li>
+          <li class="t-es">Foto de confirmación cuando llega a nuestra bodega</li>
+          <li class="t-en">Photo confirmation when it arrives at our warehouse</li>
+          <li class="t-es">Inspección de contenido incluida</li>
+          <li class="t-en">Content inspection included</li>
+        </ul>
+        <div class="pending-note t-es">Próximamente: límites de tamaño y peso, período de almacenamiento gratuito y lista de artículos prohibidos.</div>
+        <div class="pending-note t-en">Coming soon: size and weight limits, free storage period, and prohibited items list.</div>
+        <a href="contacto.html" class="btn btn-primary" style="align-self:flex-start;">
+          <span class="t-es">Obtener mi dirección</span><span class="t-en">Get my address</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ENVIOS -->
+<section class="svc-section" id="envios">
+  <div class="wrap">
+    <div class="svc-layout flip reveal">
+      <div class="svc-visual">
+        <div class="svc-img">
+          <img src="https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?auto=format&fit=crop&w=800&q=80" alt="Envíos internacionales">
+        </div>
+        <span class="svc-tag t-es">Envíos</span>
+        <span class="svc-tag t-en">Shipping</span>
+      </div>
+      <div class="svc-copy">
+        <span class="eyebrow t-es">Servicio 02</span>
+        <span class="eyebrow t-en">Service 02</span>
+        <h2 class="t-es">Envíos Internacionales</h2>
+        <h2 class="t-en">International Shipping</h2>
+        <p class="t-es">Una vez que tu paquete o envío consolidado está listo, lo despachamos directo a tu puerta con seguimiento completo desde la recolección hasta la entrega.</p>
+        <p class="t-en">Once your package or consolidated shipment is ready, we ship it straight to your door with full tracking from pickup to delivery.</p>
+        <ul class="feat-list">
+          <li class="t-es">Seguimiento en tiempo real desde Miami hasta tu puerta</li>
+          <li class="t-en">Real-time tracking from Miami to your door</li>
+          <li class="t-es">Entrega confiable y segura</li>
+          <li class="t-en">Reliable and secure delivery</li>
+          <li class="t-es">Número de guía por envío</li>
+          <li class="t-en">Tracking number per shipment</li>
+        </ul>
+        <div class="pending-note t-es">Próximamente: países atendidos, tiempos promedio de entrega y manejo de aduanas.</div>
+        <div class="pending-note t-en">Coming soon: countries served, average delivery times, and customs handling details.</div>
+        <a href="contacto.html" class="btn btn-primary" style="align-self:flex-start;">
+          <span class="t-es">Consultar tarifas</span><span class="t-en">Check rates</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRANSFERENCIAS -->
+<section class="svc-section" id="transferencias">
+  <div class="wrap">
+    <div class="svc-layout reveal">
+      <div class="svc-visual">
+        <div class="svc-img">
+          <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=800&q=80" alt="Transferencia de dinero">
+        </div>
+        <span class="svc-tag t-es">Transferencias</span>
+        <span class="svc-tag t-en">Money Transfer</span>
+      </div>
+      <div class="svc-copy">
+        <span class="eyebrow t-es">Servicio 03</span>
+        <span class="eyebrow t-en">Service 03</span>
+        <h2 class="t-es">Transferencia de Dinero</h2>
+        <h2 class="t-en">Money Transfer</h2>
+        <p class="t-es">Envía y recibe dinero de forma rápida y segura entre Estados Unidos y tu país. Priorizamos la seguridad en cada transacción.</p>
+        <p class="t-en">Send and receive money quickly and securely between the United States and your country. We prioritize security in every transaction.</p>
+        <ul class="feat-list">
+          <li class="t-es">Transacciones seguras</li>
+          <li class="t-en">Secure transactions</li>
+          <li class="t-es">Proceso simple desde tu cuenta</li>
+          <li class="t-en">Simple process from your account</li>
+        </ul>
+        <div class="pending-note t-es">Próximamente: países disponibles, límites, comisiones, tiempos de entrega y modalidades (efectivo o depósito bancario).</div>
+        <div class="pending-note t-en">Coming soon: available countries, limits, fees, delivery times, and modalities (cash pickup or bank deposit).</div>
+        <a href="contacto.html" class="btn btn-primary" style="align-self:flex-start;">
+          <span class="t-es">Consultar disponibilidad</span><span class="t-en">Check availability</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NOTARIA -->
+<section class="svc-section" id="notaria">
+  <div class="wrap">
+    <div class="svc-layout flip reveal">
+      <div class="svc-visual">
+        <div class="svc-img">
+          <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=800&q=80" alt="Notaría y Apostilla">
+        </div>
+        <span class="svc-tag t-es">Notaría</span>
+        <span class="svc-tag t-en">Notary</span>
+      </div>
+      <div class="svc-copy">
+        <span class="eyebrow t-es">Servicio 04</span>
+        <span class="eyebrow t-en">Service 04</span>
+        <h2 class="t-es">Notaría y Apostilla</h2>
+        <h2 class="t-en">Notary &amp; Apostille Services</h2>
+        <p class="t-es">Tramita la autenticación y apostilla de tus documentos con rapidez y validez internacional desde Estados Unidos.</p>
+        <p class="t-en">Process the authentication and apostille of your documents quickly with international validity from the United States.</p>
+        <ul class="feat-list">
+          <li class="t-es">Validez internacional</li>
+          <li class="t-en">International validity</li>
+          <li class="t-es">Proceso rápido y seguro</li>
+          <li class="t-en">Fast and secure process</li>
+        </ul>
+        <div class="pending-note t-es">Próximamente: jurisdicción y estado, documentos que aplican, modalidad (presencial o remota), tiempos y precios.</div>
+        <div class="pending-note t-en">Coming soon: jurisdiction and state, applicable documents, modality (in-person or remote), timing, and pricing.</div>
+        <a href="contacto.html" class="btn btn-primary" style="align-self:flex-start;">
+          <span class="t-es">Solicitar información</span><span class="t-en">Request information</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img src="LOGOFOTO.jpg" alt="AVX Express LLC" style="height:44px;width:auto;filter:brightness(0) invert(1);opacity:.85;">
+        <p class="f-desc t-es">Tu casillero virtual en EE.UU. Compra en cualquier tienda americana y recíbelo donde estés.</p>
+        <p class="f-desc t-en">Your virtual mailbox in the U.S. Shop any American store and receive it wherever you are.</p>
+      </div>
+      <div class="footer-col">
+        <h4 class="t-es">Servicios</h4><h4 class="t-en">Services</h4>
+        <a href="#paquetes"><span class="t-es">Reenvío de Paquetes</span><span class="t-en">Package Forwarding</span></a>
+        <a href="#envios"><span class="t-es">Envíos Internacionales</span><span class="t-en">International Shipping</span></a>
+        <a href="#transferencias"><span class="t-es">Transferencia de Dinero</span><span class="t-en">Money Transfer</span></a>
+        <a href="#notaria"><span class="t-es">Notaría y Apostilla</span><span class="t-en">Notary &amp; Apostille</span></a>
+      </div>
+      <div class="footer-col">
+        <h4 class="t-es">Empresa</h4><h4 class="t-en">Company</h4>
+        <a href="como-funciona.html"><span class="t-es">Cómo Funciona</span><span class="t-en">How It Works</span></a>
+        <a href="faq.html"><span class="t-es">Preguntas Frecuentes</span><span class="t-en">FAQ</span></a>
+        <a href="contacto.html"><span class="t-es">Contacto</span><span class="t-en">Contact</span></a>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <a href="#"><span class="t-es">Términos de Uso</span><span class="t-en">Terms of Use</span></a>
+        <a href="#"><span class="t-es">Privacidad</span><span class="t-en">Privacy</span></a>
+        <a href="#"><span class="t-es">Artículos Prohibidos</span><span class="t-en">Prohibited Items</span></a>
+      </div>
+    </div>
+    <div class="footer-bot">
+      <span>&copy; 2025 AVX Express LLC. <span class="t-es">Todos los derechos reservados.</span><span class="t-en">All rights reserved.</span></span>
+      <span>Miami, FL · <span class="t-es">Estados Unidos</span><span class="t-en">United States</span></span>
+    </div>
+  </div>
+</footer>
+<script>
+  const obs = new IntersectionObserver(e => e.forEach(x => { if (x.isIntersecting) { x.target.classList.add('in'); obs.unobserve(x.target); } }), { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+  function setLang(lang) { document.body.dataset.show = lang; document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === lang)); localStorage.setItem('avx-lang', lang); }
+  document.querySelectorAll('.lang-btn').forEach(b => b.addEventListener('click', () => setLang(b.dataset.lang)));
+  setLang(localStorage.getItem('avx-lang') || 'es');
+</script>
+</body>
+</html>
