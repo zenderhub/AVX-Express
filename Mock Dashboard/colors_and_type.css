@@ -1,0 +1,301 @@
+/* ZenderBox Design System — Colors + Type tokens
+ * Derived from Figma variables + METADATA frequency analysis.
+ * Two brand hues: cyan (#029ECB) + lime (#CCD32A) on a warm-neutral surface system.
+ */
+
+/* ---------- FONT FACES ---------- */
+@font-face {
+  font-family: "Plus Jakarta Sans";
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+  src: url("fonts/PlusJakartaSans-Light.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Plus Jakarta Sans";
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  src: url("fonts/PlusJakartaSans-Regular.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Plus Jakarta Sans";
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+  src: url("fonts/PlusJakartaSans-Italic.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Plus Jakarta Sans";
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+  src: url("fonts/PlusJakartaSans-Medium.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Plus Jakarta Sans";
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+  src: url("fonts/PlusJakartaSans-SemiBold.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Plus Jakarta Sans";
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+  src: url("fonts/PlusJakartaSans-Bold.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Plus Jakarta Sans";
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+  src: url("fonts/PlusJakartaSans-BoldItalic.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Plus Jakarta Sans";
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+  src: url("fonts/PlusJakartaSans-ExtraBold.ttf") format("truetype");
+}
+
+/* Exo is used only for giant foundation/poster headers in the Figma
+ * (100px "FOUNDATIONS"/"CARDS"). Loaded from Google Fonts since no .ttf
+ * was shipped. Flagged in README. */
+@import url("https://fonts.googleapis.com/css2?family=Exo:wght@700&display=swap");
+
+:root {
+  /* ---------- BRAND COLORS ---------- */
+  --zb-cyan: #029ECB;           /* primary brand — actions, links, buttons */
+  --zb-cyan-dark: #007B9F;      /* pressed / hover, secondary text accent */
+  --zb-navy: #004B72;           /* data-point emphasis (name, phone, dir.) */
+  --zb-lime: #CCD32A;           /* secondary brand — lime/chartreuse */
+  /* ZenderBox Gradient — single diagonal brand gradient.
+     Stops: lime 0% → blue 85%. Rendered so azul sits abajo-izquierda and lima arriba-derecha. */
+  --zb-gradient: linear-gradient(45deg, #029ECB 0%, #CCD32A 85%);
+
+  /* ---------- NEUTRAL SCALE (warm ink on paper) ---------- */
+  --zb-ink-900: #1F1F1F;        /* rarely used; body weight */
+  --zb-ink-800: #272727;        /* shadow color base */
+  --zb-ink-700: #333333;        /* default body / headings */
+  --zb-ink-600: #404040;        /* strong body */
+  --zb-ink-500: #666666;        /* secondary text, borders */
+  --zb-ink-400: #676966;        /* muted label */
+  --zb-ink-300: #8A8A8A;        /* disabled text */
+  --zb-ink-200: #B8B8B8;        /* placeholder, disabled border */
+  --zb-ink-100: #DBDBDB;        /* dividers */
+  --zb-ink-50:  #F6F6F6;        /* app background, disabled surface */
+  --zb-paper:   #FFFFFF;
+
+  /* ---------- SEMANTIC ---------- */
+  --zb-success:      #008C31;    /* toast "successful" text/icon */
+  --zb-success-bg:   #F1F6F5;    /* toast success fill */
+  --zb-error:        #F32735;    /* toast error text/icon */
+  --zb-error-bg:     #F4E8E9;    /* toast error fill */
+
+  /* ---------- FOUNDATIONAL TOKENS ---------- */
+  --zb-font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --zb-font-display: "Exo", "Plus Jakarta Sans", sans-serif;
+
+  --zb-radius-xs: 4px;
+  --zb-radius-sm: 8px;           /* inputs, small buttons */
+  --zb-radius-md: 10px;          /* cards, product cards, info panels */
+  --zb-radius-lg: 16px;
+  --zb-radius-pill: 99px;        /* search bars, tags, progress, avatar */
+
+  /* Shadow: soft, low-opacity from toggles + cards */
+  --zb-shadow-sm: 0 2px 4px 0 rgba(39, 39, 39, 0.10);
+  --zb-shadow-md: 0 4px 12px 0 rgba(39, 39, 39, 0.08);
+  --zb-shadow-lg: 0 12px 32px 0 rgba(39, 39, 39, 0.10);
+
+  /* Border used on inputs + outlined cards */
+  --zb-border: 1px solid var(--zb-ink-200);
+  --zb-border-strong: 1px solid var(--zb-ink-500);
+  --zb-border-brand: 1px solid var(--zb-cyan);
+
+  /* Spacing: 4-based, mobile screens use 16/20/32 step */
+  --zb-space-1: 4px;
+  --zb-space-2: 8px;
+  --zb-space-3: 12px;
+  --zb-space-4: 16px;
+  --zb-space-5: 20px;
+  --zb-space-6: 24px;
+  --zb-space-8: 32px;
+  --zb-space-10: 40px;
+  --zb-space-12: 48px;
+
+  /* ---------- SEMANTIC TEXT VARS ---------- */
+  --zb-fg:        var(--zb-ink-700);
+  --zb-fg-muted:  var(--zb-ink-500);
+  --zb-fg-subtle: var(--zb-ink-200);
+  --zb-fg-accent: var(--zb-navy);
+  --zb-fg-link:   var(--zb-cyan-dark);
+  --zb-fg-invert: var(--zb-paper);
+  --zb-bg:        var(--zb-paper);
+  --zb-bg-app:    var(--zb-ink-50);
+  --zb-bg-card:   var(--zb-paper);
+  --zb-bg-disabled: var(--zb-ink-50);
+}
+
+/* ---------- SEMANTIC TYPE STYLES ----------
+ * Named after Figma's text styles:
+ *   Section Title (19/24 700), Avatar (24/22 700),
+ *   Button (14/18 700), ID (37/100% 700), Label (12/15 700),
+ *   Body (16/20 700), Caption L (14/18 500), Tag (10/13 500),
+ *   Title Small (13/16 700), NavBar (10/13 500 ink-500),
+ *   Caption (13/16 500), Placeholder (13/16 500 ink-200),
+ *   NavBar On (10/13 700 cyan)
+ */
+.zb-display {          /* Exo poster — section dividers only */
+  font-family: var(--zb-font-display);
+  font-weight: 700;
+  font-size: 100px;
+  line-height: 100%;
+  letter-spacing: -0.01em;
+  color: var(--zb-fg);
+}
+.zb-id {               /* big number readouts: points, counts */
+  font-family: var(--zb-font-sans);
+  font-weight: 700;
+  font-size: 37px;
+  line-height: 100%;
+  color: var(--zb-fg);
+}
+.zb-h1 {               /* dashboard page titles */
+  font-family: var(--zb-font-sans);
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 32px;
+  color: var(--zb-fg);
+}
+.zb-avatar-title {     /* "Hola, Juan" row: 24/22 700 */
+  font-family: var(--zb-font-sans);
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 22px;
+  color: var(--zb-fg);
+}
+.zb-section-title {    /* "Mis estadísticas" etc: 19/24 700 */
+  font-family: var(--zb-font-sans);
+  font-weight: 700;
+  font-size: 19px;
+  line-height: 24px;
+  color: var(--zb-fg);
+}
+.zb-body {             /* Key/value bold labels in info cards: 16/20 700 */
+  font-family: var(--zb-font-sans);
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+  color: var(--zb-fg);
+}
+.zb-body-regular {
+  font-family: var(--zb-font-sans);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  color: var(--zb-fg);
+}
+.zb-title-small {      /* card titles 13/16 700 */
+  font-family: var(--zb-font-sans);
+  font-weight: 700;
+  font-size: 13px;
+  line-height: 16px;
+  color: var(--zb-fg);
+}
+.zb-button {           /* button/link label: 14/18 700 */
+  font-family: var(--zb-font-sans);
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 18px;
+}
+.zb-caption-l {        /* strong secondary: 14/18 500 */
+  font-family: var(--zb-font-sans);
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 18px;
+  color: var(--zb-fg-muted);
+}
+.zb-caption {          /* helper / meta: 13/16 500 */
+  font-family: var(--zb-font-sans);
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 16px;
+  color: var(--zb-fg-muted);
+}
+.zb-label {            /* input labels: 12/15 700 */
+  font-family: var(--zb-font-sans);
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 15px;
+  color: var(--zb-fg);
+}
+.zb-tag {              /* chips / level: 10/13 500 */
+  font-family: var(--zb-font-sans);
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 13px;
+  color: var(--zb-fg-muted);
+}
+.zb-navbar {           /* tab bar inactive: 10/13 500 */
+  font-family: var(--zb-font-sans);
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 13px;
+  color: var(--zb-ink-500);
+}
+.zb-navbar-on {        /* tab bar active: 10/13 700 cyan */
+  font-family: var(--zb-font-sans);
+  font-weight: 700;
+  font-size: 10px;
+  line-height: 13px;
+  color: var(--zb-cyan);
+}
+.zb-placeholder {
+  font-family: var(--zb-font-sans);
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 16px;
+  color: var(--zb-ink-200);
+}
+
+/* ---------- PRIMITIVES ---------- */
+.zb-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 16px 20px;
+  border-radius: var(--zb-radius-sm);
+  border: 0;
+  font-family: var(--zb-font-sans);
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 18px;
+  cursor: pointer;
+  transition: filter .15s ease, transform .1s ease, background .15s ease;
+}
+.zb-btn-primary {
+  background: var(--zb-gradient);
+  color: var(--zb-paper);
+}
+.zb-btn-primary:hover  { filter: brightness(1.05); }
+.zb-btn-primary:active { transform: scale(0.98); filter: brightness(0.95); }
+
+.zb-btn-secondary {
+  background: var(--zb-cyan);
+  color: var(--zb-paper);
+}
+.zb-btn-stroke {
+  background: var(--zb-ink-50);
+  color: var(--zb-cyan-dark);
+  border: 1px solid var(--zb-cyan-dark);
+}
+.zb-btn-sm {
+  padding: 8px 14px;
+  font-size: 13px;
+  line-height: 16px;
+  border-radius: var(--zb-radius-sm);
+}
