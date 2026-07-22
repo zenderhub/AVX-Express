@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+<meta name="robots" content="noindex, nofollow">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AVX Express LLC</title>
@@ -292,6 +293,7 @@
   </style>
 </head>
 <body data-show="es">
+<div class="avx-anuncio"><a href="migracion.html"><span class="t-es">📦 ¿Tu casillero cerró? <b>Migra a AVX en 2 minutos</b> y no pierdas tus compras →</span><span class="t-en">📦 Mailbox shutting down? <b>Migrate to AVX in 2 minutes</b> →</span></a></div><style>.avx-anuncio{background:#102C57;color:#fff;text-align:center;font-size:13.5px;padding:9px 16px;line-height:1.4}.avx-anuncio a{color:#fff;text-decoration:none;font-weight:500}.avx-anuncio a:hover{text-decoration:underline}.avx-anuncio b{color:#ff8b7d}</style>
 
 <!-- NAV -->
 <nav>
@@ -303,17 +305,20 @@
       <li><a data-nav="home"><span class="t-es">Inicio</span><span class="t-en">Home</span></a></li>
       <li><a data-nav="servicios"><span class="t-es">Servicios</span><span class="t-en">Services</span></a></li>
       <li><a data-nav="como-funciona"><span class="t-es">Cómo Funciona</span><span class="t-en">How It Works</span></a></li>
+      <li><a href="calculadora.html"><span class="t-es">Calculadora</span><span class="t-en">Calculator</span></a></li>
+      <li><a href="rastreo.html"><span class="t-es">Rastreo</span><span class="t-en">Tracking</span></a></li>
       <li><a data-nav="faq"><span class="t-es">Preguntas</span><span class="t-en">FAQ</span></a></li>
       <li><a data-nav="contacto"><span class="t-es">Contacto</span><span class="t-en">Contact</span></a></li>
     </ul>
     <div class="nav-right">
+    <a href="https://app.avxexpress.com/login.html" style="font-size:14.5px;font-weight:600;color:#1E4B8A;text-decoration:none;white-space:nowrap" class="avx-login"><span class="t-es">Mi cuenta</span><span class="t-en">Sign in</span></a>
       <div class="lang-toggle">
         <span class="lang-globe"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></span>
         <button class="lang-btn active" data-lang="es">ES</button>
         <span class="lang-sep">|</span>
         <button class="lang-btn" data-lang="en">EN</button>
       </div>
-      <button class="btn btn-primary" onclick="goTo('contacto')">
+      <button class="btn btn-primary" onclick="location.href='https://app.avxexpress.com/registro.html'">
         <span class="t-es">Crear mi cuenta</span><span class="t-en">Create account</span>
       </button>
       <button class="hamburger" id="hamburger" aria-label="Menú" onclick="toggleMobile()">
@@ -330,7 +335,7 @@
   <a data-mnav="como-funciona" onclick="mobileGoTo('como-funciona')"><span class="t-es">Cómo Funciona</span><span class="t-en">How It Works</span></a>
   <a data-mnav="faq" onclick="mobileGoTo('faq')"><span class="t-es">Preguntas</span><span class="t-en">FAQ</span></a>
   <a data-mnav="contacto" onclick="mobileGoTo('contacto')"><span class="t-es">Contacto</span><span class="t-en">Contact</span></a>
-  <button class="btn btn-primary mobile-cta" onclick="mobileGoTo('contacto')">
+  <button class="btn btn-primary mobile-cta" onclick="location.href='https://app.avxexpress.com/registro.html'">
     <span class="t-es">Crear mi cuenta</span><span class="t-en">Create account</span>
   </button>
 </div>
@@ -350,7 +355,7 @@
         <p class="hero-sub t-es">Vive una experiencia de compra y envío internacional sin complicaciones. Tu dirección personal en Miami, consolidación de paquetes y entrega directa donde estés.</p>
         <p class="hero-sub t-en">Experience seamless international shopping and shipping. Your personal Miami address, package consolidation, and direct delivery wherever you are.</p>
         <div class="hero-ctas">
-          <button class="btn btn-primary btn-lg" onclick="goTo('contacto')">
+          <button class="btn btn-primary btn-lg" onclick="location.href='https://app.avxexpress.com/registro.html'">
             <span class="t-es">Comienza hoy &rarr;</span><span class="t-en">Get started &rarr;</span>
           </button>
           <button class="btn btn-outline btn-lg" onclick="goTo('como-funciona')">
@@ -574,7 +579,7 @@
       <h2 class="t-en">Create your free account and get<br>your U.S. address today.</h2>
       <p class="t-es">Sin cuotas de apertura. Sin compromisos. Empieza a comprar en minutos.</p>
       <p class="t-en">No opening fees. No commitments. Start shopping in minutes.</p>
-      <button class="btn btn-white btn-lg" onclick="goTo('contacto')">
+      <button class="btn btn-white btn-lg" onclick="location.href='https://app.avxexpress.com/registro.html'">
         <span class="t-es">Crear mi cuenta gratis &rarr;</span><span class="t-en">Create my free account &rarr;</span>
       </button>
     </div>
@@ -615,7 +620,7 @@
           </ul>
           <div class="pending-note t-es">Próximamente: límites de tamaño y peso, período de almacenamiento gratuito y lista de artículos prohibidos.</div>
           <div class="pending-note t-en">Coming soon: size and weight limits, free storage period, and prohibited items list.</div>
-          <button class="btn btn-primary" style="align-self:flex-start;" onclick="goTo('contacto')">
+          <button class="btn btn-primary" style="align-self:flex-start;" onclick="location.href='https://app.avxexpress.com/registro.html'">
             <span class="t-es">Obtener mi dirección</span><span class="t-en">Get my address</span>
           </button>
         </div>
@@ -642,7 +647,7 @@
           </ul>
           <div class="pending-note t-es">Próximamente: países atendidos, tiempos promedio de entrega y manejo de aduanas.</div>
           <div class="pending-note t-en">Coming soon: countries served, average delivery times, and customs handling details.</div>
-          <button class="btn btn-primary" style="align-self:flex-start;" onclick="goTo('contacto')">
+          <button class="btn btn-primary" style="align-self:flex-start;" onclick="location.href='https://app.avxexpress.com/registro.html'">
             <span class="t-es">Consultar tarifas</span><span class="t-en">Check rates</span>
           </button>
         </div>
@@ -668,7 +673,7 @@
           </ul>
           <div class="pending-note t-es">Próximamente: países disponibles, límites, comisiones, tiempos de entrega y modalidades.</div>
           <div class="pending-note t-en">Coming soon: available countries, limits, fees, delivery times, and modalities.</div>
-          <button class="btn btn-primary" style="align-self:flex-start;" onclick="goTo('contacto')">
+          <button class="btn btn-primary" style="align-self:flex-start;" onclick="location.href='https://app.avxexpress.com/registro.html'">
             <span class="t-es">Consultar disponibilidad</span><span class="t-en">Check availability</span>
           </button>
         </div>
@@ -694,7 +699,7 @@
           </ul>
           <div class="pending-note t-es">Próximamente: jurisdicción, documentos que aplican, modalidad presencial o remota, tiempos y precios.</div>
           <div class="pending-note t-en">Coming soon: jurisdiction, applicable documents, in-person or remote modality, timing, and pricing.</div>
-          <button class="btn btn-primary" style="align-self:flex-start;" onclick="goTo('contacto')">
+          <button class="btn btn-primary" style="align-self:flex-start;" onclick="location.href='https://app.avxexpress.com/registro.html'">
             <span class="t-es">Solicitar información</span><span class="t-en">Request information</span>
           </button>
         </div>
@@ -827,7 +832,7 @@
       <h2 class="t-en">Start today. Your mailbox is free.</h2>
       <p class="t-es">Regístrate en minutos y obtén tu dirección en Miami al instante.</p>
       <p class="t-en">Sign up in minutes and get your Miami address instantly.</p>
-      <button class="btn btn-white btn-lg" onclick="goTo('contacto')">
+      <button class="btn btn-white btn-lg" onclick="location.href='https://app.avxexpress.com/registro.html'">
         <span class="t-es">Crear mi cuenta gratis &rarr;</span><span class="t-en">Create my free account &rarr;</span>
       </button>
     </div>
@@ -885,7 +890,7 @@
       <div style="text-align:center;margin-top:56px;padding-top:48px;border-top:1px solid var(--border);">
         <p style="font-size:16px;color:var(--text-soft);margin-bottom:20px;" class="t-es">¿No encontraste tu respuesta? Escríbenos.</p>
         <p style="font-size:16px;color:var(--text-soft);margin-bottom:20px;" class="t-en">Didn't find your answer? Write to us.</p>
-        <button class="btn btn-primary" onclick="goTo('contacto')">
+        <button class="btn btn-primary" onclick="location.href='https://app.avxexpress.com/registro.html'">
           <span class="t-es">Ir a Contacto &rarr;</span><span class="t-en">Go to Contact &rarr;</span>
         </button>
       </div>
@@ -1021,6 +1026,9 @@
       </div>
       <div class="footer-col">
         <h4 class="t-es">Servicios</h4><h4 class="t-en">Services</h4>
+      <a href="te-compramos.html"><span class="t-es">Te Compramos</span><span class="t-en">We Buy For You</span></a>
+      <a href="impuestos.html"><span class="t-es">Impuestos de Aduana</span><span class="t-en">Customs Duties</span></a>
+      <a href="tiendas.html"><span class="t-es">Tiendas</span><span class="t-en">Stores</span></a>
         <a onclick="goTo('servicios','paquetes')"><span class="t-es">Reenvío de Paquetes</span><span class="t-en">Package Forwarding</span></a>
         <a onclick="goTo('servicios','envios')"><span class="t-es">Envíos Internacionales</span><span class="t-en">International Shipping</span></a>
         <a onclick="goTo('servicios','transferencias')"><span class="t-es">Transferencia de Dinero</span><span class="t-en">Money Transfer</span></a>
@@ -1028,6 +1036,7 @@
       </div>
       <div class="footer-col">
         <h4 class="t-es">Empresa</h4><h4 class="t-en">Company</h4>
+      <a href="agencias.html"><span class="t-es">Nuestras Agencias</span><span class="t-en">Our Agencies</span></a>
         <a onclick="goTo('como-funciona')"><span class="t-es">Cómo Funciona</span><span class="t-en">How It Works</span></a>
         <a onclick="goTo('faq')"><span class="t-es">Preguntas Frecuentes</span><span class="t-en">FAQ</span></a>
         <a onclick="goTo('contacto')"><span class="t-es">Contacto</span><span class="t-en">Contact</span></a>
@@ -1148,5 +1157,19 @@
     btn.disabled = true;
   }
 </script>
+
+<!-- ==== WhatsApp flotante (reemplaza el número 17867803273 por el real) ==== -->
+<a href="https://wa.me/17867803273?text=Hola%20AVX%20Express%2C%20quiero%20informaci%C3%B3n%20sobre%20mi%20casillero"
+   class="wa-float" target="_blank" rel="noopener" aria-label="WhatsApp">
+  <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3C9.4 3 4 8.4 4 15c0 2.1.6 4.1 1.6 5.9L4 29l8.3-1.6c1.7.9 3.6 1.4 5.7 1.4 6.6 0 12-5.4 12-12S22.6 3 16 3zm0 21.8c-1.8 0-3.5-.5-5-1.4l-.4-.2-4.9 1 .9-4.8-.3-.4A9.7 9.7 0 016.3 15c0-5.4 4.3-9.7 9.7-9.7s9.7 4.3 9.7 9.7-4.3 9.8-9.7 9.8zm5.3-7.3c-.3-.1-1.7-.9-2-1-.3-.1-.5-.1-.7.2-.2.3-.7 1-.9 1.1-.2.2-.3.2-.6.1-1.7-.9-2.9-1.6-4-3.6-.3-.5.3-.5.8-1.5.1-.2 0-.4 0-.5s-.7-1.7-1-2.3c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.3 5.2 4.6 2 .8 2.7.9 3.7.8.6-.1 1.7-.7 2-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3z"/></svg>
+</a>
+<style>
+.wa-float{position:fixed;bottom:22px;right:22px;z-index:300;width:60px;height:60px;border-radius:50%;background:#25D366;display:grid;place-items:center;box-shadow:0 8px 26px rgba(37,211,102,.45);transition:transform .2s, box-shadow .2s;animation:waPulse 2.6s infinite;}
+.wa-float:hover{transform:scale(1.08);box-shadow:0 10px 30px rgba(37,211,102,.6);}
+.wa-float svg{width:34px;height:34px;fill:#fff;}
+@keyframes waPulse{0%{box-shadow:0 8px 26px rgba(37,211,102,.45),0 0 0 0 rgba(37,211,102,.5)}70%{box-shadow:0 8px 26px rgba(37,211,102,.45),0 0 0 14px rgba(37,211,102,0)}100%{box-shadow:0 8px 26px rgba(37,211,102,.45),0 0 0 0 rgba(37,211,102,0)}}
+@media(max-width:600px){.wa-float{width:54px;height:54px;bottom:16px;right:16px}.wa-float svg{width:30px;height:30px}}
+</style>
+
 </body>
 </html>

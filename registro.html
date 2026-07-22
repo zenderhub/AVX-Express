@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Crear Cuenta · AVX Express LLC</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+    :root { --red:#C8362A; --red-dark:#A82822; --navy:#1E4B8A; --navy-dark:#102C57;
+      --navy-xdark:#07101E; --white:#fff; --surface:#F2F6FC; --text:#0D1B33;
+      --text-soft:#5C6E8A; --border:#D4DFEF; --green:#1FA463;
+      --r:14px; --r-sm:8px; --pill:999px; --wrap:1280px; }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:'Ubuntu',system-ui,sans-serif;color:var(--text);background:var(--white);line-height:1.6;-webkit-font-smoothing:antialiased}
+    img{max-width:100%;display:block}
+    .wrap{max-width:var(--wrap);margin:0 auto;padding:0 clamp(20px,4vw,72px)}
+    .eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:11.5px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--red)}
+    .eyebrow::before{content:'';width:22px;height:2px;background:var(--red);border-radius:2px}
+    .btn{display:inline-flex;align-items:center;gap:8px;font-family:'Ubuntu',sans-serif;font-weight:700;font-size:15px;border:none;cursor:pointer;text-decoration:none;border-radius:var(--pill);padding:13px 26px;transition:.18s}
+    .btn-primary{background:var(--red);color:#fff}
+    .btn-primary:hover{background:var(--red-dark);transform:translateY(-1px);box-shadow:0 6px 22px rgba(200,54,42,.28)}
+    .btn-outline{background:transparent;color:var(--navy);border:2px solid var(--navy)}
+    .btn-outline:hover{background:var(--navy);color:#fff}
+    nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.94);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--border)}
+    .nav-in{display:flex;align-items:center;justify-content:space-between;height:72px;gap:24px}
+    .logo{display:flex;align-items:center;text-decoration:none;flex-shrink:0}
+    .logo img{height:48px;width:auto}
+    .nav-links{display:flex;gap:22px;list-style:none;flex-wrap:wrap}
+    .nav-links a{font-size:14.5px;font-weight:500;color:var(--text-soft);text-decoration:none;transition:.18s;white-space:nowrap}
+    .nav-links a:hover,.nav-links a.active{color:var(--navy)}
+    .nav-right{display:flex;align-items:center;gap:16px;flex-shrink:0}
+    .lang-toggle{display:flex;align-items:center;gap:4px}
+    .lang-btn{background:none;border:none;cursor:pointer;font-family:'Ubuntu',sans-serif;font-size:13px;font-weight:700;letter-spacing:.5px;color:var(--text-soft);padding:4px 8px;border-radius:6px;transition:.18s}
+    .lang-btn.active{color:var(--navy);background:var(--surface)}
+    .lang-sep{font-size:12px;color:var(--border)}
+    [data-show="en"] .t-es,[data-show="es"] .t-en{display:none!important}
+    .page-hero{padding:80px 0 70px;background:var(--surface);border-bottom:1px solid var(--border)}
+    .page-hero .eyebrow{margin-bottom:16px}
+    .page-hero h1{font-size:clamp(32px,4vw,52px);font-weight:700;letter-spacing:-1.2px;line-height:1.1;color:var(--text);margin-bottom:18px}
+    .page-hero p{font-size:18px;color:var(--text-soft);max-width:600px;line-height:1.65}
+    footer{background:var(--navy-xdark);padding:72px 0 40px}
+    .footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;padding-bottom:48px;border-bottom:1px solid rgba(255,255,255,.1)}
+    .footer-brand{display:flex;flex-direction:column;gap:16px}
+    .f-desc{font-size:14px;color:rgba(255,255,255,.46);line-height:1.65;max-width:240px}
+    .footer-col h4{font-size:11px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:18px}
+    .footer-col a{display:block;font-size:14px;color:rgba(255,255,255,.58);text-decoration:none;margin-bottom:10px;transition:.2s}
+    .footer-col a:hover{color:#fff}
+    .footer-bot{padding-top:24px;display:flex;justify-content:space-between;align-items:center;font-size:13px;color:rgba(255,255,255,.3)}
+    .reveal{opacity:0;transform:translateY(20px);transition:.55s ease}
+    .reveal.in{opacity:1;transform:none}
+    @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+    @media(max-width:1100px){.nav-links{display:none}}
+    @media(max-width:600px){.footer-top{grid-template-columns:1fr 1fr}.footer-bot{flex-direction:column;gap:8px;text-align:center}}
+
+    .reg-sec{padding:60px 0 90px}
+    .reg-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+    .reg-benefits h2{font-size:clamp(24px,2.8vw,34px);font-weight:700;letter-spacing:-.6px;margin:12px 0 24px;color:var(--text)}
+    .blist{list-style:none;display:flex;flex-direction:column;gap:18px}
+    .blist li{display:flex;gap:14px;align-items:flex-start}
+    .blist .ic{flex-shrink:0;width:40px;height:40px;border-radius:11px;background:var(--red);color:#fff;display:grid;place-items:center;font-size:18px}
+    .blist b{display:block;font-size:16px;color:var(--navy-dark)}
+    .blist span{font-size:14px;color:var(--text-soft)}
+    .reg-card{background:#fff;border:1px solid var(--border);border-radius:var(--r);padding:38px;box-shadow:0 20px 56px rgba(7,16,30,.1)}
+    .reg-card h3{font-size:22px;font-weight:700;color:var(--navy-dark);margin-bottom:4px}
+    .reg-card .sub{color:var(--text-soft);font-size:14.5px;margin-bottom:26px}
+    .fg{margin-bottom:18px}
+    .fg label{display:block;font-size:12.5px;font-weight:700;letter-spacing:.4px;text-transform:uppercase;color:var(--text-soft);margin-bottom:8px}
+    .fg input{width:100%;font-family:'Ubuntu',sans-serif;font-size:15px;color:var(--text);border:1.5px solid var(--border);border-radius:var(--r-sm);background:var(--surface);padding:13px 16px;transition:.18s}
+    .fg input:focus{outline:none;border-color:var(--navy);background:#fff}
+    .fg-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    .consent{display:flex;gap:10px;align-items:flex-start;font-size:13px;color:var(--text-soft);margin:6px 0 20px}
+    .consent input{margin-top:3px;accent-color:var(--red)}
+    .reg-card .btn-primary{width:100%;justify-content:center;font-size:16px;padding:15px}
+    .free-note{text-align:center;font-size:13px;color:var(--text-soft);margin-top:16px}
+    @media(max-width:900px){.reg-grid{grid-template-columns:1fr;gap:40px}}
+    @media(max-width:480px){.fg-row{grid-template-columns:1fr}}
+</style>
+</head>
+<body data-show="es">
+<div class="avx-anuncio"><a href="migracion.html"><span class="t-es">📦 ¿Tu casillero cerró? <b>Migra a AVX en 2 minutos</b> y no pierdas tus compras →</span><span class="t-en">📦 Mailbox shutting down? <b>Migrate to AVX in 2 minutes</b> →</span></a></div><style>.avx-anuncio{background:#102C57;color:#fff;text-align:center;font-size:13.5px;padding:9px 16px;line-height:1.4}.avx-anuncio a{color:#fff;text-decoration:none;font-weight:500}.avx-anuncio a:hover{text-decoration:underline}.avx-anuncio b{color:#ff8b7d}</style>
+<nav><div class="wrap nav-in">
+  <a href="home.html" class="logo"><img src="LogoAVX.svg" alt="AVX Express LLC"></a>
+  <ul class="nav-links"><li><a href="servicios.html"><span class="t-es">Servicios</span><span class="t-en">Services</span></a></li><li><a href="como-funciona.html"><span class="t-es">Cómo Funciona</span><span class="t-en">How It Works</span></a></li><li><a href="calculadora.html"><span class="t-es">Calculadora</span><span class="t-en">Calculator</span></a></li><li><a href="rastreo.html"><span class="t-es">Rastreo</span><span class="t-en">Tracking</span></a></li><li><a href="faq.html"><span class="t-es">Preguntas</span><span class="t-en">FAQ</span></a></li><li><a href="contacto.html"><span class="t-es">Contacto</span><span class="t-en">Contact</span></a></li></ul>
+  <div class="nav-right">
+    <a href="https://app.avxexpress.com/login.html" style="font-size:14.5px;font-weight:600;color:#1E4B8A;text-decoration:none;white-space:nowrap" class="avx-login"><span class="t-es">Mi cuenta</span><span class="t-en">Sign in</span></a>
+    <div class="lang-toggle"><button class="lang-btn active" data-lang="es">ES</button><span class="lang-sep">|</span><button class="lang-btn" data-lang="en">EN</button></div>
+    <a href="https://app.avxexpress.com/registro.html" class="btn btn-primary"><span class="t-es">Crear cuenta</span><span class="t-en">Sign up</span></a>
+  </div>
+</div></nav>
+
+<div class="page-hero"><div class="wrap">
+  <span class="eyebrow t-es">Crear cuenta</span><span class="eyebrow t-en">Sign up</span>
+  <h1 class="t-es">Tu casillero en USA,<br>gratis y en 2 minutos.</h1><h1 class="t-en">Your U.S. mailbox,<br>free in 2 minutes.</h1>
+  <p class="t-es">Regístrate y obtén tu dirección personal en Miami al instante. Sin cuotas de apertura, sin compromisos.</p>
+  <p class="t-en">Sign up and get your personal Miami address instantly. No opening fees, no commitments.</p>
+</div></div>
+<section class="reg-sec"><div class="wrap"><div class="reg-grid">
+  <div class="reg-benefits reveal">
+    <span class="eyebrow t-es">Por qué AVX</span><span class="eyebrow t-en">Why AVX</span>
+    <h2 class="t-es">Todo lo que recibes al registrarte.</h2><h2 class="t-en">What you get when you sign up.</h2>
+    <ul class="blist">
+      <li><div class="ic">📍</div><div><b class="t-es">Tu dirección en Miami al instante</b><b class="t-en">Miami address instantly</b><span class="t-es">Úsala en cualquier tienda de EE.UU.</span><span class="t-en">Use it at any U.S. store.</span></div></li>
+      <li><div class="ic">📦</div><div><b class="t-es">Consolidación gratis</b><b class="t-en">Free consolidation</b><span class="t-es">Junta tus compras y paga menos por envío.</span><span class="t-en">Combine purchases, pay less shipping.</span></div></li>
+      <li><div class="ic">🛒</div><div><b class="t-es">Compra asistida</b><b class="t-en">Assisted purchase</b><span class="t-es">¿Sin tarjeta USA? Compramos por ti.</span><span class="t-en">No U.S. card? We buy for you.</span></div></li>
+      <li><div class="ic">💬</div><div><b class="t-es">Soporte por WhatsApp</b><b class="t-en">WhatsApp support</b><span class="t-es">Un equipo real que te responde.</span><span class="t-en">A real team that answers.</span></div></li>
+    </ul>
+  </div>
+  <div class="reg-card reveal">
+    <h3 class="t-es">Crea tu cuenta gratis</h3><h3 class="t-en">Create your free account</h3>
+    <p class="sub t-es">Te contactamos por WhatsApp con tu dirección de Miami.</p><p class="sub t-en">We'll WhatsApp you your Miami address.</p>
+    <form onsubmit="return registrar(event)">
+      <div class="fg-row">
+        <div class="fg"><label class="t-es">Nombre</label><label class="t-en">First name</label><input id="rg_nom" type="text" required></div>
+        <div class="fg"><label class="t-es">Apellido</label><label class="t-en">Last name</label><input id="rg_ape" type="text" required></div>
+      </div>
+      <div class="fg"><label>Email</label><input id="rg_email" type="email" required></div>
+      <div class="fg-row">
+        <div class="fg"><label class="t-es">Ciudad</label><label class="t-en">City</label><input id="rg_ciu" type="text" placeholder="Bogotá" required></div>
+        <div class="fg"><label>WhatsApp</label><input id="rg_tel" type="tel" placeholder="+57 300 000 0000" required></div>
+      </div>
+      <label class="consent"><input type="checkbox" required><span class="t-es">Acepto los términos y autorizo a AVX Express a contactarme.</span><span class="t-en">I accept the terms and authorize AVX Express to contact me.</span></label>
+      <button type="submit" class="btn btn-primary"><span class="t-es">Crear mi cuenta gratis</span><span class="t-en">Create free account</span></button>
+    </form>
+    <p class="free-note t-es">Sin cuotas de apertura · Sin compromisos</p><p class="free-note t-en">No opening fees · No commitments</p>
+  </div>
+</div></div></section>
+
+<footer><div class="wrap">
+  <div class="footer-top">
+    <div class="footer-brand">
+      <img src="LogoAVX.svg" alt="AVX Express LLC" style="height:44px;width:auto;filter:brightness(0) invert(1);opacity:.85">
+      <p class="f-desc t-es">Tu casillero virtual en EE.UU. Compra en cualquier tienda americana y recíbelo donde estés.</p>
+      <p class="f-desc t-en">Your virtual mailbox in the U.S. Shop any American store and receive it wherever you are.</p>
+    </div>
+    <div class="footer-col"><h4 class="t-es">Servicios</h4><h4 class="t-en">Services</h4>
+      <a href="servicios.html"><span class="t-es">Reenvío de Paquetes</span><span class="t-en">Package Forwarding</span></a>
+      <a href="te-compramos.html"><span class="t-es">Te Compramos</span><span class="t-en">We Buy For You</span></a>
+      <a href="calculadora.html"><span class="t-es">Calculadora</span><span class="t-en">Calculator</span></a>
+      <a href="impuestos.html"><span class="t-es">Impuestos de Aduana</span><span class="t-en">Customs Duties</span></a>
+    </div>
+    <div class="footer-col"><h4 class="t-es">Empresa</h4><h4 class="t-en">Company</h4>
+      <a href="agencias.html"><span class="t-es">Nuestras Agencias</span><span class="t-en">Our Agencies</span></a>
+      <a href="como-funciona.html"><span class="t-es">Cómo Funciona</span><span class="t-en">How It Works</span></a>
+      <a href="tiendas.html"><span class="t-es">Tiendas</span><span class="t-en">Stores</span></a>
+      <a href="rastreo.html"><span class="t-es">Rastrear Paquete</span><span class="t-en">Track</span></a>
+      <a href="contacto.html"><span class="t-es">Contacto</span><span class="t-en">Contact</span></a>
+    </div>
+    <div class="footer-col"><h4>Legal</h4>
+      <a href="#"><span class="t-es">Términos de Uso</span><span class="t-en">Terms</span></a>
+      <a href="#"><span class="t-es">Privacidad</span><span class="t-en">Privacy</span></a>
+    </div>
+  </div>
+  <div class="footer-bot"><span>&copy; 2025 AVX Express LLC. <span class="t-es">Todos los derechos reservados.</span><span class="t-en">All rights reserved.</span></span><span>Miami, FL · <span class="t-es">Estados Unidos</span><span class="t-en">United States</span></span></div>
+</div></footer>
+<script>
+  var _rev=document.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window){
+    var obs=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');obs.unobserve(x.target)}}),{threshold:.08,rootMargin:'0px 0px -6% 0px'});
+    _rev.forEach(el=>obs.observe(el));
+    setTimeout(function(){_rev.forEach(el=>el.classList.add('in'))},1600);
+  } else { _rev.forEach(el=>el.classList.add('in')); }
+  function setLang(l){document.body.dataset.show=l;document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active',b.dataset.lang===l));localStorage.setItem('avx-lang',l);if(window.onLang)window.onLang();}
+  document.querySelectorAll('.lang-btn').forEach(b=>b.addEventListener('click',()=>setLang(b.dataset.lang)));
+  setLang(localStorage.getItem('avx-lang')||'es');
+
+function registrar(e){e.preventDefault();
+  var n=document.getElementById('rg_nom').value,a=document.getElementById('rg_ape').value,
+      em=document.getElementById('rg_email').value,c=document.getElementById('rg_ciu').value,t=document.getElementById('rg_tel').value;
+  var msg='Hola AVX Express, quiero crear mi casillero.%0A%0ANombre: '+encodeURIComponent(n+' '+a)+
+    '%0AEmail: '+encodeURIComponent(em)+'%0ACiudad: '+encodeURIComponent(c)+'%0AWhatsApp: '+encodeURIComponent(t);
+  window.open('https://wa.me/17867803273?text='+msg,'_blank'); return false;}
+</script>
+
+<!-- ==== WhatsApp flotante (reemplaza 17867803273 por el número real) ==== -->
+<a href="https://wa.me/17867803273?text=Hola%20AVX%20Express%2C%20quiero%20informaci%C3%B3n%20sobre%20mi%20casillero"
+   class="wa-float" target="_blank" rel="noopener" aria-label="WhatsApp">
+  <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3C9.4 3 4 8.4 4 15c0 2.1.6 4.1 1.6 5.9L4 29l8.3-1.6c1.7.9 3.6 1.4 5.7 1.4 6.6 0 12-5.4 12-12S22.6 3 16 3zm0 21.8c-1.8 0-3.5-.5-5-1.4l-.4-.2-4.9 1 .9-4.8-.3-.4A9.7 9.7 0 016.3 15c0-5.4 4.3-9.7 9.7-9.7s9.7 4.3 9.7 9.7-4.3 9.8-9.7 9.8zm5.3-7.3c-.3-.1-1.7-.9-2-1-.3-.1-.5-.1-.7.2-.2.3-.7 1-.9 1.1-.2.2-.3.2-.6.1-1.7-.9-2.9-1.6-4-3.6-.3-.5.3-.5.8-1.5.1-.2 0-.4 0-.5s-.7-1.7-1-2.3c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.3 5.2 4.6 2 .8 2.7.9 3.7.8.6-.1 1.7-.7 2-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3z"/></svg>
+</a>
+<style>
+.wa-float{position:fixed;bottom:22px;right:22px;z-index:300;width:60px;height:60px;border-radius:50%;background:#25D366;display:grid;place-items:center;box-shadow:0 8px 26px rgba(37,211,102,.45);transition:.2s;animation:waPulse 2.6s infinite}
+.wa-float:hover{transform:scale(1.08)}
+.wa-float svg{width:34px;height:34px;fill:#fff}
+@keyframes waPulse{0%{box-shadow:0 8px 26px rgba(37,211,102,.45),0 0 0 0 rgba(37,211,102,.5)}70%{box-shadow:0 8px 26px rgba(37,211,102,.45),0 0 0 14px rgba(37,211,102,0)}100%{box-shadow:0 8px 26px rgba(37,211,102,.45),0 0 0 0 rgba(37,211,102,0)}}
+@media(max-width:600px){.wa-float{width:54px;height:54px;bottom:16px;right:16px}}
+</style>
+
+</body>
+</html>

@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta name="robots" content="noindex, nofollow">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora de Costos · AVX Express LLC</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --red: #C8362A; --red-dark: #A82822; --navy: #1E4B8A; --navy-dark: #102C57;
+      --navy-xdark: #07101E; --white: #ffffff; --surface: #F2F6FC;
+      --text: #0D1B33; --text-soft: #5C6E8A; --border: #D4DFEF;
+      --r: 14px; --r-sm: 8px; --pill: 999px; --wrap: 1280px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Ubuntu', system-ui, sans-serif; color: var(--text); background: var(--white); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    img { max-width: 100%; display: block; }
+    .wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 clamp(20px,4vw,72px); }
+    .eyebrow { display: inline-flex; align-items: center; gap: 10px; font-size: 11.5px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--red); }
+    .eyebrow::before { content:''; width:22px; height:2px; background:var(--red); border-radius:2px; }
+    .btn { display: inline-flex; align-items: center; gap: 8px; font-family: 'Ubuntu', sans-serif; font-weight: 700; font-size: 15px; border: none; cursor: pointer; text-decoration: none; border-radius: var(--pill); padding: 13px 26px; transition: background .18s, transform .18s, box-shadow .18s, color .18s; }
+    .btn-primary { background: var(--red); color: white; }
+    .btn-primary:hover { background: var(--red-dark); transform: translateY(-1px); box-shadow: 0 6px 22px rgba(200,54,42,.28); }
+    nav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,.94); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid var(--border); }
+    .nav-in { display: flex; align-items: center; justify-content: space-between; height: 72px; gap: 32px; }
+    .logo { display: flex; align-items: center; text-decoration: none; flex-shrink: 0; }
+    .logo img { height: 48px; width: auto; }
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a { font-size: 15px; font-weight: 500; color: var(--text-soft); text-decoration: none; transition: color .18s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--navy); }
+    .nav-right { display: flex; align-items: center; gap: 18px; }
+    .lang-toggle { display: flex; align-items: center; gap: 4px; }
+    .lang-btn { background: none; border: none; cursor: pointer; font-family: 'Ubuntu', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: .5px; color: var(--text-soft); padding: 4px 8px; border-radius: 6px; transition: color .18s, background .18s; }
+    .lang-btn.active { color: var(--navy); background: var(--surface); }
+    .lang-sep { font-size: 12px; color: var(--border); }
+    [data-show="en"] .t-es, [data-show="es"] .t-en { display: none !important; }
+
+    .page-hero { padding: 80px 0 70px; background: var(--surface); border-bottom: 1px solid var(--border); }
+    .page-hero .eyebrow { margin-bottom: 16px; }
+    .page-hero h1 { font-size: clamp(32px,4vw,52px); font-weight: 700; letter-spacing: -1.2px; line-height: 1.1; color: var(--text); margin-bottom: 18px; }
+    .page-hero p { font-size: 18px; color: var(--text-soft); max-width: 580px; line-height: 1.65; }
+
+    /* CALCULATOR */
+    .calc-section { padding: 70px 0 90px; }
+    .calc-grid { display: grid; grid-template-columns: 1.05fr .95fr; gap: 40px; align-items: start; }
+    .card { background: var(--white); border: 1px solid var(--border); border-radius: var(--r); padding: 34px; }
+    .card h3 { font-size: 19px; font-weight: 700; color: var(--navy-dark); margin-bottom: 6px; }
+    .card .hint { font-size: 13.5px; color: var(--text-soft); margin-bottom: 26px; }
+    .field { margin-bottom: 24px; }
+    .field > label { display: block; font-size: 13px; font-weight: 700; letter-spacing: .4px; text-transform: uppercase; color: var(--text-soft); margin-bottom: 10px; }
+    .seg { display: inline-flex; background: var(--surface); border: 1px solid var(--border); border-radius: var(--pill); padding: 4px; gap: 4px; }
+    .seg button { font-family: 'Ubuntu', sans-serif; font-size: 14px; font-weight: 500; border: none; background: none; cursor: pointer; color: var(--text-soft); padding: 8px 20px; border-radius: var(--pill); transition: .18s; }
+    .seg button.active { background: var(--navy); color: #fff; font-weight: 700; }
+    .input-row { display: flex; gap: 10px; align-items: stretch; }
+    .num { flex: 1; display: flex; align-items: center; border: 1.5px solid var(--border); border-radius: var(--r-sm); background: var(--surface); padding: 0 14px; transition: border .18s; }
+    .num:focus-within { border-color: var(--navy); background: #fff; }
+    .num input { flex: 1; border: none; background: none; outline: none; font-family: 'Ubuntu', sans-serif; font-size: 22px; font-weight: 700; color: var(--text); padding: 13px 0; width: 100%; }
+    .num .unit { font-size: 14px; font-weight: 700; color: var(--text-soft); }
+    .check { display: flex; align-items: center; gap: 12px; cursor: pointer; padding: 14px 16px; border: 1.5px solid var(--border); border-radius: var(--r-sm); transition: .18s; }
+    .check:hover { border-color: var(--navy); }
+    .check input { width: 20px; height: 20px; accent-color: var(--red); cursor: pointer; }
+    .check .ctxt b { display: block; font-size: 15px; color: var(--text); }
+    .check .ctxt small { color: var(--text-soft); font-size: 13px; }
+
+    /* RESULT */
+    .result { background: var(--navy-dark); color: #fff; border-radius: var(--r); padding: 34px; position: sticky; top: 92px; }
+    .result h3 { font-size: 13px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: rgba(255,255,255,.55); margin-bottom: 24px; }
+    .line { display: flex; justify-content: space-between; align-items: baseline; padding: 13px 0; border-bottom: 1px solid rgba(255,255,255,.1); font-size: 15px; }
+    .line span:first-child { color: rgba(255,255,255,.8); }
+    .line span:first-child small { display: block; color: rgba(255,255,255,.45); font-size: 12px; }
+    .line span:last-child { font-weight: 700; font-variant-numeric: tabular-nums; }
+    .total { display: flex; justify-content: space-between; align-items: center; margin-top: 22px; padding-top: 6px; }
+    .total .lbl { font-size: 14px; font-weight: 700; letter-spacing: .5px; text-transform: uppercase; color: rgba(255,255,255,.6); }
+    .total .amt { font-size: 42px; font-weight: 700; letter-spacing: -1px; color: #fff; font-variant-numeric: tabular-nums; }
+    .total .amt small { font-size: 18px; color: rgba(255,255,255,.55); font-weight: 500; margin-left: 4px; }
+    .result .note { margin-top: 20px; font-size: 12.5px; color: rgba(255,255,255,.5); line-height: 1.6; }
+    .result .warn { margin-top: 16px; background: rgba(200,54,42,.18); border: 1px solid rgba(200,54,42,.4); border-radius: 8px; padding: 12px 14px; font-size: 13px; color: #ffd9d5; display: none; }
+    .result .warn.show { display: block; }
+
+    /* RATE TABLE */
+    .rates { padding: 80px 0; background: var(--surface); border-top: 1px solid var(--border); }
+    .rates .sh { margin-bottom: 40px; }
+    .rates h2 { font-size: clamp(24px,2.6vw,34px); font-weight: 700; letter-spacing: -.6px; color: var(--text); margin-top: 12px; }
+    table { width: 100%; border-collapse: collapse; background: #fff; border: 1px solid var(--border); border-radius: var(--r); overflow: hidden; }
+    th, td { text-align: left; padding: 15px 20px; font-size: 15px; border-bottom: 1px solid var(--border); }
+    th { background: var(--navy-dark); color: #fff; font-size: 12px; letter-spacing: .8px; text-transform: uppercase; }
+    tr:last-child td { border-bottom: none; }
+    td:last-child { font-weight: 700; color: var(--navy); text-align: right; font-variant-numeric: tabular-nums; }
+    .extras { margin-top: 26px; display: grid; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); gap: 14px; }
+    .extra { background: #fff; border: 1px solid var(--border); border-radius: var(--r-sm); padding: 16px 18px; }
+    .extra b { display: block; color: var(--navy-dark); font-size: 15px; }
+    .extra span { font-size: 13.5px; color: var(--text-soft); }
+
+    footer { background: var(--navy-xdark); padding: 72px 0 40px; }
+    .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; padding-bottom: 48px; border-bottom: 1px solid rgba(255,255,255,.1); }
+    .footer-brand { display: flex; flex-direction: column; gap: 16px; }
+    .f-desc { font-size: 14px; color: rgba(255,255,255,.46); line-height: 1.65; max-width: 240px; }
+    .footer-col h4 { font-size: 11px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; color: rgba(255,255,255,.3); margin-bottom: 18px; }
+    .footer-col a { display: block; font-size: 14px; color: rgba(255,255,255,.58); text-decoration: none; margin-bottom: 10px; transition: color .2s; }
+    .footer-col a:hover { color: white; }
+    .footer-bot { padding-top: 24px; display: flex; justify-content: space-between; align-items: center; font-size: 13px; color: rgba(255,255,255,.3); }
+
+    @media (max-width: 900px) { .calc-grid { grid-template-columns: 1fr; } .result { position: static; } .footer-top { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 600px) { .nav-links { display: none; } .footer-top { grid-template-columns: 1fr; } .footer-bot { flex-direction: column; gap: 8px; text-align: center; } }
+  </style>
+</head>
+<body data-show="es">
+<div class="avx-anuncio"><a href="migracion.html"><span class="t-es">📦 ¿Tu casillero cerró? <b>Migra a AVX en 2 minutos</b> y no pierdas tus compras →</span><span class="t-en">📦 Mailbox shutting down? <b>Migrate to AVX in 2 minutes</b> →</span></a></div><style>.avx-anuncio{background:#102C57;color:#fff;text-align:center;font-size:13.5px;padding:9px 16px;line-height:1.4}.avx-anuncio a{color:#fff;text-decoration:none;font-weight:500}.avx-anuncio a:hover{text-decoration:underline}.avx-anuncio b{color:#ff8b7d}</style>
+
+<nav>
+  <div class="wrap nav-in">
+    <a href="home.html" class="logo"><img src="LogoAVX.svg" alt="AVX Express LLC"></a>
+    <ul class="nav-links">
+      <li><a href="servicios.html"><span class="t-es">Servicios</span><span class="t-en">Services</span></a></li>
+      <li><a href="como-funciona.html"><span class="t-es">Cómo Funciona</span><span class="t-en">How It Works</span></a></li>
+      <li><a href="calculadora.html" class="active"><span class="t-es">Calculadora</span><span class="t-en">Calculator</span></a></li>
+      <li><a href="rastreo.html"><span class="t-es">Rastreo</span><span class="t-en">Tracking</span></a></li>
+      <li><a href="faq.html"><span class="t-es">Preguntas</span><span class="t-en">FAQ</span></a></li>
+      <li><a href="contacto.html"><span class="t-es">Contacto</span><span class="t-en">Contact</span></a></li>
+    </ul>
+    <div class="nav-right">
+    <a href="https://app.avxexpress.com/login.html" style="font-size:14.5px;font-weight:600;color:#1E4B8A;text-decoration:none;white-space:nowrap" class="avx-login"><span class="t-es">Mi cuenta</span><span class="t-en">Sign in</span></a>
+      <div class="lang-toggle">
+        <button class="lang-btn active" data-lang="es">ES</button>
+        <span class="lang-sep">|</span>
+        <button class="lang-btn" data-lang="en">EN</button>
+      </div>
+      <a href="https://app.avxexpress.com/registro.html" class="btn btn-primary">
+        <span class="t-es">Crear mi cuenta</span><span class="t-en">Create account</span>
+      </a>
+    </div>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <div class="wrap">
+    <span class="eyebrow t-es">Calculadora de costos</span>
+    <span class="eyebrow t-en">Cost calculator</span>
+    <h1 class="t-es">Calcula tu envío<br>en segundos.</h1>
+    <h1 class="t-en">Estimate your<br>shipping in seconds.</h1>
+    <p class="t-es">Ingresa el peso y el valor de tu compra y te mostramos el costo estimado, sin sorpresas.</p>
+    <p class="t-en">Enter the weight and value of your purchase and we'll show you the estimated cost, no surprises.</p>
+  </div>
+</div>
+
+<section class="calc-section">
+  <div class="wrap calc-grid">
+    <!-- FORM -->
+    <div class="card">
+      <h3 class="t-es">Datos de tu envío</h3><h3 class="t-en">Your shipment</h3>
+      <p class="hint t-es">El peso se aproxima a la libra entera superior.</p>
+      <p class="hint t-en">Weight is rounded up to the next whole pound.</p>
+
+      <div class="field">
+        <label class="t-es">Origen</label><label class="t-en">Origin</label>
+        <div class="seg" id="segOrigen">
+          <button data-o="us" class="active">🇺🇸 <span class="t-es">Estados Unidos</span><span class="t-en">United States</span></button>
+          <button data-o="es">🇪🇸 España</button>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="t-es">Peso del paquete</label><label class="t-en">Package weight</label>
+        <div class="input-row">
+          <div class="num"><input id="peso" type="number" min="0" step="0.1" value="3" inputmode="decimal"><span class="unit" id="unitLbl">lb</span></div>
+          <div class="seg" id="segUnit">
+            <button data-u="lb" class="active">lb</button>
+            <button data-u="kg">kg</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="t-es">Valor declarado de la compra</label><label class="t-en">Declared value</label>
+        <div class="num"><span class="unit" id="curPre">$</span><input id="valor" type="number" min="0" step="1" value="100" inputmode="decimal"><span class="unit" id="curLbl">USD</span></div>
+      </div>
+
+      <div class="field" style="margin-bottom:0">
+        <label class="t-es">Opciones</label><label class="t-en">Options</label>
+        <label class="check">
+          <input type="checkbox" id="collect">
+          <span class="ctxt">
+            <b class="t-es">Pago contra entrega (Collect)</b><b class="t-en">Cash on delivery (Collect)</b>
+            <small class="t-es">Pagas al recibir. Cargo adicional.</small><small class="t-en">Pay on delivery. Extra charge.</small>
+          </span>
+        </label>
+      </div>
+    </div>
+
+    <!-- RESULT -->
+    <div class="result">
+      <h3 class="t-es">Tu estimado</h3><h3 class="t-en">Your estimate</h3>
+      <div class="line"><span class="t-es">Cargo por peso<small id="pesoDesc"></small></span><span class="t-en">Weight charge<small id="pesoDescEn"></small></span><span id="rPeso">—</span></div>
+      <div class="line"><span class="t-es">Combustible</span><span class="t-en">Fuel</span><span id="rFuel">—</span></div>
+      <div class="line"><span class="t-es">Seguro<small id="segDesc"></small></span><span class="t-en">Insurance<small id="segDescEn"></small></span><span id="rIns">—</span></div>
+      <div class="line" id="lineCollect" style="display:none"><span class="t-es">Collect</span><span class="t-en">Collect</span><span id="rCol">—</span></div>
+      <div class="total">
+        <span class="lbl t-es">Total estimado</span><span class="lbl t-en">Estimated total</span>
+        <span class="amt"><span id="rTotal">0.00</span><small id="curTot">USD</small></span>
+      </div>
+      <div class="warn" id="warn">
+        <span class="t-es">El peso máximo por envío es 110 lb (≈50 kg). Para más peso, contáctanos.</span>
+        <span class="t-en">Max weight per shipment is 110 lb (≈50 kg). For more, contact us.</span>
+      </div>
+      <p class="note t-es">Estimado referencial. No incluye impuestos de aduana, bodegaje (tras 45 días) ni retiro en bodega de origen. El valor final se confirma al despachar.</p>
+      <p class="note t-en">Reference estimate. Excludes customs taxes, storage (after 45 days), and origin-warehouse pickup. Final value is confirmed at shipping.</p>
+    </div>
+  </div>
+</section>
+
+<!-- RATE TABLE -->
+<section class="rates">
+  <div class="wrap">
+    <div class="sh">
+      <span class="eyebrow t-es">Tarifas</span><span class="eyebrow t-en">Rates</span>
+      <h2 class="t-es" id="ratesTitle">Tarifa de mercadería desde EE.UU.</h2>
+      <h2 class="t-en" id="ratesTitleEn">Merchandise rate from the U.S.</h2>
+    </div>
+    <table id="rateTable"></table>
+    <div class="extras" id="extras"></div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img src="LogoAVX.svg" alt="AVX Express LLC" style="height:44px;width:auto;filter:brightness(0) invert(1);opacity:.85;">
+        <p class="f-desc t-es">Tu casillero virtual en EE.UU. Compra en cualquier tienda americana y recíbelo donde estés.</p>
+        <p class="f-desc t-en">Your virtual mailbox in the U.S. Shop any American store and receive it wherever you are.</p>
+      </div>
+      <div class="footer-col">
+        <h4 class="t-es">Servicios</h4><h4 class="t-en">Services</h4>
+      <a href="te-compramos.html"><span class="t-es">Te Compramos</span><span class="t-en">We Buy For You</span></a>
+      <a href="impuestos.html"><span class="t-es">Impuestos de Aduana</span><span class="t-en">Customs Duties</span></a>
+      <a href="tiendas.html"><span class="t-es">Tiendas</span><span class="t-en">Stores</span></a>
+        <a href="servicios.html#paquetes"><span class="t-es">Reenvío de Paquetes</span><span class="t-en">Package Forwarding</span></a>
+        <a href="servicios.html#envios"><span class="t-es">Envíos Internacionales</span><span class="t-en">International Shipping</span></a>
+        <a href="calculadora.html"><span class="t-es">Calculadora de Costos</span><span class="t-en">Cost Calculator</span></a>
+      </div>
+      <div class="footer-col">
+        <h4 class="t-es">Empresa</h4><h4 class="t-en">Company</h4>
+      <a href="agencias.html"><span class="t-es">Nuestras Agencias</span><span class="t-en">Our Agencies</span></a>
+        <a href="como-funciona.html"><span class="t-es">Cómo Funciona</span><span class="t-en">How It Works</span></a>
+        <a href="faq.html"><span class="t-es">Preguntas Frecuentes</span><span class="t-en">FAQ</span></a>
+        <a href="contacto.html"><span class="t-es">Contacto</span><span class="t-en">Contact</span></a>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <a href="#"><span class="t-es">Términos de Uso</span><span class="t-en">Terms of Use</span></a>
+        <a href="#"><span class="t-es">Privacidad</span><span class="t-en">Privacy</span></a>
+      </div>
+    </div>
+    <div class="footer-bot">
+      <span>&copy; 2025 AVX Express LLC. <span class="t-es">Todos los derechos reservados.</span><span class="t-en">All rights reserved.</span></span>
+      <span>Miami, FL · <span class="t-es">Estados Unidos</span><span class="t-en">United States</span></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ---- MODELO DE TARIFAS (validado con ~7.300 guías reales) ----
+  const LB_PER_KG = 2.20462;
+  // USA: cargo por peso según libra entera (ceil). Tramos 1-3 = precio plano.
+  function cargoPesoUSA(lbCeil){
+    if(lbCeil<=1) return 6.45;
+    if(lbCeil<=2) return 7.44;
+    if(lbCeil<=3) return 9.13;
+    if(lbCeil<=15) return +(lbCeil*3.78).toFixed(2);
+    if(lbCeil<=50) return +(lbCeil*3.485).toFixed(2);
+    return +(lbCeil*3.167).toFixed(2);
+  }
+  // España: por kilo (ceil). 1-20 kg a 11.51 €, kilo adicional 10.82 €.
+  function cargoPesoES(kgCeil){
+    if(kgCeil<=20) return +(kgCeil*11.51).toFixed(2);
+    return +((20*11.51)+((kgCeil-20)*10.82)).toFixed(2);
+  }
+  const CFG = {
+    us: { cur:'USD', pre:'$', fuel:3.20, insPer100:2, collect:3, maxLb:110,
+          ratesTitle:['Tarifa de mercadería desde EE.UU.','Merchandise rate from the U.S.'],
+          rows:[['0 – 1 lb','$6.45'],['1.01 – 2 lb','$7.44'],['2.01 – 3 lb','$9.13'],
+                ['3.01 – 15 lb','$3.78 / lb'],['15.01 – 50 lb','$3.485 / lb'],['50.01 – 110 lb','$3.167 / lb']],
+          extras:[['Combustible','$3.20 / envío'],['Seguro','$2 por cada $100 declarado'],
+                  ['Collect','$3 / envío'],['Bodegaje','$0.5 / día tras 45 días'],['Retiro en origen','$25 / paquete']] },
+    es: { cur:'EUR', pre:'€', fuel:0.80, insPer100:1.5, collect:5, maxKg:9999,
+          ratesTitle:['Tarifa de mercadería desde España','Merchandise rate from Spain'],
+          rows:[['1 – 20 kg','€11.51 / kg'],['Kilo adicional (>20 kg)','€10.82 / kg']],
+          extras:[['Combustible','€0.80 / envío'],['Seguro','€1.5 por cada €100 declarado'],
+                  ['Collect','€5 / envío'],['Bodegaje','€0.4 / día tras 45 días'],['Retiro en origen','€25 / paquete']] }
+  };
+
+  let origen='us', unidad='lb';
+  const $=id=>document.getElementById(id);
+
+  function calc(){
+    const cfg=CFG[origen];
+    const pesoIn=Math.max(0, parseFloat($('peso').value)||0);
+    const valor=Math.max(0, parseFloat($('valor').value)||0);
+    let cargo=0, pesoDesc='', warn=false;
+
+    if(origen==='us'){
+      let lb = unidad==='kg' ? pesoIn*LB_PER_KG : pesoIn;
+      let W = Math.max(1, Math.ceil(lb-1e-9));
+      if(lb<=0) W=0;
+      cargo = W>0 ? cargoPesoUSA(W) : 0;
+      pesoDesc = W>0 ? ` (${W} lb)` : '';
+      if(lb>cfg.maxLb) warn=true;
+    } else {
+      let kg = unidad==='lb' ? pesoIn/LB_PER_KG : pesoIn;
+      let K = Math.max(1, Math.ceil(kg-1e-9));
+      if(kg<=0) K=0;
+      cargo = K>0 ? cargoPesoES(K) : 0;
+      pesoDesc = K>0 ? ` (${K} kg)` : '';
+    }
+    const fuel = cargo>0 ? cfg.fuel : 0;
+    const insUnits = valor>0 ? Math.ceil(valor/100) : 0;
+    const ins = +(insUnits*cfg.insPer100).toFixed(2);
+    const col = ($('collect').checked && cargo>0) ? cfg.collect : 0;
+    const total = +(cargo+fuel+ins+col).toFixed(2);
+
+    const P=cfg.pre;
+    $('rPeso').textContent = P+cargo.toFixed(2);
+    $('rFuel').textContent = P+fuel.toFixed(2);
+    $('rIns').textContent  = P+ins.toFixed(2);
+    $('rCol').textContent  = P+col.toFixed(2);
+    $('rTotal').textContent= total.toFixed(2);
+    $('curTot').textContent= cfg.cur;
+    $('pesoDesc').textContent=pesoDesc; $('pesoDescEn').textContent=pesoDesc;
+    $('segDesc').textContent = insUnits? ` (${insUnits}×${P}${cfg.insPer100})` : '';
+    $('segDescEn').textContent = $('segDesc').textContent;
+    $('lineCollect').style.display = col>0 ? 'flex':'none';
+    $('warn').classList.toggle('show', warn);
+    $('curLbl').textContent=cfg.cur; $('curPre').textContent=cfg.pre;
+  }
+
+  function renderRates(){
+    const cfg=CFG[origen];
+    $('ratesTitle').textContent=cfg.ratesTitle[0];
+    $('ratesTitleEn').textContent=cfg.ratesTitle[1];
+    let head = `<tr><th>${origen==='us'?'Peso':'Peso'}</th><th style="text-align:right">${document.body.dataset.show==='en'?'Rate':'Tarifa'}</th></tr>`;
+    $('rateTable').innerHTML = head + cfg.rows.map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td></tr>`).join('');
+    $('extras').innerHTML = cfg.extras.map(e=>`<div class="extra"><b>${e[0]}</b><span>${e[1]}</span></div>`).join('');
+  }
+
+  // eventos
+  $('segOrigen').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;
+    origen=b.dataset.o; $('segOrigen').querySelectorAll('button').forEach(x=>x.classList.toggle('active',x===b));
+    renderRates(); calc();});
+  $('segUnit').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;
+    unidad=b.dataset.u; $('unitLbl').textContent=unidad; $('segUnit').querySelectorAll('button').forEach(x=>x.classList.toggle('active',x===b)); calc();});
+  ['peso','valor','collect'].forEach(id=>$(id).addEventListener('input',calc));
+
+  // idioma (igual que el resto del sitio de Mone)
+  function setLang(lang){ document.body.dataset.show=lang;
+    document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active',b.dataset.lang===lang));
+    localStorage.setItem('avx-lang',lang); renderRates(); }
+  document.querySelectorAll('.lang-btn').forEach(b=>b.addEventListener('click',()=>setLang(b.dataset.lang)));
+  setLang(localStorage.getItem('avx-lang')||'es');
+  renderRates(); calc();
+</script>
+
+<!-- ==== WhatsApp flotante (reemplaza el número 17867803273 por el real) ==== -->
+<a href="https://wa.me/17867803273?text=Hola%20AVX%20Express%2C%20quiero%20informaci%C3%B3n%20sobre%20mi%20casillero"
+   class="wa-float" target="_blank" rel="noopener" aria-label="WhatsApp">
+  <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3C9.4 3 4 8.4 4 15c0 2.1.6 4.1 1.6 5.9L4 29l8.3-1.6c1.7.9 3.6 1.4 5.7 1.4 6.6 0 12-5.4 12-12S22.6 3 16 3zm0 21.8c-1.8 0-3.5-.5-5-1.4l-.4-.2-4.9 1 .9-4.8-.3-.4A9.7 9.7 0 016.3 15c0-5.4 4.3-9.7 9.7-9.7s9.7 4.3 9.7 9.7-4.3 9.8-9.7 9.8zm5.3-7.3c-.3-.1-1.7-.9-2-1-.3-.1-.5-.1-.7.2-.2.3-.7 1-.9 1.1-.2.2-.3.2-.6.1-1.7-.9-2.9-1.6-4-3.6-.3-.5.3-.5.8-1.5.1-.2 0-.4 0-.5s-.7-1.7-1-2.3c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.3 5.2 4.6 2 .8 2.7.9 3.7.8.6-.1 1.7-.7 2-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3z"/></svg>
+</a>
+<style>
+.wa-float{position:fixed;bottom:22px;right:22px;z-index:300;width:60px;height:60px;border-radius:50%;background:#25D366;display:grid;place-items:center;box-shadow:0 8px 26px rgba(37,211,102,.45);transition:transform .2s, box-shadow .2s;animation:waPulse 2.6s infinite;}
+.wa-float:hover{transform:scale(1.08);box-shadow:0 10px 30px rgba(37,211,102,.6);}
+.wa-float svg{width:34px;height:34px;fill:#fff;}
+@keyframes waPulse{0%{box-shadow:0 8px 26px rgba(37,211,102,.45),0 0 0 0 rgba(37,211,102,.5)}70%{box-shadow:0 8px 26px rgba(37,211,102,.45),0 0 0 14px rgba(37,211,102,0)}100%{box-shadow:0 8px 26px rgba(37,211,102,.45),0 0 0 0 rgba(37,211,102,0)}}
+@media(max-width:600px){.wa-float{width:54px;height:54px;bottom:16px;right:16px}.wa-float svg{width:30px;height:30px}}
+</style>
+
+</body>
+</html>

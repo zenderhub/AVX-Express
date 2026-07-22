@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tiendas · AVX Express LLC</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+    :root { --red:#C8362A; --red-dark:#A82822; --navy:#1E4B8A; --navy-dark:#102C57;
+      --navy-xdark:#07101E; --white:#fff; --surface:#F2F6FC; --text:#0D1B33;
+      --text-soft:#5C6E8A; --border:#D4DFEF; --green:#1FA463;
+      --r:14px; --r-sm:8px; --pill:999px; --wrap:1280px; }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:'Ubuntu',system-ui,sans-serif;color:var(--text);background:var(--white);line-height:1.6;-webkit-font-smoothing:antialiased}
+    img{max-width:100%;display:block}
+    .wrap{max-width:var(--wrap);margin:0 auto;padding:0 clamp(20px,4vw,72px)}
+    .eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:11.5px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--red)}
+    .eyebrow::before{content:'';width:22px;height:2px;background:var(--red);border-radius:2px}
+    .btn{display:inline-flex;align-items:center;gap:8px;font-family:'Ubuntu',sans-serif;font-weight:700;font-size:15px;border:none;cursor:pointer;text-decoration:none;border-radius:var(--pill);padding:13px 26px;transition:.18s}
+    .btn-primary{background:var(--red);color:#fff}
+    .btn-primary:hover{background:var(--red-dark);transform:translateY(-1px);box-shadow:0 6px 22px rgba(200,54,42,.28)}
+    .btn-outline{background:transparent;color:var(--navy);border:2px solid var(--navy)}
+    .btn-outline:hover{background:var(--navy);color:#fff}
+    nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.94);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--border)}
+    .nav-in{display:flex;align-items:center;justify-content:space-between;height:72px;gap:24px}
+    .logo{display:flex;align-items:center;text-decoration:none;flex-shrink:0}
+    .logo img{height:48px;width:auto}
+    .nav-links{display:flex;gap:22px;list-style:none;flex-wrap:wrap}
+    .nav-links a{font-size:14.5px;font-weight:500;color:var(--text-soft);text-decoration:none;transition:.18s;white-space:nowrap}
+    .nav-links a:hover,.nav-links a.active{color:var(--navy)}
+    .nav-right{display:flex;align-items:center;gap:16px;flex-shrink:0}
+    .lang-toggle{display:flex;align-items:center;gap:4px}
+    .lang-btn{background:none;border:none;cursor:pointer;font-family:'Ubuntu',sans-serif;font-size:13px;font-weight:700;letter-spacing:.5px;color:var(--text-soft);padding:4px 8px;border-radius:6px;transition:.18s}
+    .lang-btn.active{color:var(--navy);background:var(--surface)}
+    .lang-sep{font-size:12px;color:var(--border)}
+    [data-show="en"] .t-es,[data-show="es"] .t-en{display:none!important}
+    .page-hero{padding:80px 0 70px;background:var(--surface);border-bottom:1px solid var(--border)}
+    .page-hero .eyebrow{margin-bottom:16px}
+    .page-hero h1{font-size:clamp(32px,4vw,52px);font-weight:700;letter-spacing:-1.2px;line-height:1.1;color:var(--text);margin-bottom:18px}
+    .page-hero p{font-size:18px;color:var(--text-soft);max-width:600px;line-height:1.65}
+    footer{background:var(--navy-xdark);padding:72px 0 40px}
+    .footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;padding-bottom:48px;border-bottom:1px solid rgba(255,255,255,.1)}
+    .footer-brand{display:flex;flex-direction:column;gap:16px}
+    .f-desc{font-size:14px;color:rgba(255,255,255,.46);line-height:1.65;max-width:240px}
+    .footer-col h4{font-size:11px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:18px}
+    .footer-col a{display:block;font-size:14px;color:rgba(255,255,255,.58);text-decoration:none;margin-bottom:10px;transition:.2s}
+    .footer-col a:hover{color:#fff}
+    .footer-bot{padding-top:24px;display:flex;justify-content:space-between;align-items:center;font-size:13px;color:rgba(255,255,255,.3)}
+    .reveal{opacity:0;transform:translateY(20px);transition:.55s ease}
+    .reveal.in{opacity:1;transform:none}
+    @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+    @media(max-width:1100px){.nav-links{display:none}}
+    @media(max-width:600px){.footer-top{grid-template-columns:1fr 1fr}.footer-bot{flex-direction:column;gap:8px;text-align:center}}
+
+    .st-sec{padding:70px 0 90px}
+    .st-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:16px}
+    .store{background:#fff;border:1px solid var(--border);border-radius:var(--r);padding:26px 20px;text-align:center;transition:.22s;text-decoration:none;display:block}
+    .store:hover{transform:translateY(-5px);box-shadow:0 16px 40px rgba(7,16,30,.1);border-color:transparent}
+    .store .badge{width:60px;height:60px;border-radius:14px;background:var(--surface);display:grid;place-items:center;margin:0 auto 14px;font-size:26px;font-weight:700;color:var(--navy)}
+    .store b{display:block;color:var(--text);font-size:16px}
+    .store span{font-size:13px;color:var(--text-soft)}
+    .st-steps{padding:70px 0;background:var(--navy-dark);color:#fff}
+    .st-steps .sh{margin-bottom:40px}
+    .st-steps .eyebrow{color:#ff8b7d}.st-steps .eyebrow::before{background:#ff8b7d}
+    .st-steps h2{font-size:clamp(24px,2.6vw,34px);font-weight:700;letter-spacing:-.6px}
+    .st3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+    .st3 .c{padding-top:20px;border-top:2px solid rgba(255,255,255,.15)}
+    .st3 .n{font-size:14px;font-weight:700;color:#ff8b7d;letter-spacing:1px}
+    .st3 h3{font-size:18px;margin:10px 0 8px}
+    .st3 p{color:rgba(255,255,255,.6);font-size:14px}
+    @media(max-width:700px){.st3{grid-template-columns:1fr}}
+</style>
+</head>
+<body data-show="es">
+<div class="avx-anuncio"><a href="migracion.html"><span class="t-es">📦 ¿Tu casillero cerró? <b>Migra a AVX en 2 minutos</b> y no pierdas tus compras →</span><span class="t-en">📦 Mailbox shutting down? <b>Migrate to AVX in 2 minutes</b> →</span></a></div><style>.avx-anuncio{background:#102C57;color:#fff;text-align:center;font-size:13.5px;padding:9px 16px;line-height:1.4}.avx-anuncio a{color:#fff;text-decoration:none;font-weight:500}.avx-anuncio a:hover{text-decoration:underline}.avx-anuncio b{color:#ff8b7d}</style>
+<nav><div class="wrap nav-in">
+  <a href="home.html" class="logo"><img src="LogoAVX.svg" alt="AVX Express LLC"></a>
+  <ul class="nav-links"><li><a href="servicios.html"><span class="t-es">Servicios</span><span class="t-en">Services</span></a></li><li><a href="como-funciona.html"><span class="t-es">Cómo Funciona</span><span class="t-en">How It Works</span></a></li><li><a href="calculadora.html"><span class="t-es">Calculadora</span><span class="t-en">Calculator</span></a></li><li><a href="rastreo.html"><span class="t-es">Rastreo</span><span class="t-en">Tracking</span></a></li><li><a href="faq.html"><span class="t-es">Preguntas</span><span class="t-en">FAQ</span></a></li><li><a href="contacto.html"><span class="t-es">Contacto</span><span class="t-en">Contact</span></a></li></ul>
+  <div class="nav-right">
+    <a href="https://app.avxexpress.com/login.html" style="font-size:14.5px;font-weight:600;color:#1E4B8A;text-decoration:none;white-space:nowrap" class="avx-login"><span class="t-es">Mi cuenta</span><span class="t-en">Sign in</span></a>
+    <div class="lang-toggle"><button class="lang-btn active" data-lang="es">ES</button><span class="lang-sep">|</span><button class="lang-btn" data-lang="en">EN</button></div>
+    <a href="https://app.avxexpress.com/registro.html" class="btn btn-primary"><span class="t-es">Crear cuenta</span><span class="t-en">Sign up</span></a>
+  </div>
+</div></nav>
+
+<div class="page-hero"><div class="wrap">
+  <span class="eyebrow t-es">Tiendas</span><span class="eyebrow t-en">Stores</span>
+  <h1 class="t-es">Compra en tus<br>tiendas favoritas.</h1><h1 class="t-en">Shop your<br>favorite stores.</h1>
+  <p class="t-es">Usa tu dirección AVX en cualquier tienda de EE.UU. Y si no tienes tarjeta internacional, compramos por ti.</p>
+  <p class="t-en">Use your AVX address at any U.S. store. And if you don't have an international card, we buy it for you.</p>
+</div></div>
+<section class="st-sec"><div class="wrap"><div class="st-grid"><a href="te-compramos.html" class="store reveal"><div class="badge">A</div><b>Amazon</b><span class="t-es">De todo</span></a><a href="te-compramos.html" class="store reveal"><div class="badge">S</div><b>SHEIN</b><span class="t-es">Moda</span></a><a href="te-compramos.html" class="store reveal"><div class="badge">N</div><b>Nike</b><span class="t-es">Deporte</span></a><a href="te-compramos.html" class="store reveal"><div class="badge">BB</div><b>Best Buy</b><span class="t-es">Tecnología</span></a><a href="te-compramos.html" class="store reveal"><div class="badge">W</div><b>Walmart</b><span class="t-es">General</span></a><a href="te-compramos.html" class="store reveal"><div class="badge">A</div><b>Apple</b><span class="t-es">Tecnología</span></a><a href="te-compramos.html" class="store reveal"><div class="badge">e</div><b>eBay</b><span class="t-es">Subastas</span></a><a href="te-compramos.html" class="store reveal"><div class="badge">Se</div><b>Sephora</b><span class="t-es">Belleza</span></a><a href="te-compramos.html" class="store reveal"><div class="badge">M</div><b>Macy's</b><span class="t-es">Moda</span></a><a href="te-compramos.html" class="store reveal"><div class="badge">V</div><b>Victoria's</b><span class="t-es">Ropa</span></a><a href="te-compramos.html" class="store reveal"><div class="badge">SD</div><b>SkullCandy</b><span class="t-es">Audio</span></a><a href="te-compramos.html" class="store reveal"><div class="badge">+</div><b>y muchas más</b><span class="t-es">Cualquier tienda</span></a></div></div></section>
+<section class="st-steps"><div class="wrap">
+  <div class="sh"><span class="eyebrow t-es">3 pasos</span><span class="eyebrow t-en">3 steps</span>
+    <h2 class="t-es">Comprar es así de fácil.</h2><h2 class="t-en">Shopping is this easy.</h2></div>
+  <div class="st3">
+    <div class="c"><div class="n">01</div><h3 class="t-es">Copia tu dirección AVX</h3><h3 class="t-en">Copy your AVX address</h3><p class="t-es">La encuentras en tu cuenta apenas te registras.</p><p class="t-en">Find it in your account right after signing up.</p></div>
+    <div class="c"><div class="n">02</div><h3 class="t-es">Pégala al pagar</h3><h3 class="t-en">Paste it at checkout</h3><p class="t-es">Úsala como dirección de envío en la tienda.</p><p class="t-en">Use it as the shipping address at the store.</p></div>
+    <div class="c"><div class="n">03</div><h3 class="t-es">Nosotros te lo llevamos</h3><h3 class="t-en">We deliver it</h3><p class="t-es">Recibimos, consolidamos y te lo enviamos a Colombia.</p><p class="t-en">We receive, consolidate, and ship it to you.</p></div>
+  </div>
+</div></section>
+
+<footer><div class="wrap">
+  <div class="footer-top">
+    <div class="footer-brand">
+      <img src="LogoAVX.svg" alt="AVX Express LLC" style="height:44px;width:auto;filter:brightness(0) invert(1);opacity:.85">
+      <p class="f-desc t-es">Tu casillero virtual en EE.UU. Compra en cualquier tienda americana y recíbelo donde estés.</p>
+      <p class="f-desc t-en">Your virtual mailbox in the U.S. Shop any American store and receive it wherever you are.</p>
+    </div>
+    <div class="footer-col"><h4 class="t-es">Servicios</h4><h4 class="t-en">Services</h4>
+      <a href="servicios.html"><span class="t-es">Reenvío de Paquetes</span><span class="t-en">Package Forwarding</span></a>
+      <a href="te-compramos.html"><span class="t-es">Te Compramos</span><span class="t-en">We Buy For You</span></a>
+      <a href="calculadora.html"><span class="t-es">Calculadora</span><span class="t-en">Calculator</span></a>
+      <a href="impuestos.html"><span class="t-es">Impuestos de Aduana</span><span class="t-en">Customs Duties</span></a>
+    </div>
+    <div class="footer-col"><h4 class="t-es">Empresa</h4><h4 class="t-en">Company</h4>
+      <a href="agencias.html"><span class="t-es">Nuestras Agencias</span><span class="t-en">Our Agencies</span></a>
+      <a href="como-funciona.html"><span class="t-es">Cómo Funciona</span><span class="t-en">How It Works</span></a>
+      <a href="tiendas.html"><span class="t-es">Tiendas</span><span class="t-en">Stores</span></a>
+      <a href="rastreo.html"><span class="t-es">Rastrear Paquete</span><span class="t-en">Track</span></a>
+      <a href="contacto.html"><span class="t-es">Contacto</span><span class="t-en">Contact</span></a>
+    </div>
+    <div class="footer-col"><h4>Legal</h4>
+      <a href="#"><span class="t-es">Términos de Uso</span><span class="t-en">Terms</span></a>
+      <a href="#"><span class="t-es">Privacidad</span><span class="t-en">Privacy</span></a>
+    </div>
+  </div>
+  <div class="footer-bot"><span>&copy; 2025 AVX Express LLC. <span class="t-es">Todos los derechos reservados.</span><span class="t-en">All rights reserved.</span></span><span>Miami, FL · <span class="t-es">Estados Unidos</span><span class="t-en">United States</span></span></div>
+</div></footer>
+<script>
+  var _rev=document.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window){
+    var obs=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');obs.unobserve(x.target)}}),{threshold:.08,rootMargin:'0px 0px -6% 0px'});
+    _rev.forEach(el=>obs.observe(el));
+    setTimeout(function(){_rev.forEach(el=>el.classList.add('in'))},1600);
+  } else { _rev.forEach(el=>el.classList.add('in')); }
+  function setLang(l){document.body.dataset.show=l;document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active',b.dataset.lang===l));localStorage.setItem('avx-lang',l);if(window.onLang)window.onLang();}
+  document.querySelectorAll('.lang-btn').forEach(b=>b.addEventListener('click',()=>setLang(b.dataset.lang)));
+  setLang(localStorage.getItem('avx-lang')||'es');
+</script>
+
+<!-- ==== WhatsApp flotante (reemplaza 17867803273 por el número real) ==== -->
+<a href="https://wa.me/17867803273?text=Hola%20AVX%20Express%2C%20quiero%20informaci%C3%B3n%20sobre%20mi%20casillero"
+   class="wa-float" target="_blank" rel="noopener" aria-label="WhatsApp">
+  <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3C9.4 3 4 8.4 4 15c0 2.1.6 4.1 1.6 5.9L4 29l8.3-1.6c1.7.9 3.6 1.4 5.7 1.4 6.6 0 12-5.4 12-12S22.6 3 16 3zm0 21.8c-1.8 0-3.5-.5-5-1.4l-.4-.2-4.9 1 .9-4.8-.3-.4A9.7 9.7 0 016.3 15c0-5.4 4.3-9.7 9.7-9.7s9.7 4.3 9.7 9.7-4.3 9.8-9.7 9.8zm5.3-7.3c-.3-.1-1.7-.9-2-1-.3-.1-.5-.1-.7.2-.2.3-.7 1-.9 1.1-.2.2-.3.2-.6.1-1.7-.9-2.9-1.6-4-3.6-.3-.5.3-.5.8-1.5.1-.2 0-.4 0-.5s-.7-1.7-1-2.3c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.3 5.2 4.6 2 .8 2.7.9 3.7.8.6-.1 1.7-.7 2-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3z"/></svg>
+</a>
+<style>
+.wa-float{position:fixed;bottom:22px;right:22px;z-index:300;width:60px;height:60px;border-radius:50%;background:#25D366;display:grid;place-items:center;box-shadow:0 8px 26px rgba(37,211,102,.45);transition:.2s;animation:waPulse 2.6s infinite}
+.wa-float:hover{transform:scale(1.08)}
+.wa-float svg{width:34px;height:34px;fill:#fff}
+@keyframes waPulse{0%{box-shadow:0 8px 26px rgba(37,211,102,.45),0 0 0 0 rgba(37,211,102,.5)}70%{box-shadow:0 8px 26px rgba(37,211,102,.45),0 0 0 14px rgba(37,211,102,0)}100%{box-shadow:0 8px 26px rgba(37,211,102,.45),0 0 0 0 rgba(37,211,102,0)}}
+@media(max-width:600px){.wa-float{width:54px;height:54px;bottom:16px;right:16px}}
+</style>
+
+</body>
+</html>
