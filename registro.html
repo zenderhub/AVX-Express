@@ -3,13 +3,14 @@
 <head>
 <meta name="robots" content="noindex, nofollow">
 <meta charset="UTF-8">
-  <link rel="icon" type="image/png" href="Fav.png"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="icon" type="image/png" href="favicon.png"><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Crear Cuenta · AVX Express LLC</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet">
 <style>
     :root { --red:#D71E28; --red-dark:#b81b23; --navy:#0070C5; --navy-dark:#102C57;
-      --navy-xdark:#07101E; --white:#fff; --surface:#F2F6FC; --text:#0D1B33;
+      --navy-xdark:#07101E; --white:#fff; --surface:#F2F6FC; --text:#292437;
       --text-soft:#5C6E8A; --border:#D4DFEF; --green:#1FA463;
       --r:14px; --r-sm:8px; --pill:999px; --wrap:1280px; }
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -19,17 +20,17 @@
     .wrap{max-width:var(--wrap);margin:0 auto;padding:0 clamp(20px,4vw,72px)}
     .eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:11.5px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--red)}
     
-    .btn{display:inline-flex;align-items:center;gap:8px;font-family:'Ubuntu',sans-serif;font-weight:700;font-size:15px;border:none;cursor:pointer;text-decoration:none;border-radius:var(--pill);padding:13px 26px;transition:.18s}
+    .btn{display:inline-flex;align-items:center;gap:8px;font-family:'Ubuntu',sans-serif;font-weight:700;font-size:15px;border:none;cursor:pointer;text-decoration:none;border-radius:var(--pill);padding:9px 18px;transition:.18s}
     .btn-primary{background:var(--red);color:#fff}
     .btn-primary:hover{background:var(--red-dark);transform:translateY(-1px);box-shadow:0 6px 22px rgba(215,30,40,.28)}
-    .btn-outline{background:transparent;color:var(--navy);border:2px solid var(--navy)}
+    .btn-outline{background:transparent;color:var(--navy);box-shadow:inset 0 0 0 2px var(--navy)}
     .btn-outline:hover{background:var(--navy);color:#fff}
     nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.94);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--border)}
     .nav-in{display:flex;align-items:center;justify-content:space-between;height:72px;gap:24px}
     .logo{display:flex;align-items:center;text-decoration:none;flex-shrink:0}
     .logo img{height:48px;width:auto}
     .nav-links{display:flex;gap:22px;list-style:none;flex-wrap:wrap}
-    .nav-links a{font-size:14.5px;font-weight:500;color:var(--text-soft);text-decoration:none;transition:.18s;white-space:nowrap}
+    .nav-links a{display:inline-flex;align-items:center;gap:3px;font-size:14px;font-weight:500;color:var(--text-soft);text-decoration:none;transition:color .18s,background .18s;cursor:pointer;white-space:nowrap;padding:5px 12px;border-radius:999px}
     .nav-links a:hover,.nav-links a.active{color:var(--navy)}
     .nav-right{display:flex;align-items:center;gap:16px;flex-shrink:0}
     .lang-toggle{display:flex;align-items:center;gap:4px}
@@ -37,7 +38,7 @@
     .lang-btn.active{color:var(--navy);background:var(--surface)}
     .lang-sep{font-size:12px;color:var(--border)}
     [data-show="en"] .t-es,[data-show="es"] .t-en{display:none!important}
-    .page-hero{padding:80px 0 70px;background:var(--surface);border-bottom:1px solid var(--border)}
+    .page-hero{padding:48px 0 40px;background:var(--surface);border-bottom:1px solid var(--border)}
     .page-hero .eyebrow{margin-bottom:16px}
     .page-hero h1{font-size:clamp(32px,4vw,52px);font-weight:700;letter-spacing:-1.2px;line-height:1.1;color:var(--text);margin-bottom:18px}
     .page-hero p{font-size:18px;color:var(--text-soft);max-width:600px;line-height:1.65}
@@ -55,7 +56,7 @@
     @media(max-width:1100px){.nav-links{display:none}}
     @media(max-width:600px){.footer-top{grid-template-columns:1fr 1fr}.footer-bot{flex-direction:column;gap:8px;text-align:center}}
 
-    .reg-sec{padding:60px 0 90px}
+    .reg-sec{padding:36px 0 52px}
     .reg-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
     .reg-benefits h2{font-size:clamp(24px,2.8vw,34px);font-weight:700;letter-spacing:-.6px;margin:12px 0 24px;color:var(--text)}
     .blist{list-style:none;display:flex;flex-direction:column;gap:18px}
@@ -80,11 +81,11 @@
 </style>
 </head>
 <body data-show="es">
-<div class="avx-anuncio"><a href="migracion.html"><span class="t-es">📦 ¿Tu casillero cerró? <b>Migra a AVX en 2 minutos</b> y no pierdas tus compras →</span><span class="t-en">📦 Mailbox shutting down? <b>Migrate to AVX in 2 minutes</b> →</span></a></div><style>.avx-anuncio{background:#102C57;color:#fff;text-align:center;font-size:13.5px;padding:9px 16px;line-height:1.4}.avx-anuncio a{color:#fff;text-decoration:none;font-weight:500}.avx-anuncio a:hover{text-decoration:underline}.avx-anuncio b{color:#FF8000}</style>
+<div class="avx-anuncio"><a href="migracion.html"><span class="t-es">📦 ¿Tu casillero cerró? <b>Migra a AVX en 2 minutos</b> y no pierdas tus compras →</span><span class="t-en">📦 Mailbox shutting down? <b>Migrate to AVX in 2 minutes</b> →</span></a></div><style>.avx-anuncio{position:sticky;top:0;z-index:101;background:#FF8000;color:#292437;text-align:center;font-size:13.5px;padding:9px 16px;line-height:1.4}.avx-anuncio a{color:#292437;text-decoration:none;font-weight:500}.avx-anuncio a:hover{text-decoration:underline}.avx-anuncio b{color:#fff}</style>
 <nav><div class="wrap nav-in">
   <a href="home.html" class="logo"><img src="LogoAVX.svg" alt="AVX Express LLC"></a>
   <ul class="nav-links"><li>
-        <a href="servicios.html" style="display:flex;align-items:center;gap:3px"><span class="t-es">Servicios</span><span class="t-en">Services</span><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></a>
+        <a href="servicios.html"><span class="t-es">Servicios</span><span class="t-en">Services</span><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></a>
         <div class="nav-dropdown">
           <a href="te-compramos.html"><span class="t-es">Te Compramos</span><span class="t-en">We Buy For You</span></a>
           <a href="impuestos.html"><span class="t-es">Impuestos de Aduana</span><span class="t-en">Customs Duties</span></a>
@@ -97,11 +98,24 @@
         </div>
       </li><li><a href="como-funciona.html"><span class="t-es">Cómo Funciona</span><span class="t-en">How It Works</span></a></li><li><a href="calculadora.html"><span class="t-es">Calculadora</span><span class="t-en">Calculator</span></a></li><li><a href="rastreo.html"><span class="t-es">Rastreo</span><span class="t-en">Tracking</span></a></li><li><a href="faq.html"><span class="t-es">Preguntas</span><span class="t-en">FAQ</span></a></li><li><a href="contacto.html"><span class="t-es">Contacto</span><span class="t-en">Contact</span></a></li></ul>
   <div class="nav-right">
-    <a href="https://app.avxexpress.com/login.html" style="font-size:14.5px;font-weight:600;color:#0070C5;text-decoration:none;white-space:nowrap" class="avx-login"><span class="t-es">Mi cuenta</span><span class="t-en">Sign in</span></a>
-    <div class="lang-toggle"><button class="lang-btn active" data-lang="es">ES</button><span class="lang-sep">|</span><button class="lang-btn" data-lang="en">EN</button></div>
-    <a href="https://app.avxexpress.com/registro.html" class="btn btn-primary"><span class="t-es">Crear cuenta</span><span class="t-en">Sign up</span></a>
+      <div class="lang-sel" id="langSel">
+        <button class="lang-sel-btn" id="langSelBtn" onclick="toggleLangDrop(event)">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          <span class="lang-code" id="langCode">ESP</span>
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="lang-drop" id="langDrop">
+          <button class="lang-opt active" onclick="pickLang('es')">Español</button>
+          <button class="lang-opt" onclick="pickLang('en')">English</button>
+        </div>
+      </div>
+      <a href="https://app.avxexpress.com/login.html" style="font-size:14.5px;font-weight:600;color:#D71E28;text-decoration:none;white-space:nowrap" class="avx-login"><span class="t-es">Mi cuenta</span><span class="t-en">Sign in</span></a>
+      <a href="https://app.avxexpress.com/registro.html" class="btn btn-primary">
+        <span class="t-es">Crear mi cuenta</span><span class="t-en">Create account</span>
+      </a>
+    </div>
   </div>
-</div></nav>
+</nav>
 
 <div class="page-hero"><div class="wrap">
   <span class="eyebrow t-es">Crear cuenta</span><span class="eyebrow t-en">Sign up</span>
@@ -184,12 +198,20 @@ function registrar(e){e.preventDefault();
   var msg='Hola AVX Express, quiero crear mi casillero.%0A%0ANombre: '+encodeURIComponent(n+' '+a)+
     '%0AEmail: '+encodeURIComponent(em)+'%0ACiudad: '+encodeURIComponent(c)+'%0AWhatsApp: '+encodeURIComponent(t);
   window.open('https://wa.me/17867803273?text='+msg,'_blank'); return false;}
+  // dynamic sticky nav top
+  (function(){
+    var banner=document.querySelector('.avx-anuncio');
+    var nav=document.querySelector('nav');
+    function syncTop(){if(banner&&nav)nav.style.top=banner.offsetHeight+'px';}
+    syncTop();
+    window.addEventListener('resize',syncTop);
+  })();
 </script>
 
 <!-- ==== WhatsApp flotante (reemplaza 17867803273 por el número real) ==== -->
 <a href="https://wa.me/17867803273?text=Hola%20AVX%20Express%2C%20quiero%20informaci%C3%B3n%20sobre%20mi%20casillero"
    class="wa-float" target="_blank" rel="noopener" aria-label="WhatsApp">
-  <svg viewBox="0 0 24 24" aria-hidden="true" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.5 0C5.149 0 0 5.149 0 11.5c0 2.125.58 4.112 1.59 5.819L0 24l6.869-1.56A11.453 11.453 0 0011.5 23C17.851 23 23 17.851 23 11.5S17.851 0 11.5 0zm0 21.1c-1.965 0-3.797-.557-5.348-1.517l-.383-.228-3.975.903.956-3.876-.25-.397A9.562 9.562 0 011.9 11.5C1.9 6.193 6.193 1.9 11.5 1.9S21.1 6.193 21.1 11.5 16.807 21.1 11.5 21.1z"/></svg>
+  <svg viewBox="0 0 24 24" aria-hidden="true" fill="#fff" xmlns="http://www.w3.org/2000/svg"><path d="M20.52 3.48A11.95 11.95 0 0 0 12 0C5.37 0 0 5.37 0 12c0 2.11.55 4.15 1.6 5.96L0 24l6.24-1.64A11.94 11.94 0 0 0 12 24c6.63 0 12-5.37 12-12 0-3.2-1.25-6.21-3.48-8.52zM12 21.9c-1.83 0-3.62-.5-5.18-1.43l-.37-.22-3.84.83.84-3.76-.24-.38A9.88 9.88 0 0 1 2.1 12C2.1 6.52 6.52 2.1 12 2.1c2.63 0 5.1 1.02 6.96 2.88A9.79 9.79 0 0 1 21.9 12c0 5.48-4.42 9.9-9.9 9.9zm5.44-7.42c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.39-1.48-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51l-.57-.01c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.22 3.07c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.23 1.36.2 1.87.12.57-.09 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.41-.08-.13-.27-.2-.57-.35z"/></svg>
 </a>
 <style>
 .wa-float{position:fixed;bottom:22px;right:22px;z-index:300;width:60px;height:60px;border-radius:50%;background:#25D366;display:grid;place-items:center;box-shadow:0 8px 26px rgba(37,211,102,.45);transition:.2s;animation:waPulse 2.6s infinite}
