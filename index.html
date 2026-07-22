@@ -5,12 +5,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AVX Express LLC</title>
+  <link rel="icon" type="image/png" href="Fav.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --red:#C8362A; --red-dark:#A82822; --navy:#1E4B8A; --navy-dark:#102C57;
+      --red:#D71E28; --red-dark:#b81b23; --navy:#0070C5; --navy-dark:#102C57;
       --navy-xdark:#07101E; --white:#fff; --surface:#F2F6FC;
       --text:#0D1B33; --text-soft:#5C6E8A; --border:#D4DFEF;
       --r:14px; --r-sm:8px; --pill:999px; --wrap:1280px;
@@ -30,7 +31,7 @@
     /* BUTTONS */
     .btn{display:inline-flex;align-items:center;gap:8px;font-family:'Ubuntu',sans-serif;font-weight:700;font-size:15px;border:none;cursor:pointer;text-decoration:none;border-radius:var(--pill);padding:13px 26px;transition:background .18s,transform .18s,box-shadow .18s,color .18s,border-color .18s}
     .btn-primary{background:var(--red);color:white}
-    .btn-primary:hover{background:var(--red-dark);transform:translateY(-1px);box-shadow:0 6px 22px rgba(200,54,42,.28)}
+    .btn-primary:hover{background:var(--red-dark);transform:translateY(-1px);box-shadow:0 6px 22px rgba(215,30,40,.28)}
     .btn-outline{background:transparent;color:var(--navy);border:2px solid var(--navy)}
     .btn-outline:hover{background:var(--navy);color:white}
     .btn-white{background:white;color:var(--red);font-weight:700}
@@ -45,8 +46,15 @@
     .logo{display:flex;align-items:center;text-decoration:none;flex-shrink:0;cursor:pointer}
     .logo img{height:44px;width:auto;display:block}
     .nav-links{display:flex;gap:20px;list-style:none}
-    .nav-links a{font-size:14px;font-weight:500;color:var(--text-soft);text-decoration:none;transition:color .18s;cursor:pointer;white-space:nowrap}
-    .nav-links a:hover,.nav-links a.active{color:var(--navy)}
+    .nav-links a{font-size:14px;font-weight:500;color:var(--text-soft);text-decoration:none;transition:color .18s,background .18s;cursor:pointer;white-space:nowrap;padding:5px 12px;border-radius:999px}
+    .nav-links a:hover{color:var(--navy)}
+    .nav-links a.active{background:#FF8000;color:white!important}
+    .nav-links li{position:relative}
+    .nav-links li:hover .nav-dropdown{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0)}
+    .nav-dropdown{display:block;position:absolute;top:calc(100% + 6px);left:50%;transform:translateX(-50%) translateY(-8px);background:white;border:1px solid var(--border);border-radius:12px;box-shadow:0 8px 32px rgba(0,0,0,.12);padding:8px;min-width:230px;z-index:200;opacity:0;visibility:hidden;transition:opacity .18s,visibility .18s,transform .18s}
+    .nav-dropdown a{display:block;font-size:13.5px;font-weight:500;color:var(--text);text-decoration:none;padding:8px 14px;border-radius:8px;transition:background .15s,color .15s;white-space:nowrap;cursor:pointer;border-radius:8px}
+    .nav-dropdown a:hover{background:var(--surface);color:var(--navy)}
+    .nav-dropdown hr{border:none;border-top:1px solid var(--border);margin:6px 0}
     .nav-right{display:flex;align-items:center;gap:18px}
     .lang-toggle{display:flex;align-items:center;gap:4px}
     .lang-btn{background:none;border:none;cursor:pointer;font-family:'Ubuntu',sans-serif;font-size:13px;font-weight:700;letter-spacing:.5px;color:var(--text-soft);padding:4px 8px;border-radius:6px;transition:color .18s,background .18s}
@@ -61,7 +69,8 @@
     .mobile-menu{display:none;position:fixed;inset:72px 0 0 0;background:white;z-index:99;flex-direction:column;padding:24px 20px;gap:4px;border-top:1px solid var(--border)}
     .mobile-menu.open{display:flex}
     .mobile-menu a{font-size:17px;font-weight:500;color:var(--text);text-decoration:none;padding:14px 12px;border-radius:10px;transition:background .15s,color .15s;cursor:pointer}
-    .mobile-menu a:hover,.mobile-menu a.active{background:var(--surface);color:var(--navy)}
+    .mobile-menu a:hover{background:var(--surface);color:var(--navy)}
+    .mobile-menu a.active{background:#FF8000;color:white!important}
     .mobile-menu .mobile-cta{margin-top:16px}
 
     /* PAGES */
@@ -105,7 +114,7 @@
     .services{padding:72px 0}
     .svc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
     .svc-card{border:1px solid var(--border);border-radius:var(--r);padding:30px 24px;background:white;display:flex;flex-direction:column;gap:14px;text-decoration:none;color:inherit;cursor:pointer;transition:box-shadow .22s,transform .22s,border-color .22s}
-    .svc-card:hover{border-color:var(--navy);box-shadow:0 8px 32px rgba(30,75,138,.1);transform:translateY(-4px)}
+    .svc-card:hover{border-color:var(--navy);box-shadow:0 8px 32px rgba(0,112,197,.1);transform:translateY(-4px)}
     .svc-icon{width:50px;height:50px;background:var(--surface);border-radius:12px;display:flex;align-items:center;justify-content:center;color:var(--navy)}
     .svc-card h3{font-size:16px;font-weight:700;color:var(--text);line-height:1.3}
     .svc-card p{font-size:14px;color:var(--text-soft);line-height:1.55;flex:1}
@@ -114,14 +123,14 @@
     .how{padding:72px 0;background:var(--surface)}
     .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:3px;background:var(--border);border-radius:var(--r);overflow:hidden}
     .step{background:white;padding:38px 28px;display:flex;flex-direction:column;gap:14px}
-    .step-n{font-size:12px;font-weight:700;letter-spacing:.8px;color:var(--red)}
+    .step-n{font-size:52px;font-weight:700;letter-spacing:-1px;line-height:1;color:var(--red);opacity:.25}
     .step-icon{width:46px;height:46px;background:var(--surface);border-radius:11px;display:flex;align-items:center;justify-content:center;color:var(--navy)}
     .step h3{font-size:17px;font-weight:700;color:var(--text);line-height:1.3}
     .step p{font-size:14px;color:var(--text-soft);line-height:1.6}
     .stats{padding:64px 0;background:var(--white)}
     .stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
     .stat-card{border:1px solid var(--border);border-radius:var(--r);padding:36px 32px;background:white;border-left:4px solid var(--red);display:flex;flex-direction:column;gap:10px}
-    .stat-icon{width:42px;height:42px;background:rgba(200,54,42,.08);border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--red);margin-bottom:8px}
+    .stat-icon{width:42px;height:42px;background:rgba(215,30,40,.08);border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--red);margin-bottom:8px}
     .stat-n{font-size:clamp(40px,4.5vw,58px);font-weight:700;letter-spacing:-1.5px;line-height:1;color:var(--navy);font-variant-numeric:tabular-nums}
     .stat-lbl{font-size:16px;font-weight:700;color:var(--text)}
     .stat-desc{font-size:14px;color:var(--text-soft);line-height:1.55}
@@ -132,7 +141,7 @@
     .support-copy p{font-size:17px;color:var(--text-soft);line-height:1.7}
     .contact-cards{display:flex;flex-direction:column;gap:14px}
     .contact-card{background:white;border:1px solid var(--border);border-radius:12px;padding:20px 24px;display:flex;align-items:center;gap:16px;text-decoration:none;color:inherit;transition:border-color .2s,box-shadow .2s,transform .2s;cursor:pointer}
-    .contact-card:hover{border-color:var(--navy);box-shadow:0 4px 16px rgba(30,75,138,.09);transform:translateX(4px)}
+    .contact-card:hover{border-color:var(--navy);box-shadow:0 4px 16px rgba(0,112,197,.09);transform:translateX(4px)}
     .cc-icon{width:44px;height:44px;background:var(--surface);border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--navy);flex-shrink:0}
     .cc-info{flex:1}
     .cc-info strong{display:block;font-size:15px;font-weight:700;color:var(--text);margin-bottom:2px}
@@ -176,7 +185,7 @@
     .feat-list{list-style:none;display:flex;flex-direction:column;gap:10px}
     .feat-list li{display:flex;align-items:flex-start;gap:10px;font-size:15px;color:var(--text)}
     .feat-list li::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--red);margin-top:8px;flex-shrink:0}
-    .pending-note{background:rgba(30,75,138,.06);border:1px solid rgba(30,75,138,.14);border-radius:10px;padding:16px 20px;font-size:14px;color:var(--text-soft);font-style:italic}
+    .pending-note{background:rgba(0,112,197,.06);border:1px solid rgba(0,112,197,.14);border-radius:10px;padding:16px 20px;font-size:14px;color:var(--text-soft);font-style:italic}
 
     /* ===================== COMO FUNCIONA ===================== */
     .big-steps{padding:56px 0 72px}
@@ -216,16 +225,16 @@
     .field label{font-size:13px;font-weight:700;color:var(--text);letter-spacing:.3px}
     .field input,.field select,.field textarea{font-family:'Ubuntu',sans-serif;font-size:15px;color:var(--text);background:var(--surface);border:1.5px solid var(--border);border-radius:10px;padding:12px 16px;outline:none;transition:border-color .18s,box-shadow .18s;width:100%}
     .field input::placeholder,.field textarea::placeholder{color:var(--text-soft);opacity:.7}
-    .field input:focus,.field select:focus,.field textarea:focus{border-color:var(--navy);box-shadow:0 0 0 3px rgba(30,75,138,.1);background:white}
+    .field input:focus,.field select:focus,.field textarea:focus{border-color:var(--navy);box-shadow:0 0 0 3px rgba(0,112,197,.1);background:white}
     .field textarea{resize:vertical;min-height:120px}
     .field select{cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%235C6E8A' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:40px}
     .form-submit{width:100%;justify-content:center;padding:16px;font-size:16px;border-radius:10px;margin-top:4px}
     .form-note{font-size:12.5px;color:var(--text-soft);text-align:center;margin-top:14px;line-height:1.5}
     .contact-sidebar{display:flex;flex-direction:column;gap:12px}
     .side-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:16px 20px;display:flex;flex-direction:row;align-items:center;gap:16px;transition:border-color .2s,transform .2s,box-shadow .2s}
-    .side-card:hover{border-color:var(--navy);transform:translateY(-2px);box-shadow:0 6px 18px rgba(30,75,138,.1)}
+    .side-card:hover{border-color:var(--navy);transform:translateY(-2px);box-shadow:0 6px 18px rgba(0,112,197,.1)}
     .side-card.navy{background:var(--navy);border-color:var(--navy)}
-    .sc-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:rgba(30,75,138,.1);flex-shrink:0}
+    .sc-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:rgba(0,112,197,.1);flex-shrink:0}
     .side-card.navy .sc-icon{background:rgba(255,255,255,.15)}
     .sc-body{display:flex;flex-direction:column;gap:2px}
     .sc-label{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--text-soft)}
@@ -293,7 +302,7 @@
   </style>
 </head>
 <body data-show="es">
-<div class="avx-anuncio"><a href="migracion.html"><span class="t-es">📦 ¿Tu casillero cerró? <b>Migra a AVX en 2 minutos</b> y no pierdas tus compras →</span><span class="t-en">📦 Mailbox shutting down? <b>Migrate to AVX in 2 minutes</b> →</span></a></div><style>.avx-anuncio{background:#102C57;color:#fff;text-align:center;font-size:13.5px;padding:9px 16px;line-height:1.4}.avx-anuncio a{color:#fff;text-decoration:none;font-weight:500}.avx-anuncio a:hover{text-decoration:underline}.avx-anuncio b{color:#ff8b7d}</style>
+<div class="avx-anuncio"><a href="migracion.html"><span class="t-es">📦 ¿Tu casillero cerró? <b>Migra a AVX en 2 minutos</b> y no pierdas tus compras →</span><span class="t-en">📦 Mailbox shutting down? <b>Migrate to AVX in 2 minutes</b> →</span></a></div><style>.avx-anuncio{background:#102C57;color:#fff;text-align:center;font-size:13.5px;padding:9px 16px;line-height:1.4}.avx-anuncio a{color:#fff;text-decoration:none;font-weight:500}.avx-anuncio a:hover{text-decoration:underline}.avx-anuncio b{color:#FF8000}</style>
 
 <!-- NAV -->
 <nav>
@@ -303,7 +312,19 @@
     </div>
     <ul class="nav-links">
       <li><a data-nav="home"><span class="t-es">Inicio</span><span class="t-en">Home</span></a></li>
-      <li><a data-nav="servicios"><span class="t-es">Servicios</span><span class="t-en">Services</span></a></li>
+      <li>
+        <a data-nav="servicios" style="display:flex;align-items:center;gap:3px"><span class="t-es">Servicios</span><span class="t-en">Services</span><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></a>
+        <div class="nav-dropdown">
+          <a href="te-compramos.html"><span class="t-es">Te Compramos</span><span class="t-en">We Buy For You</span></a>
+          <a href="impuestos.html"><span class="t-es">Impuestos de Aduana</span><span class="t-en">Customs Duties</span></a>
+          <a href="tiendas.html"><span class="t-es">Tiendas</span><span class="t-en">Stores</span></a>
+          <hr>
+          <a onclick="goTo('servicios','paquetes')"><span class="t-es">Reenvío de Paquetes</span><span class="t-en">Package Forwarding</span></a>
+          <a onclick="goTo('servicios','envios')"><span class="t-es">Envíos Internacionales</span><span class="t-en">Int'l Shipping</span></a>
+          <a onclick="goTo('servicios','transferencias')"><span class="t-es">Transferencia de Dinero</span><span class="t-en">Money Transfer</span></a>
+          <a onclick="goTo('servicios','notaria')"><span class="t-es">Notaría y Apostilla</span><span class="t-en">Notary &amp; Apostille</span></a>
+        </div>
+      </li>
       <li><a data-nav="como-funciona"><span class="t-es">Cómo Funciona</span><span class="t-en">How It Works</span></a></li>
       <li><a href="calculadora.html"><span class="t-es">Calculadora</span><span class="t-en">Calculator</span></a></li>
       <li><a href="rastreo.html"><span class="t-es">Rastreo</span><span class="t-en">Tracking</span></a></li>
@@ -311,7 +332,7 @@
       <li><a data-nav="contacto"><span class="t-es">Contacto</span><span class="t-en">Contact</span></a></li>
     </ul>
     <div class="nav-right">
-    <a href="https://app.avxexpress.com/login.html" style="font-size:14.5px;font-weight:600;color:#1E4B8A;text-decoration:none;white-space:nowrap" class="avx-login"><span class="t-es">Mi cuenta</span><span class="t-en">Sign in</span></a>
+    <a href="https://app.avxexpress.com/login.html" style="font-size:14.5px;font-weight:600;color:#0070C5;text-decoration:none;white-space:nowrap" class="avx-login"><span class="t-es">Mi cuenta</span><span class="t-en">Sign in</span></a>
       <div class="lang-toggle">
         <span class="lang-globe"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></span>
         <button class="lang-btn active" data-lang="es">ES</button>
@@ -356,7 +377,7 @@
         <p class="hero-sub t-en">Experience seamless international shopping and shipping. Your personal Miami address, package consolidation, and direct delivery wherever you are.</p>
         <div class="hero-ctas">
           <button class="btn btn-primary btn-lg" onclick="location.href='https://app.avxexpress.com/registro.html'">
-            <span class="t-es">Comienza hoy &rarr;</span><span class="t-en">Get started &rarr;</span>
+            <span class="t-es">Comienza hoy</span><span class="t-en">Get started</span>
           </button>
           <button class="btn btn-outline btn-lg" onclick="goTo('como-funciona')">
             <span class="t-es">Cómo funciona</span><span class="t-en">How it works</span>
@@ -580,7 +601,7 @@
       <p class="t-es">Sin cuotas de apertura. Sin compromisos. Empieza a comprar en minutos.</p>
       <p class="t-en">No opening fees. No commitments. Start shopping in minutes.</p>
       <button class="btn btn-white btn-lg" onclick="location.href='https://app.avxexpress.com/registro.html'">
-        <span class="t-es">Crear mi cuenta gratis &rarr;</span><span class="t-en">Create my free account &rarr;</span>
+        <span class="t-es">Crear mi cuenta gratis</span><span class="t-en">Create my free account</span>
       </button>
     </div>
   </section>
@@ -647,7 +668,7 @@
           </ul>
           <div class="pending-note t-es">Próximamente: países atendidos, tiempos promedio de entrega y manejo de aduanas.</div>
           <div class="pending-note t-en">Coming soon: countries served, average delivery times, and customs handling details.</div>
-          <button class="btn btn-primary" style="align-self:flex-start;" onclick="location.href='https://app.avxexpress.com/registro.html'">
+          <button class="btn btn-primary" style="align-self:flex-start;" onclick="location.href='calculadora.html'">
             <span class="t-es">Consultar tarifas</span><span class="t-en">Check rates</span>
           </button>
         </div>
@@ -673,7 +694,7 @@
           </ul>
           <div class="pending-note t-es">Próximamente: países disponibles, límites, comisiones, tiempos de entrega y modalidades.</div>
           <div class="pending-note t-en">Coming soon: available countries, limits, fees, delivery times, and modalities.</div>
-          <button class="btn btn-primary" style="align-self:flex-start;" onclick="location.href='https://app.avxexpress.com/registro.html'">
+          <button class="btn btn-primary" style="align-self:flex-start;" onclick="goTo('contacto')">
             <span class="t-es">Consultar disponibilidad</span><span class="t-en">Check availability</span>
           </button>
         </div>
@@ -699,9 +720,79 @@
           </ul>
           <div class="pending-note t-es">Próximamente: jurisdicción, documentos que aplican, modalidad presencial o remota, tiempos y precios.</div>
           <div class="pending-note t-en">Coming soon: jurisdiction, applicable documents, in-person or remote modality, timing, and pricing.</div>
-          <button class="btn btn-primary" style="align-self:flex-start;" onclick="location.href='https://app.avxexpress.com/registro.html'">
+          <button class="btn btn-primary" style="align-self:flex-start;" onclick="goTo('contacto')">
             <span class="t-es">Solicitar información</span><span class="t-en">Request information</span>
           </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="svc-section" id="te-compramos">
+    <div class="wrap">
+      <div class="svc-layout flip reveal">
+        <div class="svc-visual">
+          <div class="svc-img"><img src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?auto=format&fit=crop&w=800&q=80" alt="Te Compramos"></div>
+          <span class="svc-tag t-es">Compra asistida</span><span class="svc-tag t-en">Assisted purchase</span>
+        </div>
+        <div class="svc-copy">
+          <span class="eyebrow t-es">Servicio 05</span><span class="eyebrow t-en">Service 05</span>
+          <h2 class="t-es">Te Compramos</h2><h2 class="t-en">We Buy For You</h2>
+          <p class="t-es">No tienes tarjeta internacional? Mándanos el link del producto, te cotizamos en tu moneda y nosotros lo compramos y te lo enviamos. Sin complicaciones.</p>
+          <p class="t-en">No international card? Send us the product link, we quote you in local currency, buy it, and ship it for you. Hassle-free.</p>
+          <ul class="feat-list">
+            <li class="t-es">Sin tarjeta internacional requerida</li><li class="t-en">No international card needed</li>
+            <li class="t-es">Cotización en tu moneda local</li><li class="t-en">Quote in your local currency</li>
+            <li class="t-es">Compramos en cualquier tienda de EE.UU.</li><li class="t-en">We buy from any U.S. store</li>
+          </ul>
+          <a href="te-compramos.html" class="btn btn-primary" style="align-self:flex-start;"><span class="t-es">Saber más</span><span class="t-en">Learn more</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="svc-section" id="impuestos">
+    <div class="wrap">
+      <div class="svc-layout reveal">
+        <div class="svc-visual">
+          <div class="svc-img"><img src="https://images.unsplash.com/photo-1554224154-22dec7ec8818?auto=format&fit=crop&w=800&q=80" alt="Impuestos de Aduana"></div>
+          <span class="svc-tag t-es">Aduanas</span><span class="svc-tag t-en">Customs</span>
+        </div>
+        <div class="svc-copy">
+          <span class="eyebrow t-es">Servicio 06</span><span class="eyebrow t-en">Service 06</span>
+          <h2 class="t-es">Impuestos de Aduana</h2><h2 class="t-en">Customs Duties</h2>
+          <p class="t-es">Estima el IVA y el arancel de tu importación antes de comprar. Sin sorpresas en aduana.</p>
+          <p class="t-en">Estimate VAT and tariff on your import before buying. No surprises at customs.</p>
+          <ul class="feat-list">
+            <li class="t-es">Calculadora de IVA y aranceles</li><li class="t-en">VAT and tariff calculator</li>
+            <li class="t-es">Estimación por categoría de producto</li><li class="t-en">Estimate by product category</li>
+            <li class="t-es">Sin sorpresas al recibir tu paquete</li><li class="t-en">No surprises when you receive your package</li>
+          </ul>
+          <a href="impuestos.html" class="btn btn-primary" style="align-self:flex-start;"><span class="t-es">Calcular impuestos</span><span class="t-en">Calculate duties</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="svc-section" id="tiendas">
+    <div class="wrap">
+      <div class="svc-layout flip reveal">
+        <div class="svc-visual">
+          <div class="svc-img"><img src="https://images.unsplash.com/photo-1472851294608-062f824d29cc?auto=format&fit=crop&w=800&q=80" alt="Tiendas en EE.UU."></div>
+          <span class="svc-tag t-es">Tiendas</span><span class="svc-tag t-en">Stores</span>
+        </div>
+        <div class="svc-copy">
+          <span class="eyebrow t-es">Servicio 07</span><span class="eyebrow t-en">Service 07</span>
+          <h2 class="t-es">Tiendas</h2><h2 class="t-en">Stores</h2>
+          <p class="t-es">Compra en Amazon, Nike, Best Buy y miles de tiendas de EE.UU. Usa tu dirección AVX y recíbelo donde estés. Si no aceptan tu tarjeta, compramos por ti.</p>
+          <p class="t-en">Shop Amazon, Nike, Best Buy, and thousands of U.S. stores. Use your AVX address and receive it anywhere. If they don't accept your card, we buy for you.</p>
+          <ul class="feat-list">
+            <li class="t-es">Miles de tiendas disponibles</li><li class="t-en">Thousands of stores available</li>
+            <li class="t-es">Amazon, Nike, Best Buy y más</li><li class="t-en">Amazon, Nike, Best Buy and more</li>
+            <li class="t-es">Compramos por ti si no tienes tarjeta</li><li class="t-en">We buy for you if you don't have a card</li>
+          </ul>
+          <a href="tiendas.html" class="btn btn-primary" style="align-self:flex-start;"><span class="t-es">Ver tiendas</span><span class="t-en">Browse stores</span></a>
         </div>
       </div>
     </div>
@@ -833,7 +924,7 @@
       <p class="t-es">Regístrate en minutos y obtén tu dirección en Miami al instante.</p>
       <p class="t-en">Sign up in minutes and get your Miami address instantly.</p>
       <button class="btn btn-white btn-lg" onclick="location.href='https://app.avxexpress.com/registro.html'">
-        <span class="t-es">Crear mi cuenta gratis &rarr;</span><span class="t-en">Create my free account &rarr;</span>
+        <span class="t-es">Crear mi cuenta gratis</span><span class="t-en">Create my free account</span>
       </button>
     </div>
   </section>
@@ -891,7 +982,7 @@
         <p style="font-size:16px;color:var(--text-soft);margin-bottom:20px;" class="t-es">¿No encontraste tu respuesta? Escríbenos.</p>
         <p style="font-size:16px;color:var(--text-soft);margin-bottom:20px;" class="t-en">Didn't find your answer? Write to us.</p>
         <button class="btn btn-primary" onclick="location.href='https://app.avxexpress.com/registro.html'">
-          <span class="t-es">Ir a Contacto &rarr;</span><span class="t-en">Go to Contact &rarr;</span>
+          <span class="t-es">Ir a Contacto</span><span class="t-en">Go to Contact</span>
         </button>
       </div>
     </div>
@@ -957,7 +1048,7 @@
               <textarea placeholder="Cuéntanos cómo podemos ayudarte..." required></textarea>
             </div>
             <button type="submit" class="btn btn-navy form-submit">
-              <span class="t-es">Enviar mensaje &rarr;</span><span class="t-en">Send message &rarr;</span>
+              <span class="t-es">Enviar mensaje</span><span class="t-en">Send message</span>
             </button>
           </form>
           <p class="form-note t-es">Al enviar este formulario aceptas nuestros Términos de Uso y Política de Privacidad.</p>
@@ -985,7 +1076,7 @@
             <div class="sc-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
             <div class="sc-body">
               <div class="sc-label t-es">Horario</div><div class="sc-label t-en">Hours</div>
-              <div class="sc-val t-es">Lun–Vie, 9am–6pm EST</div><div class="sc-val t-en">Mon–Fri, 9am–6pm EST</div>
+              <div class="sc-val t-es">Lun a Vie, 9am–6pm EST</div><div class="sc-val t-en">Mon–Fri, 9am–6pm EST</div>
             </div>
           </div>
           <div class="side-card reveal">
@@ -1001,17 +1092,6 @@
     </div>
   </section>
 
-  <section class="cta-red">
-    <div class="wrap">
-      <h2 class="t-es">Tu casillero gratis te espera.</h2>
-      <h2 class="t-en">Your free mailbox is waiting for you.</h2>
-      <p class="t-es">Crea tu cuenta hoy y empieza a comprar en EE.UU. sin complicaciones.</p>
-      <p class="t-en">Create your account today and start shopping in the U.S. without hassle.</p>
-      <button class="btn btn-white btn-lg" onclick="document.querySelector('[data-page=contacto] form').scrollIntoView({behavior:'smooth'})">
-        <span class="t-es">Crear mi cuenta gratis &rarr;</span><span class="t-en">Create my free account &rarr;</span>
-      </button>
-    </div>
-  </section>
 
 </div><!-- /contacto -->
 
@@ -1161,14 +1241,14 @@
 <!-- ==== WhatsApp flotante (reemplaza el número 17867803273 por el real) ==== -->
 <a href="https://wa.me/17867803273?text=Hola%20AVX%20Express%2C%20quiero%20informaci%C3%B3n%20sobre%20mi%20casillero"
    class="wa-float" target="_blank" rel="noopener" aria-label="WhatsApp">
-  <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3C9.4 3 4 8.4 4 15c0 2.1.6 4.1 1.6 5.9L4 29l8.3-1.6c1.7.9 3.6 1.4 5.7 1.4 6.6 0 12-5.4 12-12S22.6 3 16 3zm0 21.8c-1.8 0-3.5-.5-5-1.4l-.4-.2-4.9 1 .9-4.8-.3-.4A9.7 9.7 0 016.3 15c0-5.4 4.3-9.7 9.7-9.7s9.7 4.3 9.7 9.7-4.3 9.8-9.7 9.8zm5.3-7.3c-.3-.1-1.7-.9-2-1-.3-.1-.5-.1-.7.2-.2.3-.7 1-.9 1.1-.2.2-.3.2-.6.1-1.7-.9-2.9-1.6-4-3.6-.3-.5.3-.5.8-1.5.1-.2 0-.4 0-.5s-.7-1.7-1-2.3c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.3 5.2 4.6 2 .8 2.7.9 3.7.8.6-.1 1.7-.7 2-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3z"/></svg>
+  <svg viewBox="0 0 24 24" aria-hidden="true" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.5 0C5.149 0 0 5.149 0 11.5c0 2.125.58 4.112 1.59 5.819L0 24l6.869-1.56A11.453 11.453 0 0011.5 23C17.851 23 23 17.851 23 11.5S17.851 0 11.5 0zm0 21.1c-1.965 0-3.797-.557-5.348-1.517l-.383-.228-3.975.903.956-3.876-.25-.397A9.562 9.562 0 011.9 11.5C1.9 6.193 6.193 1.9 11.5 1.9S21.1 6.193 21.1 11.5 16.807 21.1 11.5 21.1z"/></svg>
 </a>
 <style>
-.wa-float{position:fixed;bottom:22px;right:22px;z-index:300;width:60px;height:60px;border-radius:50%;background:#25D366;display:grid;place-items:center;box-shadow:0 8px 26px rgba(37,211,102,.45);transition:transform .2s, box-shadow .2s;animation:waPulse 2.6s infinite;}
-.wa-float:hover{transform:scale(1.08);box-shadow:0 10px 30px rgba(37,211,102,.6);}
-.wa-float svg{width:34px;height:34px;fill:#fff;}
+.wa-float{position:fixed;bottom:22px;right:22px;z-index:300;width:60px;height:60px;border-radius:50%;background:#25D366;display:grid;place-items:center;box-shadow:0 8px 26px rgba(37,211,102,.45);transition:transform .2s,box-shadow .2s;animation:waPulse 2.6s infinite}
+.wa-float:hover{transform:scale(1.08);box-shadow:0 10px 30px rgba(37,211,102,.6)}
+.wa-float svg{width:32px;height:32px}
 @keyframes waPulse{0%{box-shadow:0 8px 26px rgba(37,211,102,.45),0 0 0 0 rgba(37,211,102,.5)}70%{box-shadow:0 8px 26px rgba(37,211,102,.45),0 0 0 14px rgba(37,211,102,0)}100%{box-shadow:0 8px 26px rgba(37,211,102,.45),0 0 0 0 rgba(37,211,102,0)}}
-@media(max-width:600px){.wa-float{width:54px;height:54px;bottom:16px;right:16px}.wa-float svg{width:30px;height:30px}}
+@media(max-width:600px){.wa-float{width:54px;height:54px;bottom:16px;right:16px}.wa-float svg{width:28px;height:28px}}
 </style>
 
 </body>

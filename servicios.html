@@ -3,6 +3,7 @@
 <head>
 <meta name="robots" content="noindex, nofollow">
   <meta charset="UTF-8">
+  <link rel="icon" type="image/png" href="Fav.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Servicios · AVX Express LLC</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -10,7 +11,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --red: #C8362A; --red-dark: #A82822; --navy: #1E4B8A; --navy-dark: #102C57;
+      --red: #D71E28; --red-dark: #b81b23; --navy: #0070C5; --navy-dark: #102C57;
       --navy-xdark: #07101E; --white: #ffffff; --surface: #F2F6FC;
       --text: #0D1B33; --text-soft: #5C6E8A; --border: #D4DFEF;
       --r: 14px; --r-sm: 8px; --pill: 999px; --wrap: 1280px;
@@ -21,13 +22,13 @@
     img { max-width: 100%; display: block; }
     .wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 clamp(20px,4vw,72px); }
     .eyebrow { display: inline-flex; align-items: center; gap: 10px; font-size: 11.5px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--red); }
-    .eyebrow::before { content:''; width:22px; height:2px; background:var(--red); border-radius:2px; }
+    
     .stitle { font-size: clamp(26px,3vw,40px); font-weight: 700; letter-spacing: -.8px; line-height: 1.18; color: var(--text); text-wrap: balance; }
     .ssub { font-size: 17px; color: var(--text-soft); line-height: 1.65; }
     .sh { display: flex; flex-direction: column; gap: 14px; margin-bottom: 60px; }
     .btn { display: inline-flex; align-items: center; gap: 8px; font-family: 'Ubuntu', sans-serif; font-weight: 700; font-size: 15px; border: none; cursor: pointer; text-decoration: none; border-radius: var(--pill); padding: 13px 26px; transition: background .18s, transform .18s, box-shadow .18s, color .18s; }
     .btn-primary { background: var(--red); color: white; }
-    .btn-primary:hover { background: var(--red-dark); transform: translateY(-1px); box-shadow: 0 6px 22px rgba(200,54,42,.28); }
+    .btn-primary:hover { background: var(--red-dark); transform: translateY(-1px); box-shadow: 0 6px 22px rgba(215,30,40,.28); }
     .btn-outline { background: transparent; color: var(--navy); border: 2px solid var(--navy); }
     .btn-outline:hover { background: var(--navy); color: white; }
     nav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,.94); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid var(--border); }
@@ -36,7 +37,15 @@
     .logo img { height: 48px; width: auto; }
     .nav-links { display: flex; gap: 28px; list-style: none; }
     .nav-links a { font-size: 15px; font-weight: 500; color: var(--text-soft); text-decoration: none; transition: color .18s; }
-    .nav-links a:hover, .nav-links a.active { color: var(--navy); }
+    .nav-links a { padding: 5px 12px; border-radius: 999px; transition: color .18s, background .18s; }
+    .nav-links a:hover { color: var(--navy); }
+    .nav-links a.active { background: #FF8000; color: white!important; }
+    .nav-links li { position: relative; }
+    .nav-links li:hover .nav-dropdown { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
+    .nav-dropdown { display: block; position: absolute; top: calc(100% + 6px); left: 50%; transform: translateX(-50%) translateY(-8px); background: white; border: 1px solid var(--border); border-radius: 12px; box-shadow: 0 8px 32px rgba(0,0,0,.12); padding: 8px; min-width: 230px; z-index: 200; opacity: 0; visibility: hidden; transition: opacity .18s, visibility .18s, transform .18s; }
+    .nav-dropdown a { display: block; font-size: 13.5px; font-weight: 500; color: var(--text); text-decoration: none; padding: 8px 14px; border-radius: 8px; transition: background .15s, color .15s; white-space: nowrap; }
+    .nav-dropdown a:hover { background: var(--surface); color: var(--navy); }
+    .nav-dropdown hr { border: none; border-top: 1px solid var(--border); margin: 6px 0; }
     .nav-right { display: flex; align-items: center; gap: 18px; }
     .lang-toggle { display: flex; align-items: center; gap: 4px; }
     .lang-btn { background: none; border: none; cursor: pointer; font-family: 'Ubuntu', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: .5px; color: var(--text-soft); padding: 4px 8px; border-radius: 6px; transition: color .18s, background .18s; }
@@ -66,7 +75,7 @@
     .feat-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
     .feat-list li { display: flex; align-items: flex-start; gap: 10px; font-size: 15px; color: var(--text); }
     .feat-list li::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--red); margin-top: 8px; flex-shrink: 0; }
-    .pending-note { background: rgba(30,75,138,.06); border: 1px solid rgba(30,75,138,.14); border-radius: 10px; padding: 16px 20px; font-size: 14px; color: var(--text-soft); font-style: italic; }
+    .pending-note { background: rgba(0,112,197,.06); border: 1px solid rgba(0,112,197,.14); border-radius: 10px; padding: 16px 20px; font-size: 14px; color: var(--text-soft); font-style: italic; }
 
     /* FOOTER */
     footer { background: var(--navy-xdark); padding: 72px 0 40px; }
@@ -86,13 +95,25 @@
   </style>
 </head>
 <body data-show="es">
-<div class="avx-anuncio"><a href="migracion.html"><span class="t-es">📦 ¿Tu casillero cerró? <b>Migra a AVX en 2 minutos</b> y no pierdas tus compras →</span><span class="t-en">📦 Mailbox shutting down? <b>Migrate to AVX in 2 minutes</b> →</span></a></div><style>.avx-anuncio{background:#102C57;color:#fff;text-align:center;font-size:13.5px;padding:9px 16px;line-height:1.4}.avx-anuncio a{color:#fff;text-decoration:none;font-weight:500}.avx-anuncio a:hover{text-decoration:underline}.avx-anuncio b{color:#ff8b7d}</style>
+<div class="avx-anuncio"><a href="migracion.html"><span class="t-es">📦 ¿Tu casillero cerró? <b>Migra a AVX en 2 minutos</b> y no pierdas tus compras →</span><span class="t-en">📦 Mailbox shutting down? <b>Migrate to AVX in 2 minutes</b> →</span></a></div><style>.avx-anuncio{background:#102C57;color:#fff;text-align:center;font-size:13.5px;padding:9px 16px;line-height:1.4}.avx-anuncio a{color:#fff;text-decoration:none;font-weight:500}.avx-anuncio a:hover{text-decoration:underline}.avx-anuncio b{color:#FF8000}</style>
 
 <nav>
   <div class="wrap nav-in">
     <a href="home.html" class="logo"><img src="LogoAVX.svg" alt="AVX Express LLC"></a>
     <ul class="nav-links">
-      <li><a href="servicios.html" class="active"><span class="t-es">Servicios</span><span class="t-en">Services</span></a></li>
+      <li>
+        <a href="servicios.html" class="active" style="display:flex;align-items:center;gap:3px"><span class="t-es">Servicios</span><span class="t-en">Services</span><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></a>
+        <div class="nav-dropdown">
+          <a href="te-compramos.html"><span class="t-es">Te Compramos</span><span class="t-en">We Buy For You</span></a>
+          <a href="impuestos.html"><span class="t-es">Impuestos de Aduana</span><span class="t-en">Customs Duties</span></a>
+          <a href="tiendas.html"><span class="t-es">Tiendas</span><span class="t-en">Stores</span></a>
+          <hr>
+          <a href="servicios.html#paquetes"><span class="t-es">Reenvío de Paquetes</span><span class="t-en">Package Forwarding</span></a>
+          <a href="servicios.html#envios"><span class="t-es">Envíos Internacionales</span><span class="t-en">Int'l Shipping</span></a>
+          <a href="servicios.html#transferencias"><span class="t-es">Transferencia de Dinero</span><span class="t-en">Money Transfer</span></a>
+          <a href="servicios.html#notaria"><span class="t-es">Notaría y Apostilla</span><span class="t-en">Notary &amp; Apostille</span></a>
+        </div>
+      </li>
       <li><a href="como-funciona.html"><span class="t-es">Cómo Funciona</span><span class="t-en">How It Works</span></a></li>
       <li><a href="calculadora.html"><span class="t-es">Calculadora</span><span class="t-en">Calculator</span></a></li>
       <li><a href="rastreo.html"><span class="t-es">Rastreo</span><span class="t-en">Tracking</span></a></li>
@@ -100,7 +121,7 @@
       <li><a href="contacto.html"><span class="t-es">Contacto</span><span class="t-en">Contact</span></a></li>
     </ul>
     <div class="nav-right">
-    <a href="https://app.avxexpress.com/login.html" style="font-size:14.5px;font-weight:600;color:#1E4B8A;text-decoration:none;white-space:nowrap" class="avx-login"><span class="t-es">Mi cuenta</span><span class="t-en">Sign in</span></a>
+    <a href="https://app.avxexpress.com/login.html" style="font-size:14.5px;font-weight:600;color:#0070C5;text-decoration:none;white-space:nowrap" class="avx-login"><span class="t-es">Mi cuenta</span><span class="t-en">Sign in</span></a>
       <div class="lang-toggle">
         <button class="lang-btn active" data-lang="es">ES</button>
         <span class="lang-sep">|</span>
@@ -191,7 +212,7 @@
         </ul>
         <div class="pending-note t-es">Próximamente: países atendidos, tiempos promedio de entrega y manejo de aduanas.</div>
         <div class="pending-note t-en">Coming soon: countries served, average delivery times, and customs handling details.</div>
-        <a href="https://app.avxexpress.com/registro.html" class="btn btn-primary" style="align-self:flex-start;">
+        <a href="calculadora.html" class="btn btn-primary" style="align-self:flex-start;">
           <span class="t-es">Consultar tarifas</span><span class="t-en">Check rates</span>
         </a>
       </div>
@@ -225,7 +246,7 @@
         </ul>
         <div class="pending-note t-es">Próximamente: países disponibles, límites, comisiones, tiempos de entrega y modalidades (efectivo o depósito bancario).</div>
         <div class="pending-note t-en">Coming soon: available countries, limits, fees, delivery times, and modalities (cash pickup or bank deposit).</div>
-        <a href="https://app.avxexpress.com/registro.html" class="btn btn-primary" style="align-self:flex-start;">
+        <a href="contacto.html" class="btn btn-primary" style="align-self:flex-start;">
           <span class="t-es">Consultar disponibilidad</span><span class="t-en">Check availability</span>
         </a>
       </div>
@@ -259,8 +280,95 @@
         </ul>
         <div class="pending-note t-es">Próximamente: jurisdicción y estado, documentos que aplican, modalidad (presencial o remota), tiempos y precios.</div>
         <div class="pending-note t-en">Coming soon: jurisdiction and state, applicable documents, modality (in-person or remote), timing, and pricing.</div>
-        <a href="https://app.avxexpress.com/registro.html" class="btn btn-primary" style="align-self:flex-start;">
+        <a href="contacto.html" class="btn btn-primary" style="align-self:flex-start;">
           <span class="t-es">Solicitar información</span><span class="t-en">Request information</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TE COMPRAMOS -->
+<section class="svc-section" id="te-compramos">
+  <div class="wrap">
+    <div class="svc-layout reveal">
+      <div class="svc-visual">
+        <div class="svc-img"><img src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?auto=format&fit=crop&w=800&q=80" alt="Te Compramos"></div>
+        <span class="svc-tag t-es">Compra asistida</span>
+        <span class="svc-tag t-en">Assisted purchase</span>
+      </div>
+      <div class="svc-copy">
+        <span class="eyebrow t-es">Servicio 05</span>
+        <span class="eyebrow t-en">Service 05</span>
+        <h2 class="t-es">Te Compramos</h2>
+        <h2 class="t-en">We Buy For You</h2>
+        <p class="t-es">No tienes tarjeta internacional? Mándanos el link del producto, te cotizamos en tu moneda y nosotros lo compramos y te lo enviamos. Sin complicaciones.</p>
+        <p class="t-en">No international card? Send us the product link, we quote you in local currency, buy it, and ship it for you. Hassle-free.</p>
+        <ul class="feat-list">
+          <li class="t-es">Sin tarjeta internacional requerida</li><li class="t-en">No international card needed</li>
+          <li class="t-es">Cotización en tu moneda local</li><li class="t-en">Quote in your local currency</li>
+          <li class="t-es">Compramos en cualquier tienda de EE.UU.</li><li class="t-en">We buy from any U.S. store</li>
+        </ul>
+        <a href="te-compramos.html" class="btn btn-primary" style="align-self:flex-start;">
+          <span class="t-es">Saber más</span><span class="t-en">Learn more</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- IMPUESTOS DE ADUANA -->
+<section class="svc-section" id="impuestos">
+  <div class="wrap">
+    <div class="svc-layout flip reveal">
+      <div class="svc-visual">
+        <div class="svc-img"><img src="https://images.unsplash.com/photo-1554224154-22dec7ec8818?auto=format&fit=crop&w=800&q=80" alt="Impuestos de Aduana"></div>
+        <span class="svc-tag t-es">Aduanas</span>
+        <span class="svc-tag t-en">Customs</span>
+      </div>
+      <div class="svc-copy">
+        <span class="eyebrow t-es">Servicio 06</span>
+        <span class="eyebrow t-en">Service 06</span>
+        <h2 class="t-es">Impuestos de Aduana</h2>
+        <h2 class="t-en">Customs Duties</h2>
+        <p class="t-es">Estima el IVA y el arancel de tu importación antes de comprar. Sin sorpresas en aduana.</p>
+        <p class="t-en">Estimate VAT and tariff on your import before buying. No surprises at customs.</p>
+        <ul class="feat-list">
+          <li class="t-es">Calculadora de IVA y aranceles</li><li class="t-en">VAT and tariff calculator</li>
+          <li class="t-es">Estimación por categoría de producto</li><li class="t-en">Estimate by product category</li>
+          <li class="t-es">Sin sorpresas al recibir tu paquete</li><li class="t-en">No surprises when you receive your package</li>
+        </ul>
+        <a href="impuestos.html" class="btn btn-primary" style="align-self:flex-start;">
+          <span class="t-es">Calcular impuestos</span><span class="t-en">Calculate duties</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TIENDAS -->
+<section class="svc-section" id="tiendas">
+  <div class="wrap">
+    <div class="svc-layout reveal">
+      <div class="svc-visual">
+        <div class="svc-img"><img src="https://images.unsplash.com/photo-1472851294608-062f824d29cc?auto=format&fit=crop&w=800&q=80" alt="Tiendas en EE.UU."></div>
+        <span class="svc-tag t-es">Tiendas</span>
+        <span class="svc-tag t-en">Stores</span>
+      </div>
+      <div class="svc-copy">
+        <span class="eyebrow t-es">Servicio 07</span>
+        <span class="eyebrow t-en">Service 07</span>
+        <h2 class="t-es">Tiendas</h2>
+        <h2 class="t-en">Stores</h2>
+        <p class="t-es">Compra en Amazon, Nike, Best Buy y miles de tiendas de EE.UU. Usa tu dirección AVX y recíbelo donde estés. Si no aceptan tu tarjeta, compramos por ti.</p>
+        <p class="t-en">Shop Amazon, Nike, Best Buy, and thousands of U.S. stores. Use your AVX address and receive it anywhere. If they don't accept your card, we buy for you.</p>
+        <ul class="feat-list">
+          <li class="t-es">Miles de tiendas disponibles</li><li class="t-en">Thousands of stores available</li>
+          <li class="t-es">Amazon, Nike, Best Buy y más</li><li class="t-en">Amazon, Nike, Best Buy and more</li>
+          <li class="t-es">Compramos por ti si no tienes tarjeta</li><li class="t-en">We buy for you if you don't have a card</li>
+        </ul>
+        <a href="tiendas.html" class="btn btn-primary" style="align-self:flex-start;">
+          <span class="t-es">Ver tiendas</span><span class="t-en">Browse stores</span>
         </a>
       </div>
     </div>
@@ -316,7 +424,7 @@
 <!-- ==== WhatsApp flotante (reemplaza el número 17867803273 por el real) ==== -->
 <a href="https://wa.me/17867803273?text=Hola%20AVX%20Express%2C%20quiero%20informaci%C3%B3n%20sobre%20mi%20casillero"
    class="wa-float" target="_blank" rel="noopener" aria-label="WhatsApp">
-  <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3C9.4 3 4 8.4 4 15c0 2.1.6 4.1 1.6 5.9L4 29l8.3-1.6c1.7.9 3.6 1.4 5.7 1.4 6.6 0 12-5.4 12-12S22.6 3 16 3zm0 21.8c-1.8 0-3.5-.5-5-1.4l-.4-.2-4.9 1 .9-4.8-.3-.4A9.7 9.7 0 016.3 15c0-5.4 4.3-9.7 9.7-9.7s9.7 4.3 9.7 9.7-4.3 9.8-9.7 9.8zm5.3-7.3c-.3-.1-1.7-.9-2-1-.3-.1-.5-.1-.7.2-.2.3-.7 1-.9 1.1-.2.2-.3.2-.6.1-1.7-.9-2.9-1.6-4-3.6-.3-.5.3-.5.8-1.5.1-.2 0-.4 0-.5s-.7-1.7-1-2.3c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.3 5.2 4.6 2 .8 2.7.9 3.7.8.6-.1 1.7-.7 2-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3z"/></svg>
+  <svg viewBox="0 0 24 24" aria-hidden="true" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.5 0C5.149 0 0 5.149 0 11.5c0 2.125.58 4.112 1.59 5.819L0 24l6.869-1.56A11.453 11.453 0 0011.5 23C17.851 23 23 17.851 23 11.5S17.851 0 11.5 0zm0 21.1c-1.965 0-3.797-.557-5.348-1.517l-.383-.228-3.975.903.956-3.876-.25-.397A9.562 9.562 0 011.9 11.5C1.9 6.193 6.193 1.9 11.5 1.9S21.1 6.193 21.1 11.5 16.807 21.1 11.5 21.1z"/></svg>
 </a>
 <style>
 .wa-float{position:fixed;bottom:22px;right:22px;z-index:300;width:60px;height:60px;border-radius:50%;background:#25D366;display:grid;place-items:center;box-shadow:0 8px 26px rgba(37,211,102,.45);transition:transform .2s, box-shadow .2s;animation:waPulse 2.6s infinite;}
