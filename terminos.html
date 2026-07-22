@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta name="robots" content="noindex, nofollow">
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Términos de Uso · AVX Express LLC</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --red: #D71E28; --red-dark: #b81b23; --navy: #0070C5; --navy-dark: #102C57;
+      --navy-xdark: #07101E; --white: #ffffff; --surface: #F2F6FC;
+      --text: #292437; --text-soft: #5C6E8A; --border: #D4DFEF;
+      --r: 14px; --pill: 999px; --wrap: 1280px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Ubuntu', system-ui, sans-serif; color: var(--text); background: var(--white); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    img { max-width: 100%; display: block; }
+    .wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 clamp(20px,4vw,72px); }
+    .eyebrow { display: inline-flex; align-items: center; gap: 10px; font-size: 11.5px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--red); }
+    .btn { display: inline-flex; align-items: center; gap: 8px; font-family: 'Ubuntu', sans-serif; font-weight: 700; font-size: 15px; border: none; cursor: pointer; text-decoration: none; border-radius: var(--pill); padding: 11px 22px; transition: background .18s, transform .18s, box-shadow .18s, color .18s; }
+    .btn-primary { background: var(--red); color: white; }
+    .btn-primary:hover { background: var(--red-dark); transform: translateY(-1px); box-shadow: 0 6px 22px rgba(215,30,40,.28); }
+    nav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,.94); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid var(--border); }
+    .nav-in { display: flex; align-items: center; justify-content: space-between; height: 72px; gap: 16px; }
+    .logo { display: flex; align-items: center; text-decoration: none; flex-shrink: 0; }
+    .logo img { height: 56px; width: auto; }
+    .nav-links { display: flex; gap: 0; list-style: none; }
+    .nav-links a { display: inline-flex; align-items: center; gap: 3px; font-size: 14px; font-weight: 500; color: var(--text-soft); text-decoration: none; cursor: pointer; white-space: nowrap; padding: 5px 12px; border-radius: 999px; transition: color .18s, background .18s; }
+    .nav-links a:hover { color: var(--navy); }
+    .nav-links li { position: relative; }
+    .nav-links li:hover .nav-dropdown { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
+    .nav-dropdown { display: block; position: absolute; top: calc(100% + 6px); left: 50%; transform: translateX(-50%) translateY(-8px); background: white; border: 1px solid var(--border); border-radius: 12px; box-shadow: 0 8px 32px rgba(0,0,0,.12); padding: 8px; min-width: 230px; z-index: 200; opacity: 0; visibility: hidden; transition: opacity .18s, visibility .18s, transform .18s; }
+    .nav-dropdown a { display: block; font-size: 13.5px; font-weight: 500; color: var(--text); text-decoration: none; padding: 8px 14px; border-radius: 8px; transition: background .15s, color .15s; white-space: nowrap; }
+    .nav-dropdown a:hover { background: var(--surface); color: var(--navy); }
+    .nav-dropdown hr { border: none; border-top: 1px solid var(--border); margin: 6px 0; }
+    .nav-right { display: flex; align-items: center; gap: 18px; }
+    .lang-sel { position: relative; }
+    .lang-sel-btn { display: flex; align-items: center; gap: 5px; background: none; border: none; cursor: pointer; font-size: 13px; font-weight: 600; color: var(--navy); white-space: nowrap; padding: 4px 2px; font-family: 'Ubuntu', sans-serif; }
+    .lang-sel-btn:hover { opacity: .75; }
+    .lang-drop { position: absolute; top: calc(100% + 6px); right: 0; background: white; border: 1px solid var(--border); border-radius: 12px; box-shadow: 0 8px 32px rgba(0,0,0,.12); padding: 6px; width: fit-content; z-index: 200; opacity: 0; visibility: hidden; transform: translateY(-6px); transition: opacity .18s, visibility .18s, transform .18s; }
+    .lang-drop.open { opacity: 1; visibility: visible; transform: translateY(0); }
+    .lang-opt { display: flex; align-items: center; gap: 8px; background: none; border: none; cursor: pointer; font-size: 13.5px; font-weight: 500; color: var(--text); padding: 8px 12px; border-radius: 8px; text-align: left; transition: background .15s; font-family: 'Ubuntu', sans-serif; }
+    .lang-opt:hover { background: var(--surface); }
+    .lang-opt.active { font-weight: 700; color: var(--navy); }
+    [data-show="en"] .t-es, [data-show="es"] .t-en { display: none !important; }
+
+    .page-hero { padding: 48px 0 40px; background: var(--surface); border-bottom: 1px solid var(--border); }
+    .page-hero .eyebrow { margin-bottom: 14px; }
+    .page-hero h1 { font-size: clamp(30px,4vw,48px); font-weight: 700; letter-spacing: -1.2px; line-height: 1.1; color: var(--text); margin-bottom: 14px; }
+    .page-hero p { font-size: 16px; color: var(--text-soft); max-width: 540px; line-height: 1.65; }
+
+    .legal-wrap { max-width: 760px; margin: 0 auto; padding: 0 clamp(20px,4vw,72px); }
+    .legal-body { padding: 52px 0 72px; }
+    .legal-updated { font-size: 13px; color: var(--text-soft); margin-bottom: 40px; }
+    .legal-section { margin-bottom: 40px; }
+    .legal-section h2 { font-size: 19px; font-weight: 700; color: var(--navy-dark); margin-bottom: 12px; padding-bottom: 10px; border-bottom: 1px solid var(--border); }
+    .legal-section p { font-size: 15px; color: var(--text-soft); line-height: 1.75; margin-bottom: 12px; }
+    .legal-section ul { padding-left: 20px; margin-bottom: 12px; }
+    .legal-section li { font-size: 15px; color: var(--text-soft); line-height: 1.75; margin-bottom: 6px; }
+    .legal-section a { color: var(--red); text-decoration: none; font-weight: 500; }
+    .legal-section a:hover { text-decoration: underline; }
+    .legal-highlight { background: var(--surface); border-left: 3px solid var(--red); border-radius: 0 8px 8px 0; padding: 14px 18px; margin-bottom: 12px; }
+    .legal-highlight p { margin-bottom: 0; }
+
+    footer{background:#292437;padding:24px 0 28px}
+    .footer-top{display:flex;align-items:center;justify-content:space-between;padding-bottom:18px;margin-bottom:18px;border-bottom:1px solid rgba(255,255,255,.1)}
+    .footer-logo{height:30px;width:auto;filter:brightness(0) invert(1);opacity:.6;flex-shrink:0}
+    .footer-nav{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:0}
+    .footer-nav a{font-size:13px;font-weight:500;color:rgba(255,255,255,.72);text-decoration:none;padding:5px 14px;transition:color .18s;cursor:pointer}
+    .footer-nav a:hover{color:rgba(255,255,255,.9)}
+    .footer-bot{display:flex;align-items:center;justify-content:space-between}
+    .footer-legal{display:flex;flex-wrap:wrap;gap:0}
+    .footer-legal a{font-size:12px;font-weight:500;color:rgba(255,255,255,.38);text-decoration:none;padding:4px 14px;transition:color .18s}
+    .footer-legal a:first-child{padding-left:0}
+    .footer-legal a:hover{color:rgba(255,255,255,.7)}
+    .footer-bot>span{font-size:12px;color:rgba(255,255,255,.35);line-height:1.5}
+    @media(max-width:768px){.footer-top{flex-direction:column;align-items:flex-start;gap:16px}.footer-nav{justify-content:flex-start}.footer-bot{flex-direction:column;align-items:flex-start;gap:10px}}
+
+    .hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:6px}
+    .hamburger span{display:block;width:22px;height:2px;background:var(--text);border-radius:2px;transition:transform .22s,opacity .22s}
+    .hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+    .hamburger.open span:nth-child(2){opacity:0}
+    .hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+    .mobile-menu{display:none;position:fixed;inset:72px 0 0 0;background:white;z-index:99;flex-direction:column;padding:24px 20px;gap:4px;border-top:1px solid var(--border)}
+    .mobile-menu.open{display:flex}
+    .mobile-menu a{font-size:17px;font-weight:500;color:var(--text);text-decoration:none;padding:14px 12px;border-radius:10px;transition:background .15s,color .15s;cursor:pointer}
+    .mobile-menu a:hover{background:var(--surface);color:var(--navy)}
+    .mobile-menu .mobile-cta{margin-top:16px}
+    @media(max-width:1100px){.nav-right .btn{display:none}.hamburger{display:flex}.nav-links{display:none}}
+  </style>
+</head>
+<body data-show="es">
+<div class="avx-anuncio"><a href="migracion.html"><span class="t-es">📦 ¿Tu casillero cerró? <b>Migra a AVX en 2 minutos</b> y no pierdas tus compras →</span><span class="t-en">📦 Mailbox shutting down? <b>Migrate to AVX in 2 minutes</b> →</span></a></div><style>.avx-anuncio{position:sticky;top:0;z-index:101;background:#004B72;color:#fff;text-align:center;font-size:13.5px;padding:9px 16px;line-height:1.4}.avx-anuncio a{color:#fff;text-decoration:none;font-weight:500}.avx-anuncio a:hover{text-decoration:underline}.avx-anuncio b{color:#FF8000}</style>
+
+<nav>
+  <div class="wrap nav-in">
+    <a href="home.html" class="logo"><img src="LogoAVX.svg" alt="AVX Express LLC"></a>
+    <ul class="nav-links">
+      <li>
+        <a href="servicios.html"><span class="t-es">Servicios</span><span class="t-en">Services</span><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></a>
+        <div class="nav-dropdown">
+          <a href="te-compramos.html"><span class="t-es">Te Compramos</span><span class="t-en">We Buy For You</span></a>
+          <a href="impuestos.html"><span class="t-es">Impuestos de Aduana</span><span class="t-en">Customs Duties</span></a>
+          <a href="tiendas.html"><span class="t-es">Tiendas</span><span class="t-en">Stores</span></a>
+          <hr>
+          <a href="servicios.html#paquetes"><span class="t-es">Reenvío de Paquetes</span><span class="t-en">Package Forwarding</span></a>
+          <a href="servicios.html#envios"><span class="t-es">Envíos Internacionales</span><span class="t-en">Int'l Shipping</span></a>
+          <a href="servicios.html#transferencias"><span class="t-es">Transferencia de Dinero</span><span class="t-en">Money Transfer</span></a>
+          <a href="servicios.html#notaria"><span class="t-es">Notaría y Apostilla</span><span class="t-en">Notary &amp; Apostille</span></a>
+        </div>
+      </li>
+      <li><a href="como-funciona.html"><span class="t-es">Cómo Funciona</span><span class="t-en">How It Works</span></a></li>
+      <li><a href="calculadora.html"><span class="t-es">Calculadora</span><span class="t-en">Calculator</span></a></li>
+      <li><a href="rastreo.html"><span class="t-es">Rastreo</span><span class="t-en">Tracking</span></a></li>
+      <li><a href="faq.html"><span class="t-es">Preguntas</span><span class="t-en">FAQ</span></a></li>
+      <li><a href="contacto.html"><span class="t-es">Contacto</span><span class="t-en">Contact</span></a></li>
+    </ul>
+    <div class="nav-right">
+      <div class="lang-sel" id="langSel">
+        <button class="lang-sel-btn" id="langSelBtn" onclick="toggleLangDrop(event)">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          <span class="lang-code" id="langCode">ESP</span>
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="lang-drop" id="langDrop">
+          <button class="lang-opt active" onclick="pickLang('es')">Español</button>
+          <button class="lang-opt" onclick="pickLang('en')">English</button>
+        </div>
+      </div>
+      <a href="https://app.avxexpress.com/login.html" style="font-size:14.5px;font-weight:600;color:#D71E28;text-decoration:none;white-space:nowrap" class="avx-login"><span class="t-es">Mi cuenta</span><span class="t-en">Sign in</span></a>
+      <a href="https://app.avxexpress.com/registro.html" class="btn btn-primary">
+        <span class="t-es">Crear mi cuenta</span><span class="t-en">Create account</span>
+      </a>
+      <button class="hamburger" id="hamburger" aria-label="Menú" onclick="toggleMobile()"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="servicios.html"><span class="t-es">Servicios</span><span class="t-en">Services</span></a>
+  <a href="como-funciona.html"><span class="t-es">Cómo Funciona</span><span class="t-en">How It Works</span></a>
+  <a href="calculadora.html"><span class="t-es">Calculadora</span><span class="t-en">Calculator</span></a>
+  <a href="rastreo.html"><span class="t-es">Rastreo</span><span class="t-en">Tracking</span></a>
+  <a href="faq.html"><span class="t-es">Preguntas</span><span class="t-en">FAQ</span></a>
+  <a href="contacto.html"><span class="t-es">Contacto</span><span class="t-en">Contact</span></a>
+  <a href="https://app.avxexpress.com/registro.html" class="btn btn-primary mobile-cta"><span class="t-es">Crear mi cuenta</span><span class="t-en">Create account</span></a>
+</div>
+
+<div class="page-hero">
+  <div class="wrap">
+    <span class="eyebrow"><span class="t-es">Legal</span><span class="t-en">Legal</span></span>
+    <h1><span class="t-es">Términos de Uso</span><span class="t-en">Terms of Use</span></h1>
+    <p class="t-es">Al usar los servicios de AVX Express LLC, aceptas los siguientes términos y condiciones. Léelos con atención.</p>
+    <p class="t-en">By using AVX Express LLC services, you accept the following terms and conditions. Please read them carefully.</p>
+  </div>
+</div>
+
+<section class="legal-body">
+  <div class="legal-wrap">
+    <p class="legal-updated"><span class="t-es">Última actualización: enero de 2026</span><span class="t-en">Last updated: January 2026</span></p>
+
+    <div class="legal-section">
+      <h2><span class="t-es">1. Aceptación de los términos</span><span class="t-en">1. Acceptance of Terms</span></h2>
+      <p class="t-es">Al crear una cuenta, usar nuestro sitio web o contratar cualquiera de nuestros servicios, aceptas quedar vinculado por estos Términos de Uso. Si no estás de acuerdo con alguna parte, no uses los servicios de AVX Express LLC.</p>
+      <p class="t-en">By creating an account, using our website, or contracting any of our services, you agree to be bound by these Terms of Use. If you do not agree with any part, do not use AVX Express LLC services.</p>
+    </div>
+
+    <div class="legal-section">
+      <h2><span class="t-es">2. Descripción del servicio</span><span class="t-en">2. Description of Service</span></h2>
+      <p class="t-es">AVX Express LLC es una empresa de reenvío de paquetes con sede en Doral, Florida. Ofrecemos a personas y empresas una dirección postal en Miami para recibir compras realizadas en tiendas de Estados Unidos, y posteriormente reenviar esos paquetes a tu destino internacional.</p>
+      <p class="t-en">AVX Express LLC is a package forwarding company based in Doral, Florida. We provide individuals and businesses with a Miami mailing address to receive purchases made at U.S. stores, and subsequently forward those packages to your international destination.</p>
+      <p class="t-es">Los servicios incluyen: casillero virtual, consolidación de paquetes, reenvío internacional, Te Compramos (compras por encargo), transferencias de dinero y notaría/apostilla.</p>
+      <p class="t-en">Services include: virtual mailbox, package consolidation, international forwarding, We Buy For You, money transfers, and notary/apostille.</p>
+    </div>
+
+    <div class="legal-section">
+      <h2><span class="t-es">3. Elegibilidad y registro</span><span class="t-en">3. Eligibility and Registration</span></h2>
+      <p class="t-es">Debes tener al menos 18 años de edad para usar nuestros servicios. Al registrarte, te comprometes a proporcionar información veraz, completa y actualizada. Eres responsable de mantener la confidencialidad de tus credenciales de acceso.</p>
+      <p class="t-en">You must be at least 18 years of age to use our services. By registering, you agree to provide truthful, complete, and up-to-date information. You are responsible for maintaining the confidentiality of your access credentials.</p>
+    </div>
+
+    <div class="legal-section">
+      <h2><span class="t-es">4. Uso aceptable</span><span class="t-en">4. Acceptable Use</span></h2>
+      <p class="t-es">Te comprometes a no usar nuestros servicios para:</p>
+      <p class="t-en">You agree not to use our services to:</p>
+      <ul>
+        <li><span class="t-es">Enviar artículos prohibidos según nuestra política de artículos prohibidos.</span><span class="t-en">Ship prohibited items as defined in our prohibited items policy.</span></li>
+        <li><span class="t-es">Cometer fraude, evasión de impuestos aduaneros o cualquier actividad ilegal.</span><span class="t-en">Commit fraud, customs duty evasion, or any illegal activity.</span></li>
+        <li><span class="t-es">Proporcionar declaraciones aduaneras falsas o subestimar el valor de los paquetes.</span><span class="t-en">Provide false customs declarations or understate package values.</span></li>
+        <li><span class="t-es">Usar la dirección de casillero para actividades comerciales no autorizadas.</span><span class="t-en">Use the mailbox address for unauthorized commercial activities.</span></li>
+      </ul>
+    </div>
+
+    <div class="legal-section">
+      <h2><span class="t-es">5. Tarifas y pagos</span><span class="t-en">5. Fees and Payments</span></h2>
+      <p class="t-es">Las tarifas de envío, almacenamiento y servicios adicionales se cobran según las tarifas vigentes publicadas en nuestro sitio web. AVX Express LLC se reserva el derecho de modificar sus tarifas con previo aviso de 15 días. El pago debe realizarse antes del despacho de los paquetes.</p>
+      <p class="t-en">Shipping, storage, and additional service fees are charged according to the current rates published on our website. AVX Express LLC reserves the right to modify its rates with 15 days prior notice. Payment must be made before package dispatch.</p>
+    </div>
+
+    <div class="legal-section">
+      <h2><span class="t-es">6. Paquetes — recepción, almacenamiento y pérdida</span><span class="t-en">6. Packages — Receipt, Storage and Loss</span></h2>
+      <p class="t-es">AVX Express LLC actúa como agente de reenvío, no como asegurador. No somos responsables por pérdida o daño causado por los transportistas o por circunstancias de fuerza mayor. Recomendamos contratar un seguro adicional para paquetes de alto valor.</p>
+      <p class="t-en">AVX Express LLC acts as a forwarding agent, not an insurer. We are not liable for loss or damage caused by carriers or force majeure circumstances. We recommend purchasing additional insurance for high-value packages.</p>
+      <p class="t-es">Los paquetes no reclamados serán almacenados sin costo durante 30 días. A partir del día 31 se cobrarán tarifas de almacenamiento diarias. Paquetes no reclamados por más de 90 días podrán ser donados o desechados.</p>
+      <p class="t-en">Unclaimed packages will be stored free of charge for 30 days. From day 31, daily storage fees apply. Packages unclaimed for more than 90 days may be donated or discarded.</p>
+    </div>
+
+    <div class="legal-section">
+      <h2><span class="t-es">7. Limitación de responsabilidad</span><span class="t-en">7. Limitation of Liability</span></h2>
+      <div class="legal-highlight">
+        <p class="t-es">En ningún caso AVX Express LLC será responsable por daños indirectos, incidentales, especiales o consecuentes derivados del uso o la imposibilidad de uso de nuestros servicios, incluso si se nos ha advertido de la posibilidad de dichos daños.</p>
+        <p class="t-en">In no event shall AVX Express LLC be liable for indirect, incidental, special, or consequential damages arising from the use or inability to use our services, even if we have been advised of the possibility of such damages.</p>
+      </div>
+    </div>
+
+    <div class="legal-section">
+      <h2><span class="t-es">8. Ley aplicable</span><span class="t-en">8. Governing Law</span></h2>
+      <p class="t-es">Estos términos se rigen por las leyes del Estado de Florida, Estados Unidos. Cualquier disputa se resolverá en los tribunales competentes del Condado de Miami-Dade, Florida.</p>
+      <p class="t-en">These terms are governed by the laws of the State of Florida, United States. Any dispute will be resolved in the competent courts of Miami-Dade County, Florida.</p>
+    </div>
+
+    <div class="legal-section">
+      <h2><span class="t-es">9. Modificaciones</span><span class="t-en">9. Modifications</span></h2>
+      <p class="t-es">AVX Express LLC se reserva el derecho de modificar estos términos en cualquier momento. Te notificaremos por correo electrónico o mediante un aviso en nuestro sitio web con al menos 15 días de anticipación antes de que los cambios entren en vigor.</p>
+      <p class="t-en">AVX Express LLC reserves the right to modify these terms at any time. We will notify you by email or via a notice on our website at least 15 days before changes take effect.</p>
+    </div>
+
+    <div class="legal-section">
+      <h2><span class="t-es">10. Contacto</span><span class="t-en">10. Contact</span></h2>
+      <p class="t-es">Para consultas sobre estos términos, escríbenos a <a href="mailto:legal@avxexpress.com">legal@avxexpress.com</a> o visita nuestra página de <a href="contacto.html">Contacto</a>.</p>
+      <p class="t-en">For questions about these terms, email us at <a href="mailto:legal@avxexpress.com">legal@avxexpress.com</a> or visit our <a href="contacto.html">Contact</a> page.</p>
+    </div>
+  </div>
+</section>
+
+<footer><div class="wrap">
+  <div class="footer-top">
+    <img src="LogoAVX.svg" alt="AVX Express" class="footer-logo">
+    <div class="footer-nav">
+      <a href="servicios.html"><span class="t-es">Servicios</span><span class="t-en">Services</span></a>
+      <a href="como-funciona.html"><span class="t-es">Cómo Funciona</span><span class="t-en">How It Works</span></a>
+      <a href="calculadora.html">Calculadora</a>
+      <a href="rastreo.html">Rastreo</a>
+      <a href="faq.html"><span class="t-es">Preguntas</span><span class="t-en">FAQ</span></a>
+      <a href="contacto.html">Contacto</a>
+    </div>
+  </div>
+  <div class="footer-bot">
+    <div class="footer-legal">
+      <a href="terminos.html"><span class="t-es">Términos de Uso</span><span class="t-en">Terms of Use</span></a>
+      <a href="privacidad.html"><span class="t-es">Privacidad</span><span class="t-en">Privacy</span></a>
+      <a href="articulos-prohibidos.html"><span class="t-es">Artículos Prohibidos</span><span class="t-en">Prohibited Items</span></a>
+    </div>
+    <span>&copy; 2026 AVX Express LLC. <span class="t-es">Todos los derechos reservados.</span><span class="t-en">All rights reserved.</span></span>
+  </div>
+</div></footer>
+
+<script>
+  function toggleMobile(){var btn=document.getElementById('hamburger'),menu=document.getElementById('mobileMenu');if(!btn||!menu)return;var open=menu.classList.toggle('open');btn.classList.toggle('open',open);document.body.style.overflow=open?'hidden':'';}
+  function setLang(lang){document.body.dataset.show=lang;localStorage.setItem('avx-lang',lang);var code=document.getElementById('langCode');if(code)code.textContent=lang==='es'?'ESP':'ENG';document.querySelectorAll('.lang-opt').forEach(function(b){b.classList.toggle('active',b.getAttribute('onclick')&&b.getAttribute('onclick').indexOf("'"+lang+"'")>-1);});}
+  function toggleLangDrop(e){e.stopPropagation();var d=document.getElementById('langDrop');if(d)d.classList.toggle('open');}
+  function pickLang(l){setLang(l);var d=document.getElementById('langDrop');if(d)d.classList.remove('open');}
+  document.addEventListener('click',function(){var d=document.getElementById('langDrop');if(d)d.classList.remove('open');});
+  setLang(localStorage.getItem('avx-lang')||'es');
+  (function(){var banner=document.querySelector('.avx-anuncio'),nav=document.querySelector('nav'),mob=document.querySelector('.mobile-menu');function syncTop(){if(nav){var bh=banner?banner.offsetHeight:0;nav.style.top=bh+'px';if(mob)mob.style.top=(bh+nav.offsetHeight)+'px';}}syncTop();window.addEventListener('resize',syncTop);})();
+</script>
+</body>
+</html>

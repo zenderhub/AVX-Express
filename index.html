@@ -58,8 +58,8 @@
     .nav-dropdown hr{border:none;border-top:1px solid var(--border);margin:6px 0}
     .nav-right{display:flex;align-items:center;gap:18px}
     .lang-sel{position:relative}
-    .lang-sel-btn{display:flex;align-items:center;gap:5px;background:var(--surface);border:1px solid var(--border);border-radius:999px;padding:5px 10px 5px 8px;cursor:pointer;font-size:13px;font-weight:600;color:var(--text);transition:background .15s,border-color .15s;white-space:nowrap;font-family:'Ubuntu',sans-serif}
-    .lang-sel-btn:hover{background:#e8e9ea;border-color:#bbb}
+    .lang-sel-btn{display:flex;align-items:center;gap:5px;background:none;border:none;cursor:pointer;font-size:13px;font-weight:600;color:var(--navy);white-space:nowrap;padding:4px 2px;font-family:'Ubuntu',sans-serif}
+    .lang-sel-btn:hover{opacity:.75}
     .lang-flag{font-size:15px;line-height:1}
     .lang-drop{position:absolute;top:calc(100% + 6px);right:0;background:white;border:1px solid var(--border);border-radius:12px;box-shadow:0 8px 32px rgba(0,0,0,.12);padding:6px;width:fit-content;min-width:0;z-index:200;opacity:0;visibility:hidden;transform:translateY(-6px);transition:opacity .18s,visibility .18s,transform .18s}
     .lang-drop.open{opacity:1;visibility:visible;transform:translateY(0)}
@@ -256,14 +256,19 @@
     .cta-red p{font-size:17px;color:rgba(255,255,255,.8);margin-bottom:36px}
 
     /* FOOTER */
-    footer{background:var(--navy-xdark);padding:72px 0 40px}
-    .footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;padding-bottom:48px;border-bottom:1px solid rgba(255,255,255,.1)}
-    .footer-brand{display:flex;flex-direction:column;gap:16px}
-    .f-desc{font-size:14px;color:rgba(255,255,255,.46);line-height:1.65;max-width:240px}
-    .footer-col h4{font-size:11px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:18px}
-    .footer-col a{display:block;font-size:14px;color:rgba(255,255,255,.58);text-decoration:none;margin-bottom:10px;transition:color .2s;cursor:pointer}
-    .footer-col a:hover{color:white}
-    .footer-bot{padding-top:24px;display:flex;justify-content:space-between;align-items:center;font-size:13px;color:rgba(255,255,255,.3)}
+    footer{background:#292437;padding:24px 0 28px}
+    .footer-top{display:flex;align-items:center;justify-content:space-between;padding-bottom:18px;margin-bottom:18px;border-bottom:1px solid rgba(255,255,255,.1)}
+    .footer-logo{height:30px;width:auto;filter:brightness(0) invert(1);opacity:.6;flex-shrink:0}
+    .footer-nav{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:0}
+    .footer-nav a{font-size:13px;font-weight:500;color:rgba(255,255,255,.72);text-decoration:none;padding:5px 14px;transition:color .18s;cursor:pointer}
+    .footer-nav a:hover{color:rgba(255,255,255,.9)}
+    .footer-bot{display:flex;align-items:center;justify-content:space-between}
+    .footer-legal{display:flex;flex-wrap:wrap;gap:0}
+    .footer-legal a{font-size:12px;font-weight:500;color:rgba(255,255,255,.38);text-decoration:none;padding:4px 14px;transition:color .18s}
+    .footer-legal a:first-child{padding-left:0}
+    .footer-legal a:hover{color:rgba(255,255,255,.7)}
+    .footer-bot>span{font-size:12px;color:rgba(255,255,255,.35);line-height:1.5}
+    @media(max-width:768px){.footer-top{flex-direction:column;align-items:flex-start;gap:16px}.footer-nav{justify-content:flex-start}.footer-bot{flex-direction:column;align-items:flex-start;gap:10px}}
 
     /* RESPONSIVE */
     @media (max-width:1024px){
@@ -286,7 +291,7 @@
       .hero-visual{display:none}
       .trust-inner{flex-direction:column;gap:20px}
       .svc-layout,.svc-layout.flip{grid-template-columns:1fr;direction:ltr}
-      .footer-top{grid-template-columns:1fr 1fr}
+      
     }
     @media (max-width:768px){
       .nav-right .btn{display:none}
@@ -300,8 +305,8 @@
       .step-num-big{font-size:48px}
       .why-grid{grid-template-columns:1fr}
       .form-row{grid-template-columns:1fr}
-      .footer-top{grid-template-columns:1fr}
-      .footer-bot{flex-direction:column;gap:8px;text-align:center}
+      
+      
       .form-card{padding:28px 20px}
     }
   </style>
@@ -1108,38 +1113,23 @@
 <footer>
   <div class="wrap">
     <div class="footer-top">
-      <div class="footer-brand">
-        <img src="LogoAVX.svg" alt="AVX Express LLC" style="height:56px;width:auto;max-width:220px;object-fit:contain;filter:brightness(0) invert(1);opacity:.85;">
-        <p class="f-desc t-es">Tu casillero virtual en EE.UU. Compra en cualquier tienda americana y recíbelo donde estés.</p>
-        <p class="f-desc t-en">Your virtual mailbox in the U.S. Shop any American store and receive it wherever you are.</p>
-      </div>
-      <div class="footer-col">
-        <h4 class="t-es">Servicios</h4><h4 class="t-en">Services</h4>
-      <a href="te-compramos.html"><span class="t-es">Te Compramos</span><span class="t-en">We Buy For You</span></a>
-      <a href="impuestos.html"><span class="t-es">Impuestos de Aduana</span><span class="t-en">Customs Duties</span></a>
-      <a href="tiendas.html"><span class="t-es">Tiendas</span><span class="t-en">Stores</span></a>
-        <a onclick="goTo('servicios','paquetes')"><span class="t-es">Reenvío de Paquetes</span><span class="t-en">Package Forwarding</span></a>
-        <a onclick="goTo('servicios','envios')"><span class="t-es">Envíos Internacionales</span><span class="t-en">International Shipping</span></a>
-        <a onclick="goTo('servicios','transferencias')"><span class="t-es">Transferencia de Dinero</span><span class="t-en">Money Transfer</span></a>
-        <a onclick="goTo('servicios','notaria')"><span class="t-es">Notaría y Apostilla</span><span class="t-en">Notary &amp; Apostille</span></a>
-      </div>
-      <div class="footer-col">
-        <h4 class="t-es">Empresa</h4><h4 class="t-en">Company</h4>
-      <a href="agencias.html"><span class="t-es">Nuestras Agencias</span><span class="t-en">Our Agencies</span></a>
-        <a onclick="goTo('como-funciona')"><span class="t-es">Cómo Funciona</span><span class="t-en">How It Works</span></a>
-        <a onclick="goTo('faq')"><span class="t-es">Preguntas Frecuentes</span><span class="t-en">FAQ</span></a>
-        <a onclick="goTo('contacto')"><span class="t-es">Contacto</span><span class="t-en">Contact</span></a>
-      </div>
-      <div class="footer-col">
-        <h4>Legal</h4>
-        <a href="#"><span class="t-es">Términos de Uso</span><span class="t-en">Terms of Use</span></a>
-        <a href="#"><span class="t-es">Privacidad</span><span class="t-en">Privacy</span></a>
-        <a href="#"><span class="t-es">Artículos Prohibidos</span><span class="t-en">Prohibited Items</span></a>
+      <img src="LogoAVX.svg" alt="AVX Express" class="footer-logo">
+      <div class="footer-nav">
+        <a href="servicios.html"><span class="t-es">Servicios</span><span class="t-en">Services</span></a>
+        <a href="como-funciona.html"><span class="t-es">Cómo Funciona</span><span class="t-en">How It Works</span></a>
+        <a href="calculadora.html">Calculadora</a>
+        <a href="rastreo.html">Rastreo</a>
+        <a href="faq.html"><span class="t-es">Preguntas</span><span class="t-en">FAQ</span></a>
+        <a href="contacto.html">Contacto</a>
       </div>
     </div>
     <div class="footer-bot">
-      <span>&copy; 2025 AVX Express LLC. <span class="t-es">Todos los derechos reservados.</span><span class="t-en">All rights reserved.</span></span>
-      <span>Miami, FL · <span class="t-es">Estados Unidos</span><span class="t-en">United States</span></span>
+      <div class="footer-legal">
+        <a href="terminos.html"><span class="t-es">Términos de Uso</span><span class="t-en">Terms of Use</span></a>
+        <a href="privacidad.html"><span class="t-es">Privacidad</span><span class="t-en">Privacy</span></a>
+        <a href="articulos-prohibidos.html"><span class="t-es">Artículos Prohibidos</span><span class="t-en">Prohibited Items</span></a>
+      </div>
+      <span>&copy; 2026 AVX Express LLC. <span class="t-es">Todos los derechos reservados.</span><span class="t-en">All rights reserved.</span></span>
     </div>
   </div>
 </footer>
@@ -1249,11 +1239,17 @@
     btn.style.background = '#1a7a43';
     btn.disabled = true;
   }
-  // dynamic sticky nav top
+  // dynamic sticky nav top + mobile menu offset
   (function(){
     var banner=document.querySelector('.avx-anuncio');
     var nav=document.querySelector('nav');
-    function syncTop(){if(banner&&nav)nav.style.top=banner.offsetHeight+'px';}
+    var mobileMenu=document.querySelector('.mobile-menu');
+    function syncTop(){
+      if(banner&&nav){
+        nav.style.top=banner.offsetHeight+'px';
+        if(mobileMenu)mobileMenu.style.top=(banner.offsetHeight+nav.offsetHeight)+'px';
+      }
+    }
     syncTop();
     window.addEventListener('resize',syncTop);
   })();

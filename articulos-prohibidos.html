@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta name="robots" content="noindex, nofollow">
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Artículos Prohibidos · AVX Express LLC</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --red: #D71E28; --red-dark: #b81b23; --navy: #0070C5; --navy-dark: #102C57;
+      --navy-xdark: #07101E; --white: #ffffff; --surface: #F2F6FC;
+      --text: #292437; --text-soft: #5C6E8A; --border: #D4DFEF;
+      --r: 14px; --pill: 999px; --wrap: 1280px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Ubuntu', system-ui, sans-serif; color: var(--text); background: var(--white); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    img { max-width: 100%; display: block; }
+    .wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 clamp(20px,4vw,72px); }
+    .eyebrow { display: inline-flex; align-items: center; gap: 10px; font-size: 11.5px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--red); }
+    .btn { display: inline-flex; align-items: center; gap: 8px; font-family: 'Ubuntu', sans-serif; font-weight: 700; font-size: 15px; border: none; cursor: pointer; text-decoration: none; border-radius: var(--pill); padding: 11px 22px; transition: background .18s, transform .18s, box-shadow .18s, color .18s; }
+    .btn-primary { background: var(--red); color: white; }
+    .btn-primary:hover { background: var(--red-dark); transform: translateY(-1px); box-shadow: 0 6px 22px rgba(215,30,40,.28); }
+    nav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,.94); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid var(--border); }
+    .nav-in { display: flex; align-items: center; justify-content: space-between; height: 72px; gap: 16px; }
+    .logo { display: flex; align-items: center; text-decoration: none; flex-shrink: 0; }
+    .logo img { height: 56px; width: auto; }
+    .nav-links { display: flex; gap: 0; list-style: none; }
+    .nav-links a { display: inline-flex; align-items: center; gap: 3px; font-size: 14px; font-weight: 500; color: var(--text-soft); text-decoration: none; cursor: pointer; white-space: nowrap; padding: 5px 12px; border-radius: 999px; transition: color .18s, background .18s; }
+    .nav-links a:hover { color: var(--navy); }
+    .nav-links li { position: relative; }
+    .nav-links li:hover .nav-dropdown { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
+    .nav-dropdown { display: block; position: absolute; top: calc(100% + 6px); left: 50%; transform: translateX(-50%) translateY(-8px); background: white; border: 1px solid var(--border); border-radius: 12px; box-shadow: 0 8px 32px rgba(0,0,0,.12); padding: 8px; min-width: 230px; z-index: 200; opacity: 0; visibility: hidden; transition: opacity .18s, visibility .18s, transform .18s; }
+    .nav-dropdown a { display: block; font-size: 13.5px; font-weight: 500; color: var(--text); text-decoration: none; padding: 8px 14px; border-radius: 8px; transition: background .15s, color .15s; white-space: nowrap; }
+    .nav-dropdown a:hover { background: var(--surface); color: var(--navy); }
+    .nav-dropdown hr { border: none; border-top: 1px solid var(--border); margin: 6px 0; }
+    .nav-right { display: flex; align-items: center; gap: 18px; }
+    .lang-sel { position: relative; }
+    .lang-sel-btn { display: flex; align-items: center; gap: 5px; background: none; border: none; cursor: pointer; font-size: 13px; font-weight: 600; color: var(--navy); white-space: nowrap; padding: 4px 2px; font-family: 'Ubuntu', sans-serif; }
+    .lang-sel-btn:hover { opacity: .75; }
+    .lang-drop { position: absolute; top: calc(100% + 6px); right: 0; background: white; border: 1px solid var(--border); border-radius: 12px; box-shadow: 0 8px 32px rgba(0,0,0,.12); padding: 6px; width: fit-content; z-index: 200; opacity: 0; visibility: hidden; transform: translateY(-6px); transition: opacity .18s, visibility .18s, transform .18s; }
+    .lang-drop.open { opacity: 1; visibility: visible; transform: translateY(0); }
+    .lang-opt { display: flex; align-items: center; gap: 8px; background: none; border: none; cursor: pointer; font-size: 13.5px; font-weight: 500; color: var(--text); padding: 8px 12px; border-radius: 8px; text-align: left; transition: background .15s; font-family: 'Ubuntu', sans-serif; }
+    .lang-opt:hover { background: var(--surface); }
+    .lang-opt.active { font-weight: 700; color: var(--navy); }
+    [data-show="en"] .t-es, [data-show="es"] .t-en { display: none !important; }
+
+    .page-hero { padding: 48px 0 40px; background: #FFF5F5; border-bottom: 1px solid #FECDCD; }
+    .page-hero .eyebrow { margin-bottom: 14px; }
+    .page-hero h1 { font-size: clamp(30px,4vw,48px); font-weight: 700; letter-spacing: -1.2px; line-height: 1.1; color: var(--text); margin-bottom: 14px; }
+    .page-hero p { font-size: 16px; color: var(--text-soft); max-width: 580px; line-height: 1.65; }
+
+    .legal-wrap { max-width: 760px; margin: 0 auto; padding: 0 clamp(20px,4vw,72px); }
+    .legal-body { padding: 52px 0 72px; }
+    .legal-updated { font-size: 13px; color: var(--text-soft); margin-bottom: 40px; }
+    .legal-section { margin-bottom: 36px; }
+    .legal-section h2 { font-size: 19px; font-weight: 700; color: var(--navy-dark); margin-bottom: 12px; padding-bottom: 10px; border-bottom: 1px solid var(--border); }
+    .legal-section p { font-size: 15px; color: var(--text-soft); line-height: 1.75; margin-bottom: 12px; }
+    .legal-section ul { padding-left: 20px; margin-bottom: 12px; }
+    .legal-section li { font-size: 15px; color: var(--text-soft); line-height: 1.75; margin-bottom: 6px; }
+    .legal-section a { color: var(--red); text-decoration: none; font-weight: 500; }
+    .legal-section a:hover { text-decoration: underline; }
+
+    .proh-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 12px; }
+    .proh-card { border: 1px solid var(--border); border-radius: 12px; padding: 20px; }
+    .proh-card.danger { border-color: #FECDCD; background: #FFF8F8; }
+    .proh-card.warn { border-color: #FDECC8; background: #FFFBF4; }
+    .proh-card h3 { font-size: 14px; font-weight: 700; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+    .proh-card.danger h3 { color: var(--red); }
+    .proh-card.warn h3 { color: #B45309; }
+    .proh-card ul { padding-left: 16px; }
+    .proh-card li { font-size: 13.5px; color: var(--text-soft); line-height: 1.65; margin-bottom: 4px; }
+
+    .alert-box { background: #FFF5F5; border: 1.5px solid #FECDCD; border-radius: 10px; padding: 18px 22px; margin-bottom: 32px; display: flex; gap: 14px; align-items: flex-start; }
+    .alert-box svg { flex-shrink: 0; margin-top: 2px; }
+    .alert-box p { font-size: 14px; color: #7F1D1D; line-height: 1.65; margin: 0; }
+    .alert-box strong { color: #991B1B; }
+
+    @media(max-width:600px){.proh-grid{grid-template-columns:1fr}}
+
+    footer{background:#292437;padding:24px 0 28px}
+    .footer-top{display:flex;align-items:center;justify-content:space-between;padding-bottom:18px;margin-bottom:18px;border-bottom:1px solid rgba(255,255,255,.1)}
+    .footer-logo{height:30px;width:auto;filter:brightness(0) invert(1);opacity:.6;flex-shrink:0}
+    .footer-nav{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:0}
+    .footer-nav a{font-size:13px;font-weight:500;color:rgba(255,255,255,.72);text-decoration:none;padding:5px 14px;transition:color .18s;cursor:pointer}
+    .footer-nav a:hover{color:rgba(255,255,255,.9)}
+    .footer-bot{display:flex;align-items:center;justify-content:space-between}
+    .footer-legal{display:flex;flex-wrap:wrap;gap:0}
+    .footer-legal a{font-size:12px;font-weight:500;color:rgba(255,255,255,.38);text-decoration:none;padding:4px 14px;transition:color .18s}
+    .footer-legal a:first-child{padding-left:0}
+    .footer-legal a:hover{color:rgba(255,255,255,.7)}
+    .footer-bot>span{font-size:12px;color:rgba(255,255,255,.35);line-height:1.5}
+    @media(max-width:768px){.footer-top{flex-direction:column;align-items:flex-start;gap:16px}.footer-nav{justify-content:flex-start}.footer-bot{flex-direction:column;align-items:flex-start;gap:10px}}
+
+    .hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:6px}
+    .hamburger span{display:block;width:22px;height:2px;background:var(--text);border-radius:2px;transition:transform .22s,opacity .22s}
+    .hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+    .hamburger.open span:nth-child(2){opacity:0}
+    .hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+    .mobile-menu{display:none;position:fixed;inset:72px 0 0 0;background:white;z-index:99;flex-direction:column;padding:24px 20px;gap:4px;border-top:1px solid var(--border)}
+    .mobile-menu.open{display:flex}
+    .mobile-menu a{font-size:17px;font-weight:500;color:var(--text);text-decoration:none;padding:14px 12px;border-radius:10px;transition:background .15s,color .15s;cursor:pointer}
+    .mobile-menu a:hover{background:var(--surface);color:var(--navy)}
+    .mobile-menu .mobile-cta{margin-top:16px}
+    @media(max-width:1100px){.nav-right .btn{display:none}.hamburger{display:flex}.nav-links{display:none}}
+  </style>
+</head>
+<body data-show="es">
+<div class="avx-anuncio"><a href="migracion.html"><span class="t-es">📦 ¿Tu casillero cerró? <b>Migra a AVX en 2 minutos</b> y no pierdas tus compras →</span><span class="t-en">📦 Mailbox shutting down? <b>Migrate to AVX in 2 minutes</b> →</span></a></div><style>.avx-anuncio{position:sticky;top:0;z-index:101;background:#004B72;color:#fff;text-align:center;font-size:13.5px;padding:9px 16px;line-height:1.4}.avx-anuncio a{color:#fff;text-decoration:none;font-weight:500}.avx-anuncio a:hover{text-decoration:underline}.avx-anuncio b{color:#FF8000}</style>
+
+<nav>
+  <div class="wrap nav-in">
+    <a href="home.html" class="logo"><img src="LogoAVX.svg" alt="AVX Express LLC"></a>
+    <ul class="nav-links">
+      <li>
+        <a href="servicios.html"><span class="t-es">Servicios</span><span class="t-en">Services</span><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></a>
+        <div class="nav-dropdown">
+          <a href="te-compramos.html"><span class="t-es">Te Compramos</span><span class="t-en">We Buy For You</span></a>
+          <a href="impuestos.html"><span class="t-es">Impuestos de Aduana</span><span class="t-en">Customs Duties</span></a>
+          <a href="tiendas.html"><span class="t-es">Tiendas</span><span class="t-en">Stores</span></a>
+          <hr>
+          <a href="servicios.html#paquetes"><span class="t-es">Reenvío de Paquetes</span><span class="t-en">Package Forwarding</span></a>
+          <a href="servicios.html#envios"><span class="t-es">Envíos Internacionales</span><span class="t-en">Int'l Shipping</span></a>
+          <a href="servicios.html#transferencias"><span class="t-es">Transferencia de Dinero</span><span class="t-en">Money Transfer</span></a>
+          <a href="servicios.html#notaria"><span class="t-es">Notaría y Apostilla</span><span class="t-en">Notary &amp; Apostille</span></a>
+        </div>
+      </li>
+      <li><a href="como-funciona.html"><span class="t-es">Cómo Funciona</span><span class="t-en">How It Works</span></a></li>
+      <li><a href="calculadora.html"><span class="t-es">Calculadora</span><span class="t-en">Calculator</span></a></li>
+      <li><a href="rastreo.html"><span class="t-es">Rastreo</span><span class="t-en">Tracking</span></a></li>
+      <li><a href="faq.html"><span class="t-es">Preguntas</span><span class="t-en">FAQ</span></a></li>
+      <li><a href="contacto.html"><span class="t-es">Contacto</span><span class="t-en">Contact</span></a></li>
+    </ul>
+    <div class="nav-right">
+      <div class="lang-sel" id="langSel">
+        <button class="lang-sel-btn" id="langSelBtn" onclick="toggleLangDrop(event)">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          <span class="lang-code" id="langCode">ESP</span>
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="lang-drop" id="langDrop">
+          <button class="lang-opt active" onclick="pickLang('es')">Español</button>
+          <button class="lang-opt" onclick="pickLang('en')">English</button>
+        </div>
+      </div>
+      <a href="https://app.avxexpress.com/login.html" style="font-size:14.5px;font-weight:600;color:#D71E28;text-decoration:none;white-space:nowrap" class="avx-login"><span class="t-es">Mi cuenta</span><span class="t-en">Sign in</span></a>
+      <a href="https://app.avxexpress.com/registro.html" class="btn btn-primary">
+        <span class="t-es">Crear mi cuenta</span><span class="t-en">Create account</span>
+      </a>
+      <button class="hamburger" id="hamburger" aria-label="Menú" onclick="toggleMobile()"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="servicios.html"><span class="t-es">Servicios</span><span class="t-en">Services</span></a>
+  <a href="como-funciona.html"><span class="t-es">Cómo Funciona</span><span class="t-en">How It Works</span></a>
+  <a href="calculadora.html"><span class="t-es">Calculadora</span><span class="t-en">Calculator</span></a>
+  <a href="rastreo.html"><span class="t-es">Rastreo</span><span class="t-en">Tracking</span></a>
+  <a href="faq.html"><span class="t-es">Preguntas</span><span class="t-en">FAQ</span></a>
+  <a href="contacto.html"><span class="t-es">Contacto</span><span class="t-en">Contact</span></a>
+  <a href="https://app.avxexpress.com/registro.html" class="btn btn-primary mobile-cta"><span class="t-es">Crear mi cuenta</span><span class="t-en">Create account</span></a>
+</div>
+
+<div class="page-hero">
+  <div class="wrap">
+    <span class="eyebrow"><span class="t-es">Legal</span><span class="t-en">Legal</span></span>
+    <h1><span class="t-es">Artículos Prohibidos</span><span class="t-en">Prohibited Items</span></h1>
+    <p class="t-es">Por seguridad, cumplimiento legal y las regulaciones de los transportistas, no podemos recibir, almacenar ni reenviar los artículos listados a continuación. El incumplimiento puede resultar en la retención del paquete y cancelación de la cuenta.</p>
+    <p class="t-en">For safety, legal compliance, and carrier regulations, we cannot receive, store, or forward the items listed below. Non-compliance may result in package detention and account cancellation.</p>
+  </div>
+</div>
+
+<section class="legal-body">
+  <div class="legal-wrap">
+    <p class="legal-updated"><span class="t-es">Última actualización: enero de 2026</span><span class="t-en">Last updated: January 2026</span></p>
+
+    <div class="alert-box">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#DC2626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      <p class="t-es"><strong>Importante:</strong> Si enviamos un paquete que contiene artículos prohibidos sin saberlo, el transportista podrá retenerlo o destruirlo. AVX Express LLC no será responsable por las consecuencias legales o económicas derivadas del envío de artículos prohibidos.</p>
+      <p class="t-en"><strong>Important:</strong> If we unknowingly ship a package containing prohibited items, the carrier may detain or destroy it. AVX Express LLC will not be liable for legal or economic consequences arising from shipping prohibited items.</p>
+    </div>
+
+    <div class="legal-section">
+      <h2><span class="t-es">Artículos estrictamente prohibidos</span><span class="t-en">Strictly Prohibited Items</span></h2>
+      <p class="t-es">Los siguientes artículos nunca pueden ser enviados bajo ninguna circunstancia:</p>
+      <p class="t-en">The following items can never be shipped under any circumstances:</p>
+
+      <div class="proh-grid">
+        <div class="proh-card danger">
+          <h3>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            <span class="t-es">Armas y explosivos</span><span class="t-en">Weapons & Explosives</span>
+          </h3>
+          <ul>
+            <li><span class="t-es">Armas de fuego, munición y piezas</span><span class="t-en">Firearms, ammunition, and parts</span></li>
+            <li><span class="t-es">Explosivos, fuegos artificiales, bengalas</span><span class="t-en">Explosives, fireworks, flares</span></li>
+            <li><span class="t-es">Armas blancas de uso militar</span><span class="t-en">Military-grade bladed weapons</span></li>
+            <li><span class="t-es">Réplicas funcionales de armas</span><span class="t-en">Functional weapon replicas</span></li>
+          </ul>
+        </div>
+        <div class="proh-card danger">
+          <h3>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg>
+            <span class="t-es">Drogas y sustancias controladas</span><span class="t-en">Drugs & Controlled Substances</span>
+          </h3>
+          <ul>
+            <li><span class="t-es">Narcóticos y estupefacientes</span><span class="t-en">Narcotics and controlled drugs</span></li>
+            <li><span class="t-es">Medicamentos sin prescripción válida</span><span class="t-en">Prescription drugs without valid prescription</span></li>
+            <li><span class="t-es">Sustancias psicoactivas ilegales</span><span class="t-en">Illegal psychoactive substances</span></li>
+            <li><span class="t-es">Parafernalia de drogas</span><span class="t-en">Drug paraphernalia</span></li>
+          </ul>
+        </div>
+        <div class="proh-card danger">
+          <h3>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            <span class="t-es">Materiales peligrosos</span><span class="t-en">Hazardous Materials</span>
+          </h3>
+          <ul>
+            <li><span class="t-es">Materiales radiactivos</span><span class="t-en">Radioactive materials</span></li>
+            <li><span class="t-es">Ácidos corrosivos y químicos tóxicos</span><span class="t-en">Corrosive acids and toxic chemicals</span></li>
+            <li><span class="t-es">Gases comprimidos inflamables</span><span class="t-en">Flammable compressed gases</span></li>
+            <li><span class="t-es">Baterías de litio sueltas (sin dispositivo)</span><span class="t-en">Loose lithium batteries (without device)</span></li>
+          </ul>
+        </div>
+        <div class="proh-card danger">
+          <h3>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            <span class="t-es">Contenido ilegal</span><span class="t-en">Illegal Content</span>
+          </h3>
+          <ul>
+            <li><span class="t-es">Material de abuso infantil</span><span class="t-en">Child abuse material</span></li>
+            <li><span class="t-es">Artículos falsificados o piratas</span><span class="t-en">Counterfeit or pirated goods</span></li>
+            <li><span class="t-es">Dinero en efectivo, cheques, instrumentos financieros</span><span class="t-en">Cash, checks, financial instruments</span></li>
+            <li><span class="t-es">Bienes con sanciones OFAC</span><span class="t-en">OFAC-sanctioned goods</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="legal-section">
+      <h2><span class="t-es">Artículos con restricciones especiales</span><span class="t-en">Items with Special Restrictions</span></h2>
+      <p class="t-es">Estos artículos pueden enviarse en algunos casos pero requieren documentación adicional o tienen condiciones específicas. Consulta con nuestro equipo antes de enviar:</p>
+      <p class="t-en">These items may be shipped in some cases but require additional documentation or have specific conditions. Check with our team before shipping:</p>
+
+      <div class="proh-grid">
+        <div class="proh-card warn">
+          <h3><span class="t-es">Alimentos y bebidas</span><span class="t-en">Food & Beverages</span></h3>
+          <ul>
+            <li><span class="t-es">Alimentos perecederos: no permitidos</span><span class="t-en">Perishable foods: not allowed</span></li>
+            <li><span class="t-es">Alimentos no perecederos: permitidos con documentación</span><span class="t-en">Non-perishable foods: allowed with documentation</span></li>
+            <li><span class="t-es">Alcohol: restringido según país de destino</span><span class="t-en">Alcohol: restricted by destination country</span></li>
+          </ul>
+        </div>
+        <div class="proh-card warn">
+          <h3><span class="t-es">Animales y plantas</span><span class="t-en">Animals & Plants</span></h3>
+          <ul>
+            <li><span class="t-es">Animales vivos: no permitidos</span><span class="t-en">Live animals: not allowed</span></li>
+            <li><span class="t-es">Plantas vivas y tierra: requieren permiso fitosanitario</span><span class="t-en">Live plants and soil: require phytosanitary permit</span></li>
+            <li><span class="t-es">Productos de origen animal (CITES): requieren permiso</span><span class="t-en">Animal-origin products (CITES): require permit</span></li>
+          </ul>
+        </div>
+        <div class="proh-card warn">
+          <h3><span class="t-es">Electrónicos y baterías</span><span class="t-en">Electronics & Batteries</span></h3>
+          <ul>
+            <li><span class="t-es">Dispositivos con batería de litio integrada: permitidos con restricciones</span><span class="t-en">Devices with built-in lithium batteries: allowed with restrictions</span></li>
+            <li><span class="t-es">Drones: restricciones según país destino</span><span class="t-en">Drones: restrictions by destination country</span></li>
+            <li><span class="t-es">Equipos de comunicación encriptada: puede requerir permisos</span><span class="t-en">Encrypted communication equipment: may require permits</span></li>
+          </ul>
+        </div>
+        <div class="proh-card warn">
+          <h3><span class="t-es">Tabaco y vaporizadores</span><span class="t-en">Tobacco & Vapes</span></h3>
+          <ul>
+            <li><span class="t-es">Cigarrillos y tabaco: restringidos por destino</span><span class="t-en">Cigarettes and tobacco: restricted by destination</span></li>
+            <li><span class="t-es">Cigarrillos electrónicos y líquidos: prohibidos por varios transportistas</span><span class="t-en">E-cigarettes and liquids: prohibited by many carriers</span></li>
+            <li><span class="t-es">Consultar antes de enviar</span><span class="t-en">Check before shipping</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="legal-section">
+      <h2><span class="t-es">¿Tienes dudas sobre un artículo?</span><span class="t-en">Unsure about an item?</span></h2>
+      <p class="t-es">Si no estás seguro de si tu artículo puede ser enviado, contáctanos antes de realizar tu compra. Es mejor verificar con anticipación que tener un paquete retenido en aduana.</p>
+      <p class="t-en">If you are unsure whether your item can be shipped, contact us before making your purchase. It is better to verify in advance than to have a package held at customs.</p>
+      <p><a href="contacto.html"><span class="t-es">Contactar al equipo AVX →</span><span class="t-en">Contact the AVX team →</span></a></p>
+    </div>
+  </div>
+</section>
+
+<footer><div class="wrap">
+  <div class="footer-top">
+    <img src="LogoAVX.svg" alt="AVX Express" class="footer-logo">
+    <div class="footer-nav">
+      <a href="servicios.html"><span class="t-es">Servicios</span><span class="t-en">Services</span></a>
+      <a href="como-funciona.html"><span class="t-es">Cómo Funciona</span><span class="t-en">How It Works</span></a>
+      <a href="calculadora.html">Calculadora</a>
+      <a href="rastreo.html">Rastreo</a>
+      <a href="faq.html"><span class="t-es">Preguntas</span><span class="t-en">FAQ</span></a>
+      <a href="contacto.html">Contacto</a>
+    </div>
+  </div>
+  <div class="footer-bot">
+    <div class="footer-legal">
+      <a href="terminos.html"><span class="t-es">Términos de Uso</span><span class="t-en">Terms of Use</span></a>
+      <a href="privacidad.html"><span class="t-es">Privacidad</span><span class="t-en">Privacy</span></a>
+      <a href="articulos-prohibidos.html"><span class="t-es">Artículos Prohibidos</span><span class="t-en">Prohibited Items</span></a>
+    </div>
+    <span>&copy; 2026 AVX Express LLC. <span class="t-es">Todos los derechos reservados.</span><span class="t-en">All rights reserved.</span></span>
+  </div>
+</div></footer>
+
+<script>
+  function toggleMobile(){var btn=document.getElementById('hamburger'),menu=document.getElementById('mobileMenu');if(!btn||!menu)return;var open=menu.classList.toggle('open');btn.classList.toggle('open',open);document.body.style.overflow=open?'hidden':'';}
+  function setLang(lang){document.body.dataset.show=lang;localStorage.setItem('avx-lang',lang);var code=document.getElementById('langCode');if(code)code.textContent=lang==='es'?'ESP':'ENG';document.querySelectorAll('.lang-opt').forEach(function(b){b.classList.toggle('active',b.getAttribute('onclick')&&b.getAttribute('onclick').indexOf("'"+lang+"'")>-1);});}
+  function toggleLangDrop(e){e.stopPropagation();var d=document.getElementById('langDrop');if(d)d.classList.toggle('open');}
+  function pickLang(l){setLang(l);var d=document.getElementById('langDrop');if(d)d.classList.remove('open');}
+  document.addEventListener('click',function(){var d=document.getElementById('langDrop');if(d)d.classList.remove('open');});
+  setLang(localStorage.getItem('avx-lang')||'es');
+  (function(){var banner=document.querySelector('.avx-anuncio'),nav=document.querySelector('nav'),mob=document.querySelector('.mobile-menu');function syncTop(){if(nav){var bh=banner?banner.offsetHeight:0;nav.style.top=bh+'px';if(mob)mob.style.top=(bh+nav.offsetHeight)+'px';}}syncTop();window.addEventListener('resize',syncTop);})();
+</script>
+</body>
+</html>
