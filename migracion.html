@@ -61,11 +61,17 @@
     @media(max-width:1100px){.nav-links{display:none}}
     @media(max-width:600px){}
 
-    .mg-hero{padding:48px 0;background:linear-gradient(135deg,var(--navy-dark),var(--navy-xdark));color:#fff}
-    .mg-hero .eyebrow{color:#FF8000}.mg-hero .eyebrow::before{background:#ff8b7d}
-    .mg-hero h1{font-size:clamp(34px,4.5vw,56px);font-weight:700;letter-spacing:-1.4px;line-height:1.08;margin:16px 0 18px}
-    .mg-hero h1 em{font-style:normal;color:#FF8000}
-    .mg-hero p{font-size:19px;color:rgba(255,255,255,.72);max-width:600px;line-height:1.6;margin-bottom:32px}
+    .mg-hero{padding:48px 0;background:var(--surface);border-bottom:1px solid var(--border)}
+    .mg-hero-inner{display:grid;grid-template-columns:1fr 360px;gap:56px;align-items:center}
+    .mg-hero h1{font-size:clamp(30px,4vw,52px);font-weight:700;letter-spacing:-1.4px;line-height:1.08;color:var(--text);margin:16px 0 18px}
+    .mg-hero h1 em{font-style:normal;color:var(--navy)}
+    .mg-hero p{font-size:18px;color:var(--text-soft);line-height:1.6;margin-bottom:28px}
+    .mg-rescue{background:var(--red);color:#fff;border-radius:var(--r);padding:36px;display:flex;flex-direction:column;gap:18px;box-shadow:0 20px 48px rgba(215,30,40,.22)}
+    .mg-rescue h2{font-size:clamp(20px,2vw,26px);font-weight:700;letter-spacing:-.5px;line-height:1.2;color:#fff}
+    .mg-rescue p{font-size:15px;line-height:1.65;color:rgba(255,255,255,.88)}
+    .mg-rescue .btn{background:#fff;color:var(--red);align-self:flex-start}
+    .mg-rescue .btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.18)}
+    @media(max-width:860px){.mg-hero-inner{grid-template-columns:1fr}}
     .mg-cta{display:flex;gap:14px;flex-wrap:wrap}
     .btn-wa{background:#25D366;color:#fff}.btn-wa:hover{background:#1eb857;transform:translateY(-1px)}
     .mg-steps{padding:48px 0}
@@ -184,15 +190,24 @@
 </div>
 
 <section class="mg-hero"><div class="wrap">
-  <span class="eyebrow t-es">Bienvenido a AVX</span><span class="eyebrow t-en">Welcome to AVX</span>
-  <h1 class="t-es">¿Tu casillero cerró?<br><em>No pierdas</em> tus compras.</h1>
-  <h1 class="t-en">Mailbox shutting down?<br><em>Don't lose</em> your packages.</h1>
-  <p class="t-es">Si te quedaste sin casillero, te ayudamos a migrar a AVX en 2 minutos — y a rescatar los paquetes que tengas en camino antes de que te los devuelvan.</p>
-  <p class="t-en">If you lost your mailbox, we help you migrate to AVX in 2 minutes — and rescue any packages in transit before they get returned.</p>
-  <div class="mg-cta">
-    <a href="https://app.avxexpress.com/registro.html" class="btn btn-primary"><span class="t-es">Crear mi casillero gratis</span><span class="t-en">Create free mailbox</span></a>
-    <a href="https://wa.me/17867803273?text=Hola%20AVX%2C%20me%20qued%C3%A9%20sin%20casillero%20y%20quiero%20migrar" target="_blank" rel="noopener" class="btn btn-wa">
-      <span class="t-es">Migrar por WhatsApp</span><span class="t-en">Migrate via WhatsApp</span></a>
+  <div class="mg-hero-inner">
+    <div>
+      <span class="eyebrow t-es">Bienvenido a AVX</span><span class="eyebrow t-en">Welcome to AVX</span>
+      <h1 class="t-es">¿Tu casillero cerró?<br><em>No pierdas</em> tus compras.</h1>
+      <h1 class="t-en">Mailbox shutting down?<br><em>Don't lose</em> your packages.</h1>
+      <p class="t-es">Si te quedaste sin casillero, te ayudamos a migrar a AVX en 2 minutos y a rescatar los paquetes que tengas en camino antes de que te los devuelvan.</p>
+      <p class="t-en">If you lost your mailbox, we help you migrate to AVX in 2 minutes and rescue any packages in transit before they get returned.</p>
+      <div class="mg-cta">
+        <a href="https://app.avxexpress.com/registro.html" class="btn btn-primary"><span class="t-es">Crear mi casillero gratis</span><span class="t-en">Create free mailbox</span></a>
+        <a href="https://wa.me/17867803273?text=Hola%20AVX%2C%20me%20qued%C3%A9%20sin%20casillero%20y%20quiero%20migrar" target="_blank" rel="noopener" class="btn btn-outline"><span class="t-es">Migrar por WhatsApp</span><span class="t-en">Migrate via WhatsApp</span></a>
+      </div>
+    </div>
+    <div class="mg-rescue">
+      <h2 class="t-es">Rescata tu paquete antes de que se devuelva.</h2><h2 class="t-en">Rescue your package before it's returned.</h2>
+      <p class="t-es">¿Tienes compras en camino que se van a devolver? Escríbenos hoy y te ayudamos a redirigirlas a tu casillero AVX.</p>
+      <p class="t-en">Have purchases in transit about to be returned? Message us today and we'll help redirect them to your AVX mailbox.</p>
+      <a href="https://wa.me/17867803273?text=Hola%20AVX%2C%20tengo%20paquetes%20en%20camino%20que%20se%20van%20a%20devolver%2C%20ay%C3%BAdenme" target="_blank" rel="noopener" class="btn"><span class="t-es">Rescatar mi paquete</span><span class="t-en">Rescue my package</span></a>
+    </div>
   </div>
 </div></section>
 
@@ -204,17 +219,6 @@
     <div class="mstep reveal"><div class="n">02</div><h3 class="t-es">Actualiza tus pedidos</h3><h3 class="t-en">Update your orders</h3><p class="t-es">Cambia la dirección de envío en tus compras pendientes a tu dirección AVX.</p><p class="t-en">Change the shipping address on pending orders to your AVX address.</p></div>
     <div class="mstep reveal"><div class="n">03</div><h3 class="t-es">Nosotros los recibimos</h3><h3 class="t-en">We receive them</h3><p class="t-es">Tus paquetes llegan a nuestra bodega — no se devuelven al vendedor.</p><p class="t-en">Your packages arrive at our warehouse — no returns to seller.</p></div>
     <div class="mstep reveal"><div class="n">04</div><h3 class="t-es">Te los enviamos</h3><h3 class="t-en">We ship them</h3><p class="t-es">Consolidados y a tu puerta, con seguimiento en cada etapa.</p><p class="t-en">Consolidated and to your door, tracked all the way.</p></div>
-  </div>
-</div></section>
-
-<section class="highlight"><div class="wrap">
-  <div class="hl-card reveal">
-    <div>
-      <h2 class="t-es">Rescata tu paquete antes de que se devuelva.</h2><h2 class="t-en">Rescue your package before it's returned.</h2>
-      <p class="t-es">¿Tienes compras en camino que se van a devolver? Escríbenos hoy y te ayudamos a redirigirlas a tu casillero AVX.</p>
-      <p class="t-en">Have purchases in transit about to be returned? Message us today and we'll help redirect them to your AVX mailbox.</p>
-    </div>
-    <a href="https://wa.me/17867803273?text=Hola%20AVX%2C%20tengo%20paquetes%20en%20camino%20que%20se%20van%20a%20devolver%2C%20ay%C3%BAdenme" target="_blank" rel="noopener" class="btn"><span class="t-es">Rescatar mi paquete</span><span class="t-en">Rescue my package</span></a>
   </div>
 </div></section>
 
