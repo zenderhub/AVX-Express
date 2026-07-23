@@ -436,6 +436,7 @@
   $('segUnit').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;
     unidad=b.dataset.u; $('unitLbl').textContent=unidad; $('segUnit').querySelectorAll('button').forEach(x=>x.classList.toggle('active',x===b)); calc();});
   ['peso','valor','collect'].forEach(id=>$(id).addEventListener('input',calc));
+  renderRates(); calc();
 
   // idioma (igual que el resto del sitio de Mone)
   function toggleMobile(){var btn=document.getElementById('hamburger'),menu=document.getElementById('mobileMenu');if(!btn||!menu)return;var open=menu.classList.toggle('open');btn.classList.toggle('open',open);document.body.style.overflow=open?'hidden':'';}

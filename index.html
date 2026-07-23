@@ -45,7 +45,7 @@
     nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.94);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--border)}
     .nav-in{display:flex;align-items:center;justify-content:space-between;height:72px;gap:16px}
     .logo{display:flex;align-items:center;text-decoration:none;flex-shrink:0;cursor:pointer}
-    .logo img{height:56px;width:auto;display:block}
+    .logo img{height:44px;width:auto;display:block}
     .nav-links{display:flex;gap:0;list-style:none}
     .nav-links a{display:inline-flex;align-items:center;gap:3px;font-size:14px;font-weight:500;color:var(--text-soft);text-decoration:none;transition:color .18s,background .18s;cursor:pointer;white-space:nowrap;padding:5px 12px;border-radius:999px}
     .nav-links a:hover{color:var(--navy)}
@@ -71,12 +71,20 @@
     .hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
     .hamburger.open span:nth-child(2){opacity:0}
     .hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
-    .mobile-menu{display:none;position:fixed;inset:72px 0 0 0;background:white;z-index:99;flex-direction:column;padding:24px 20px;gap:4px;border-top:1px solid var(--border)}
+    .mobile-menu{display:none;position:fixed;inset:72px 0 0 0;background:white;z-index:99;flex-direction:column;padding:32px 20px;gap:2px;border-top:1px solid var(--border);overflow-y:auto}
     .mobile-menu.open{display:flex}
-    .mobile-menu a{font-size:17px;font-weight:500;color:var(--text);text-decoration:none;padding:14px 12px;border-radius:10px;transition:background .15s,color .15s;cursor:pointer}
+    .mobile-menu a{font-size:32px !important;font-weight:700 !important;color:var(--text);text-decoration:none;padding:14px 24px;border-radius:var(--pill);transition:background .15s,color .15s;cursor:pointer;line-height:1.1}
     .mobile-menu a:hover{background:var(--surface);color:var(--navy)}
     .mobile-menu a.active{background:#FF8000;color:white!important}
-    .mobile-menu .mobile-cta{margin-top:16px}
+    .mobile-menu .mobile-cta{margin-top:20px;width:100%;justify-content:center;font-size:18px;color:#fff!important}
+    .mm-divider{height:1px;background:var(--border);margin:2px 8px}
+    .mm-accordion-trigger{display:flex;align-items:center;justify-content:space-between;cursor:pointer}
+    .mm-chevron{transition:transform .22s;flex-shrink:0;opacity:.45}
+    .mm-accordion-trigger.open .mm-chevron{transform:rotate(180deg)}
+    .mm-sub{display:none;flex-direction:column;padding:4px 0 6px 16px;gap:0}
+    .mm-sub.open{display:flex}
+    .mm-sub a{font-size:21px !important;font-weight:600 !important;color:var(--text-soft) !important;padding:10px 20px}
+    .mm-sub a:hover{color:var(--navy) !important;background:var(--surface)}
 
     /* PAGES */
     [data-page]{display:none}
@@ -181,16 +189,49 @@
     .svc-layout.flip{direction:rtl}
     .svc-layout.flip>*{direction:ltr}
     .svc-visual{position:relative}
-    .svc-img{border-radius:16px;overflow:hidden;box-shadow:0 16px 48px rgba(7,16,30,.13)}
-    .svc-img img{width:100%;height:380px;object-fit:cover}
-    .svc-tag{position:absolute;top:20px;left:20px;background:var(--red);color:white;font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:6px 14px;border-radius:var(--pill)}
+    .svc-img{position:relative;border-radius:16px;overflow:hidden;box-shadow:0 16px 48px rgba(7,16,30,.13)}
+    .svc-img img{width:100%;height:380px;object-fit:cover;display:block}
+    .svc-img::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,112,197,.13) 0%,rgba(215,30,40,.13) 100%);pointer-events:none}
+    .svc-tag{position:absolute;top:20px;left:20px;z-index:1;background:#FF8000;color:white;font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:6px 14px;border-radius:var(--pill)}
     .svc-copy{display:flex;flex-direction:column;gap:20px}
     .svc-copy h2{font-size:clamp(24px,2.8vw,36px);font-weight:700;letter-spacing:-.6px;line-height:1.2;color:var(--text)}
     .svc-copy p{font-size:16px;color:var(--text-soft);line-height:1.72}
     .feat-list{list-style:none;display:flex;flex-direction:column;gap:10px}
     .feat-list li{display:flex;align-items:flex-start;gap:10px;font-size:15px;color:var(--text)}
     .feat-list li::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--red);margin-top:8px;flex-shrink:0}
-    .pending-note{background:rgba(0,112,197,.06);border:1px solid rgba(0,112,197,.14);border-radius:10px;padding:16px 20px;font-size:14px;color:var(--text-soft);font-style:italic}
+    .hero-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:28px}
+    .hero-tag{display:inline-flex;align-items:center;font-size:13px;font-weight:600;color:var(--navy);background:white;border:1.5px solid var(--border);border-radius:var(--pill);padding:6px 16px;text-decoration:none;transition:border-color .18s,color .18s,background .18s,box-shadow .18s;white-space:nowrap;cursor:pointer}
+    .hero-tag:hover{border-color:var(--navy);box-shadow:0 2px 10px rgba(0,112,197,.14)}
+
+    /* ===================== MIGRACION ===================== */
+    .mg-hero{padding:56px 0;background:var(--surface);border-bottom:1px solid var(--border)}
+    .mg-hero-inner{display:grid;grid-template-columns:1fr 360px;gap:56px;align-items:center}
+    .mg-hero h1{font-size:clamp(30px,4vw,52px);font-weight:700;letter-spacing:-1.4px;line-height:1.08;color:var(--text);margin:16px 0 18px}
+    .mg-hero h1 em{font-style:normal;color:var(--navy)}
+    .mg-hero p{font-size:18px;color:var(--text-soft);line-height:1.6;margin-bottom:28px}
+    .mg-cta{display:flex;gap:14px;flex-wrap:wrap}
+    .mg-rescue{background:var(--red);color:#fff;border-radius:var(--r);padding:36px;display:flex;flex-direction:column;gap:18px;box-shadow:0 20px 48px rgba(215,30,40,.22)}
+    .mg-rescue h2{font-size:clamp(20px,2vw,26px);font-weight:700;letter-spacing:-.5px;line-height:1.2;color:#fff}
+    .mg-rescue p{font-size:15px;line-height:1.65;color:rgba(255,255,255,.88)}
+    .mg-rescue .btn{background:#fff;color:var(--red);align-self:flex-start}
+    .mg-rescue .btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.18)}
+    @media(max-width:860px){.mg-hero-inner{grid-template-columns:1fr}}
+    .mg-steps{padding:48px 0}
+    .mg-steps .sh{max-width:600px;margin-bottom:50px;display:flex;flex-direction:column;gap:12px}
+    .mg-steps h2{font-size:clamp(26px,3vw,38px);font-weight:700;letter-spacing:-.8px}
+    .mg-steps .ssub{font-size:17px;color:var(--text-soft)}
+    .mgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+    .mstep{border-top:3px solid var(--red);padding-top:22px}
+    .mstep .n{font-size:34px;font-weight:700;color:var(--red);line-height:1}
+    .mstep h3{font-size:17px;font-weight:700;margin:12px 0 8px;color:var(--navy-dark)}
+    .mstep p{font-size:14px;color:var(--text-soft)}
+    .hl-band{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:40px 0}
+    .hl-card{background:var(--red);color:#fff;border-radius:var(--r);padding:48px;display:grid;grid-template-columns:1.4fr 1fr;gap:40px;align-items:center;box-shadow:0 24px 60px rgba(215,30,40,.28)}
+    .hl-card h2{font-size:clamp(24px,3vw,34px);font-weight:700;letter-spacing:-.6px;line-height:1.15}
+    .hl-card p{font-size:16px;opacity:.9;margin-top:12px}
+    .hl-card .btn{background:#fff;color:var(--red)}.hl-card .btn:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(0,0,0,.2)}
+    @media(max-width:900px){.mgrid{grid-template-columns:1fr 1fr}.hl-card{grid-template-columns:1fr;text-align:center}}
+    @media(max-width:520px){.mgrid{grid-template-columns:1fr}}
 
     /* ===================== COMO FUNCIONA ===================== */
     .big-steps{padding:56px 0 72px}
@@ -290,11 +331,11 @@
       .hero-grid{grid-template-columns:1fr}
       .hero-visual{display:none}
       .trust-inner{flex-direction:column;gap:20px}
-      .svc-layout,.svc-layout.flip{grid-template-columns:1fr;direction:ltr}
+      .svc-layout,.svc-layout.flip{grid-template-columns:1fr;direction:ltr;gap:24px}
       
     }
     @media (max-width:768px){
-      .nav-right .btn{display:none}
+      .nav-right .btn{display:none!important}
       .hamburger{display:flex}
     }
     @media (max-width:600px){
@@ -312,7 +353,7 @@
   </style>
 </head>
 <body data-show="es">
-<div class="avx-anuncio"><a href="migracion.html"><span class="t-es">📦 ¿Tu casillero cerró? <b>Migra a AVX en 2 minutos</b> y no pierdas tus compras →</span><span class="t-en">📦 Mailbox shutting down? <b>Migrate to AVX in 2 minutes</b> →</span></a></div><style>.avx-anuncio{position:sticky;top:0;z-index:101;background:#004B72;color:#fff;text-align:center;font-size:13.5px;padding:9px 16px;line-height:1.4}.avx-anuncio a{color:#fff;text-decoration:none;font-weight:500}.avx-anuncio a:hover{text-decoration:underline}.avx-anuncio b{color:#FF8000}</style>
+<div class="avx-anuncio"><a onclick="goTo('migracion')" style="cursor:pointer"><span class="t-es">📦 ¿Tu casillero cerró? <b>Migra a AVX en 2 minutos</b> y no pierdas tus compras →</span><span class="t-en">📦 Mailbox shutting down? <b>Migrate to AVX in 2 minutes</b> →</span></a></div><style>.avx-anuncio{position:sticky;top:0;z-index:101;background:#004B72;color:#fff;text-align:center;font-size:13.5px;padding:9px 16px;line-height:1.4}.avx-anuncio a{color:#fff;text-decoration:none;font-weight:500}.avx-anuncio a:hover{text-decoration:underline}.avx-anuncio b{color:#FF8000}</style>
 
 <!-- NAV -->
 <nav>
@@ -366,10 +407,27 @@
 <!-- MOBILE MENU -->
 <div class="mobile-menu" id="mobileMenu">
 
-  <a data-mnav="servicios" onclick="mobileGoTo('servicios')"><span class="t-es">Servicios</span><span class="t-en">Services</span></a>
+  <a class="mm-accordion-trigger" id="mm-trigger-servicios" onclick="toggleMobileAccordion('mm-servicios')">
+    <span><span class="t-es">Servicios</span><span class="t-en">Services</span></span>
+    <svg class="mm-chevron" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+  </a>
+  <div class="mm-sub" id="mm-servicios">
+    <a onclick="mobileGoTo('servicios','paquetes')"><span class="t-es">Reenvío de Paquetes</span><span class="t-en">Package Forwarding</span></a>
+    <a onclick="mobileGoTo('servicios','envios')"><span class="t-es">Envíos Internacionales</span><span class="t-en">Int'l Shipping</span></a>
+    <a onclick="mobileGoTo('servicios','transferencias')"><span class="t-es">Transferencia de Dinero</span><span class="t-en">Money Transfer</span></a>
+    <a onclick="mobileGoTo('servicios','notaria')"><span class="t-es">Notaría y Apostilla</span><span class="t-en">Notary &amp; Apostille</span></a>
+    <a href="te-compramos.html"><span class="t-es">Te Compramos</span><span class="t-en">We Buy For You</span></a>
+    <a href="impuestos.html"><span class="t-es">Impuestos de Aduana</span><span class="t-en">Customs Duties</span></a>
+    <a href="tiendas.html"><span class="t-es">Tiendas</span><span class="t-en">Stores</span></a>
+  </div>
+  <div class="mm-divider"></div>
+
   <a data-mnav="como-funciona" onclick="mobileGoTo('como-funciona')"><span class="t-es">Cómo Funciona</span><span class="t-en">How It Works</span></a>
+  <div class="mm-divider"></div>
   <a data-mnav="faq" onclick="mobileGoTo('faq')"><span class="t-es">Preguntas</span><span class="t-en">FAQ</span></a>
+  <div class="mm-divider"></div>
   <a data-mnav="contacto" onclick="mobileGoTo('contacto')"><span class="t-es">Contacto</span><span class="t-en">Contact</span></a>
+
   <button class="btn btn-primary mobile-cta" onclick="location.href='https://app.avxexpress.com/registro.html'">
     <span class="t-es">Crear mi cuenta</span><span class="t-en">Create account</span>
   </button>
@@ -429,8 +487,8 @@
         <span class="eyebrow t-es">Nuestros servicios</span><span class="eyebrow t-en">Our services</span>
         <h2 class="stitle t-es">Todo lo que necesitas,<br>en un solo lugar.</h2>
         <h2 class="stitle t-en">Everything you need,<br>in one place.</h2>
-        <p class="ssub t-es">Cuatro servicios diseñados para que tus compras internacionales y trámites lleguen sin complicaciones.</p>
-        <p class="ssub t-en">Four services designed to make your international shopping and paperwork hassle-free.</p>
+        <p class="ssub t-es">Siete servicios diseñados para que tus compras internacionales y trámites lleguen sin complicaciones.</p>
+        <p class="ssub t-en">Seven services designed to make your international shopping and paperwork hassle-free.</p>
       </div>
       <div class="svc-grid">
         <div class="svc-card reveal d1" onclick="goTo('servicios','paquetes')">
@@ -531,10 +589,10 @@
         </div>
         <div class="stat-card reveal d3">
           <div class="stat-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13" rx="1"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
-          <div class="stat-n">4</div>
+          <div class="stat-n">7</div>
           <div class="stat-lbl t-es">Servicios integrados</div><div class="stat-lbl t-en">Integrated services</div>
-          <div class="stat-desc t-es">Paquetes, envíos, transferencias y notaría, todo en una sola plataforma.</div>
-          <div class="stat-desc t-en">Packages, shipping, transfers, and notary, all in one platform.</div>
+          <div class="stat-desc t-es">Reenvío, envíos, transferencias, notaría, compra asistida, aduanas y tiendas, en una sola plataforma.</div>
+          <div class="stat-desc t-en">Forwarding, shipping, transfers, notary, assisted buying, customs, and stores — all in one platform.</div>
         </div>
       </div>
     </div>
@@ -628,10 +686,26 @@
   <div class="page-hero">
     <div class="wrap">
       <span class="eyebrow t-es">Nuestros servicios</span><span class="eyebrow t-en">Our services</span>
-      <h1 class="t-es">Cuatro servicios,<br>una sola plataforma.</h1>
-      <h1 class="t-en">Four services,<br>one platform.</h1>
+      <h1 class="t-es">Siete servicios,<br>una sola plataforma.</h1>
+      <h1 class="t-en">Seven services,<br>one platform.</h1>
       <p class="t-es">En AVX Express simplificamos tus compras y trámites internacionales. Todo lo que necesitas, en un solo lugar.</p>
       <p class="t-en">At AVX Express we simplify your international shopping and paperwork. Everything you need, in one place.</p>
+      <div class="hero-tags">
+        <span class="hero-tag t-es" onclick="document.getElementById('paquetes').scrollIntoView({behavior:'smooth'})">Reenvío de Paquetes</span>
+        <span class="hero-tag t-en" onclick="document.getElementById('paquetes').scrollIntoView({behavior:'smooth'})">Package Forwarding</span>
+        <span class="hero-tag t-es" onclick="document.getElementById('envios').scrollIntoView({behavior:'smooth'})">Envíos Internacionales</span>
+        <span class="hero-tag t-en" onclick="document.getElementById('envios').scrollIntoView({behavior:'smooth'})">Int'l Shipping</span>
+        <span class="hero-tag t-es" onclick="document.getElementById('transferencias').scrollIntoView({behavior:'smooth'})">Transferencia de Dinero</span>
+        <span class="hero-tag t-en" onclick="document.getElementById('transferencias').scrollIntoView({behavior:'smooth'})">Money Transfer</span>
+        <span class="hero-tag t-es" onclick="document.getElementById('notaria').scrollIntoView({behavior:'smooth'})">Notaría y Apostilla</span>
+        <span class="hero-tag t-en" onclick="document.getElementById('notaria').scrollIntoView({behavior:'smooth'})">Notary &amp; Apostille</span>
+        <span class="hero-tag t-es" onclick="document.getElementById('te-compramos').scrollIntoView({behavior:'smooth'})">Te Compramos</span>
+        <span class="hero-tag t-en" onclick="document.getElementById('te-compramos').scrollIntoView({behavior:'smooth'})">We Buy For You</span>
+        <span class="hero-tag t-es" onclick="document.getElementById('impuestos').scrollIntoView({behavior:'smooth'})">Impuestos de Aduana</span>
+        <span class="hero-tag t-en" onclick="document.getElementById('impuestos').scrollIntoView({behavior:'smooth'})">Customs Duties</span>
+        <span class="hero-tag t-es" onclick="document.getElementById('tiendas').scrollIntoView({behavior:'smooth'})">Tiendas</span>
+        <span class="hero-tag t-en" onclick="document.getElementById('tiendas').scrollIntoView({behavior:'smooth'})">Stores</span>
+      </div>
     </div>
   </div>
 
@@ -639,7 +713,7 @@
     <div class="wrap">
       <div class="svc-layout reveal">
         <div class="svc-visual">
-          <div class="svc-img"><img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=80" alt="Reenvío de paquetes"></div>
+          <div class="svc-img"><img src="Imagenes/Package Forwarding.jpg" alt="Reenvío de paquetes"></div>
           <span class="svc-tag t-es">Reenvío</span><span class="svc-tag t-en">Forwarding</span>
         </div>
         <div class="svc-copy">
@@ -653,8 +727,6 @@
             <li class="t-es">Foto de confirmación cuando llega a nuestra bodega</li><li class="t-en">Photo confirmation when it arrives at our warehouse</li>
             <li class="t-es">Inspección de contenido incluida</li><li class="t-en">Content inspection included</li>
           </ul>
-          <div class="pending-note t-es">Próximamente: límites de tamaño y peso, período de almacenamiento gratuito y lista de artículos prohibidos.</div>
-          <div class="pending-note t-en">Coming soon: size and weight limits, free storage period, and prohibited items list.</div>
           <button class="btn btn-primary" style="align-self:flex-start;" onclick="location.href='https://app.avxexpress.com/registro.html'">
             <span class="t-es">Obtener mi dirección</span><span class="t-en">Get my address</span>
           </button>
@@ -667,7 +739,7 @@
     <div class="wrap">
       <div class="svc-layout flip reveal">
         <div class="svc-visual">
-          <div class="svc-img"><img src="https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?auto=format&fit=crop&w=800&q=80" alt="Envíos internacionales"></div>
+          <div class="svc-img"><img src="Imagenes/International shipping.jpg" alt="Envíos internacionales"></div>
           <span class="svc-tag t-es">Envíos</span><span class="svc-tag t-en">Shipping</span>
         </div>
         <div class="svc-copy">
@@ -680,8 +752,6 @@
             <li class="t-es">Entrega confiable y segura</li><li class="t-en">Reliable and secure delivery</li>
             <li class="t-es">Número de guía por envío</li><li class="t-en">Tracking number per shipment</li>
           </ul>
-          <div class="pending-note t-es">Próximamente: países atendidos, tiempos promedio de entrega y manejo de aduanas.</div>
-          <div class="pending-note t-en">Coming soon: countries served, average delivery times, and customs handling details.</div>
           <button class="btn btn-primary" style="align-self:flex-start;" onclick="location.href='calculadora.html'">
             <span class="t-es">Consultar tarifas</span><span class="t-en">Check rates</span>
           </button>
@@ -694,7 +764,7 @@
     <div class="wrap">
       <div class="svc-layout reveal">
         <div class="svc-visual">
-          <div class="svc-img"><img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=800&q=80" alt="Transferencia de dinero"></div>
+          <div class="svc-img"><img src="Imagenes/Money transfer.jpg" alt="Transferencia de dinero"></div>
           <span class="svc-tag t-es">Transferencias</span><span class="svc-tag t-en">Money Transfer</span>
         </div>
         <div class="svc-copy">
@@ -706,8 +776,6 @@
             <li class="t-es">Transacciones seguras</li><li class="t-en">Secure transactions</li>
             <li class="t-es">Proceso simple desde tu cuenta</li><li class="t-en">Simple process from your account</li>
           </ul>
-          <div class="pending-note t-es">Próximamente: países disponibles, límites, comisiones, tiempos de entrega y modalidades.</div>
-          <div class="pending-note t-en">Coming soon: available countries, limits, fees, delivery times, and modalities.</div>
           <button class="btn btn-primary" style="align-self:flex-start;" onclick="goTo('contacto')">
             <span class="t-es">Consultar disponibilidad</span><span class="t-en">Check availability</span>
           </button>
@@ -720,7 +788,7 @@
     <div class="wrap">
       <div class="svc-layout flip reveal">
         <div class="svc-visual">
-          <div class="svc-img"><img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=800&q=80" alt="Notaría y Apostilla"></div>
+          <div class="svc-img"><img src="Imagenes/Notary & Apostille Services.jpg" alt="Notaría y Apostilla"></div>
           <span class="svc-tag t-es">Notaría</span><span class="svc-tag t-en">Notary</span>
         </div>
         <div class="svc-copy">
@@ -732,8 +800,6 @@
             <li class="t-es">Validez internacional</li><li class="t-en">International validity</li>
             <li class="t-es">Proceso rápido y seguro</li><li class="t-en">Fast and secure process</li>
           </ul>
-          <div class="pending-note t-es">Próximamente: jurisdicción, documentos que aplican, modalidad presencial o remota, tiempos y precios.</div>
-          <div class="pending-note t-en">Coming soon: jurisdiction, applicable documents, in-person or remote modality, timing, and pricing.</div>
           <button class="btn btn-primary" style="align-self:flex-start;" onclick="goTo('contacto')">
             <span class="t-es">Solicitar información</span><span class="t-en">Request information</span>
           </button>
@@ -747,7 +813,7 @@
     <div class="wrap">
       <div class="svc-layout flip reveal">
         <div class="svc-visual">
-          <div class="svc-img"><img src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?auto=format&fit=crop&w=800&q=80" alt="Te Compramos"></div>
+          <div class="svc-img"><img src="Imagenes/We buy for you.jpg" alt="Te Compramos"></div>
           <span class="svc-tag t-es">Compra asistida</span><span class="svc-tag t-en">Assisted purchase</span>
         </div>
         <div class="svc-copy">
@@ -770,7 +836,7 @@
     <div class="wrap">
       <div class="svc-layout reveal">
         <div class="svc-visual">
-          <div class="svc-img"><img src="https://images.unsplash.com/photo-1554224154-22dec7ec8818?auto=format&fit=crop&w=800&q=80" alt="Impuestos de Aduana"></div>
+          <div class="svc-img"><img src="Imagenes/Customs Duties.jpg" alt="Impuestos de Aduana"></div>
           <span class="svc-tag t-es">Aduanas</span><span class="svc-tag t-en">Customs</span>
         </div>
         <div class="svc-copy">
@@ -793,7 +859,7 @@
     <div class="wrap">
       <div class="svc-layout flip reveal">
         <div class="svc-visual">
-          <div class="svc-img"><img src="https://images.unsplash.com/photo-1472851294608-062f824d29cc?auto=format&fit=crop&w=800&q=80" alt="Tiendas en EE.UU."></div>
+          <div class="svc-img"><img src="Imagenes/Stores.jpg" alt="Tiendas en EE.UU."></div>
           <span class="svc-tag t-es">Tiendas</span><span class="svc-tag t-en">Stores</span>
         </div>
         <div class="svc-copy">
@@ -1020,7 +1086,7 @@
   <section class="contact-section">
     <div class="wrap">
       <div class="contact-grid">
-        <div class="form-card reveal">
+        <div class="form-card">
           <div class="form-title t-es">Envíanos un mensaje</div>
           <div class="form-title t-en">Send us a message</div>
           <div class="form-sub t-es">Completa el formulario y te contactamos en menos de 24 horas.</div>
@@ -1109,6 +1175,49 @@
 
 </div><!-- /contacto -->
 
+<!-- ==================== PAGE: MIGRACION ==================== -->
+<div data-page="migracion">
+
+  <section class="mg-hero">
+    <div class="wrap">
+      <div class="mg-hero-inner">
+        <div>
+          <span class="eyebrow t-es">Bienvenido a AVX</span><span class="eyebrow t-en">Welcome to AVX</span>
+          <h1 class="t-es">¿Tu casillero cerró?<br><em>No pierdas</em> tus compras.</h1>
+          <h1 class="t-en">Mailbox shutting down?<br><em>Don't lose</em> your packages.</h1>
+          <p class="t-es">Si te quedaste sin casillero, te ayudamos a migrar a AVX en 2 minutos y a rescatar los paquetes que tengas en camino antes de que te los devuelvan.</p>
+          <p class="t-en">If you lost your mailbox, we help you migrate to AVX in 2 minutes and rescue any packages in transit before they get returned.</p>
+          <div class="mg-cta">
+            <a href="https://app.avxexpress.com/registro.html" class="btn btn-primary"><span class="t-es">Crear mi casillero gratis</span><span class="t-en">Create free mailbox</span></a>
+            <a href="https://wa.me/17867803273?text=Hola%20AVX%2C%20me%20qued%C3%A9%20sin%20casillero%20y%20quiero%20migrar" target="_blank" rel="noopener" class="btn btn-outline"><span class="t-es">Migrar por WhatsApp</span><span class="t-en">Migrate via WhatsApp</span></a>
+          </div>
+        </div>
+        <div class="mg-rescue">
+          <h2 class="t-es">Rescata tu paquete antes de que se devuelva.</h2><h2 class="t-en">Rescue your package before it's returned.</h2>
+          <p class="t-es">¿Tienes compras en camino que se van a devolver? Escríbenos hoy y te ayudamos a redirigirlas a tu casillero AVX.</p>
+          <p class="t-en">Have purchases in transit about to be returned? Message us today and we'll help redirect them to your AVX mailbox.</p>
+          <a href="https://wa.me/17867803273?text=Hola%20AVX%2C%20tengo%20paquetes%20en%20camino%20que%20se%20van%20a%20devolver%2C%20ay%C3%BAdenme" target="_blank" rel="noopener" class="btn"><span class="t-es">Rescatar mi paquete</span><span class="t-en">Rescue my package</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="mg-steps">
+    <div class="wrap">
+      <div class="sh"><span class="eyebrow t-es">Migrar es fácil</span><span class="eyebrow t-en">Easy migration</span>
+        <h2 class="t-es">Cambia de casillero sin perder nada.</h2><h2 class="t-en">Switch mailbox without losing a thing.</h2>
+      </div>
+      <div class="mgrid">
+        <div class="mstep reveal"><div class="n">01</div><h3 class="t-es">Crea tu casillero AVX</h3><h3 class="t-en">Create your AVX mailbox</h3><p class="t-es">Gratis y al instante. Recibes tu nueva dirección en Miami.</p><p class="t-en">Free and instant. Get your new Miami address.</p></div>
+        <div class="mstep reveal"><div class="n">02</div><h3 class="t-es">Actualiza tus pedidos</h3><h3 class="t-en">Update your orders</h3><p class="t-es">Cambia la dirección de envío en tus compras pendientes a tu dirección AVX.</p><p class="t-en">Change the shipping address on pending orders to your AVX address.</p></div>
+        <div class="mstep reveal"><div class="n">03</div><h3 class="t-es">Nosotros los recibimos</h3><h3 class="t-en">We receive them</h3><p class="t-es">Tus paquetes llegan a nuestra bodega sin devolverse al vendedor.</p><p class="t-en">Your packages arrive at our warehouse without being returned to the seller.</p></div>
+        <div class="mstep reveal"><div class="n">04</div><h3 class="t-es">Te los enviamos</h3><h3 class="t-en">We ship them</h3><p class="t-es">Consolidados y a tu puerta, con seguimiento en cada etapa.</p><p class="t-en">Consolidated and to your door, tracked all the way.</p></div>
+      </div>
+    </div>
+  </section>
+
+</div><!-- /migracion -->
+
 <!-- ==================== FOOTER (shared) ==================== -->
 <footer>
   <div class="wrap">
@@ -1177,7 +1286,7 @@
   // initial load from hash
   (function() {
     const hash = location.hash.replace('#','');
-    const valid = ['home','servicios','como-funciona','faq','contacto'];
+    const valid = ['home','servicios','como-funciona','faq','contacto','migracion'];
     goTo(valid.includes(hash) ? hash : 'home');
   })();
 
@@ -1208,13 +1317,19 @@
     btn.classList.toggle('open', open);
     document.body.style.overflow = open ? 'hidden' : '';
   }
-  function mobileGoTo(pageId) {
+  function mobileGoTo(pageId, anchor) {
     const menu = document.getElementById('mobileMenu');
     const btn = document.getElementById('hamburger');
     menu.classList.remove('open');
     btn.classList.remove('open');
     document.body.style.overflow = '';
-    goTo(pageId);
+    goTo(pageId, anchor);
+  }
+  function toggleMobileAccordion(id) {
+    const sub = document.getElementById(id);
+    const trigger = document.getElementById('mm-trigger-' + id.replace('mm-',''));
+    sub.classList.toggle('open');
+    trigger.classList.toggle('open');
   }
 
   // ---- LANGUAGE ----
